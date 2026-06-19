@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import BackgroundCover from '@/public/images/backgroundcover.png'
 import SectionShell from '@/components/ui/SectionShell'
+import { PixelMissionTag } from '@/components/PixelAtmosphere'
 import PixelButton from '@/components/ui/PixelButton'
 
 const words = [
@@ -72,7 +73,9 @@ export default function Hero() {
 
           {/* Sky zone — headline lives here only */}
           <div className="absolute inset-x-0 top-0 z-10 flex h-[58%] items-start justify-center px-4 pt-5 sm:px-8 sm:pt-7 md:pt-8">
-            <div className="w-full max-w-3xl px-5 py-7 text-center backdrop-blur-md sm:px-8 sm:py-8">
+            <div className="w-full max-w-3xl self-start border border-slate-200/90 bg-white/80 px-5 py-7 text-center shadow-sm backdrop-blur-md sm:px-8 sm:py-8">
+              <PixelMissionTag index="01" label="Mission briefing" className="mb-5" />
+
               <h1 className="font-funneldisplay text-[1.6rem] font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
                 Fruit Wholesalers with over 42 years of experience in{' '}
                 <span
@@ -92,7 +95,7 @@ export default function Hero() {
                   Get in Touch
                 </PixelButton>
                 <PixelButton href="#testimonials" tone="dark" className="w-full sm:w-auto">
-                  Why Farmers Love Us
+                  Why Traders Love Us
                 </PixelButton>
               </div>
 
