@@ -1,154 +1,72 @@
 import Image from 'next/image'
 
-const imageData = [
+const logos = [
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/01/Zespri-250x200.png',
-    alt: 'Strapi',
+    alt: 'Zespri',
     width: 144,
     height: 42,
   },
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/01/Manson-250x200.png',
-    alt: 'Gumroad',
+    alt: 'Manson',
     width: 200,
     height: 34,
   },
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/11/Northern-Fruit-250x200.png',
-    alt: 'Circle',
+    alt: 'Northern Fruit',
     width: 120,
     height: 35,
   },
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/01/Devos-250x200.png',
-    alt: 'Spline',
+    alt: 'Devos',
     width: 144,
     height: 39,
   },
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/01/Chelan-250x200.png',
-    alt: 'Clubhouse',
+    alt: 'Chelan',
     width: 192,
     height: 31,
   },
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/01/Evelina-250x200.png',
-    alt: 'Browser Company',
+    alt: 'Evelina',
     width: 144,
     height: 73,
   },
   {
     src: 'https://suriagrofresh.com/wp-content/uploads/2021/11/Natcha-250x200.png',
-    alt: 'Harmony',
+    alt: 'Natcha',
     width: 240,
     height: 48,
   },
-];
+]
 
 export default function TrustedBy() {
   return (
     <div>
-
-      <p className="text-center">Trusted by Well-Known Brands</p>
-
-      <div className="flex flex-row flex-wrap max-w-800 gap-4 mx-auto justify-center flex items-center p-6">
-        {/* Image 1 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="144"
-            height="42"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/01/Zespri-250x200.png"
-          />
-        </div>
-        {/* Image 2 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="200"
-            height="34"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/01/Manson-250x200.png"
-          />
-        </div>
-        {/* Image 3 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="120"
-            height="35"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/11/Northern-Fruit-250x200.png"
-          />
-        </div>
-        {/* Image 4 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="144"
-            height="39"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/01/Devos-250x200.png"
-          />
-        </div>
-        {/* Image 5 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="192"
-            height="31"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/01/Chelan-250x200.png"
-          />
-        </div>
-        {/* Image 6 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="144"
-            height="73"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/01/Evelina-250x200.png"
-          />
-        </div>
-        {/* Image 7 */}
-        <div className="w-full md:w-1/2 lg:w-1/5 px-4">
-          <Image
-            alt="image"
-            loading="lazy"
-            width="240"
-            height="48"
-            decoding="async"
-            className="flex items-center justify-center py-2 col-span-2 md:col-auto m-auto w-1/2 md:w-full p-4"
-            unoptimized
-            src="https://suriagrofresh.com/wp-content/uploads/2021/11/Natcha-250x200.png"
-          />
-        </div>
+      <p className="mb-6 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-slate-500">
+        Trusted by well-known brands
+      </p>
+      <div className="grid grid-cols-2 gap-px bg-slate-200 sm:grid-cols-3 lg:grid-cols-4">
+        {logos.map((logo) => (
+          <div key={logo.alt} className="flex items-center justify-center bg-white px-4 py-8">
+            <Image
+              alt={logo.alt}
+              loading="lazy"
+              width={logo.width}
+              height={logo.height}
+              decoding="async"
+              className="max-h-12 w-auto object-contain"
+              unoptimized
+              src={logo.src}
+            />
+          </div>
+        ))}
       </div>
-
-
-
-
     </div>
-
-  );
+  )
 }

@@ -1,32 +1,47 @@
 import './css/style.css'
 
-import { Inter } from 'next/font/google'
+import { Inter, Roboto_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import Header from '@/components/ui/header'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap'
+  display: 'swap',
+})
+
+const robotoMono = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-mono',
+  display: 'swap',
+})
+
+const silkscreen = localFont({
+  src: [{ path: '../public/fonts/Silkscreen-Regular.ttf', weight: '400', style: 'normal' }],
+  variable: '--font-silkscreen',
+})
+
+const funneldisplay = localFont({
+  src: '../public/fonts/FunnelDisplay-VariableFont_wght.ttf',
+  variable: '--font-funneldisplay',
 })
 
 export const metadata = {
-  title: 'supersalesagro vs {children}',
-  description: 'Compare supersalesagro to {children}',
+  title: 'Super Sales Agro — Fruit Wholesaler in Delhi & Himachal Mandis',
+  description:
+    'Super Sales Agro is one of India\'s most trusted fruit wholesalers with 42+ years of experience. Apples, mangoes, kinnow, pears, pomegranate, and guavas from Delhi and Himachal mandis.',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-inter antialiased bg-white text-gray-900 tracking-tight`}>
-        <div className="flex flex-col min-h-screen overflow-hidden supports-[overflow:clip]:overflow-clip">
+      <body
+        className={`${inter.variable} ${robotoMono.variable} ${silkscreen.variable} ${funneldisplay.variable} font-sans antialiased bg-slate-50 text-slate-900 tracking-tight`}
+      >
+        <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           <Header />
           {children}
-          
         </div>
       </body>
     </html>

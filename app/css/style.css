@@ -19,17 +19,121 @@
 
 
 
-/*custom css for the website here*/
+/* Trooper-style grid design system (agro brand) */
 
+@keyframes pixelFlicker {
+  0%, 100% { opacity: 1; }
+  6% { opacity: 0.86; }
+  7% { opacity: 1; }
+  31% { opacity: 0.9; }
+  32% { opacity: 1; }
+  58% { opacity: 0.82; }
+  59% { opacity: 1; }
+  84% { opacity: 0.94; }
+}
+
+@keyframes pixelGridFlicker {
+  0%, 100% { opacity: 0.55; }
+  25% { opacity: 0.28; }
+  50% { opacity: 0.62; }
+  75% { opacity: 0.35; }
+}
+
+.pixel-flicker-grid {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(41, 171, 92, 0.045) 3px,
+      rgba(41, 171, 92, 0.045) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(15, 23, 42, 0.035) 3px,
+      rgba(15, 23, 42, 0.035) 4px
+    );
+  mix-blend-mode: multiply;
+  animation: pixelGridFlicker 3.5s steps(6) infinite;
+}
+
+.pixel-camo-wash {
+  background-color: #f0f7f2;
+  background-image:
+    radial-gradient(circle at 18% 28%, rgba(41, 171, 92, 0.12) 0%, transparent 48%),
+    radial-gradient(circle at 82% 72%, rgba(23, 110, 59, 0.08) 0%, transparent 42%),
+    linear-gradient(180deg, #f8faf9 0%, #eef5f0 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.army-mission-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-roboto-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #176e3b;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(41, 171, 92, 0.35);
+  background: linear-gradient(180deg, #f8faf9 0%, #eefaf3 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 1px 0 rgba(41, 171, 92, 0.08);
+  clip-path: polygon(
+    4px 0, 100% 0, 100% calc(100% - 4px),
+    calc(100% - 4px) 100%, 0 100%, 0 4px
+  );
+}
+
+.army-mission-tag__sep {
+  width: 1px;
+  height: 10px;
+  background: rgba(41, 171, 92, 0.25);
+}
+
+@layer components {
+  .type-eyebrow-num {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-agro-700;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid rgba(41, 171, 92, 0.22);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(238, 250, 243, 0.85));
+    clip-path: polygon(3px 0, 100% 0, 100% calc(100% - 3px), calc(100% - 3px) 100%, 0 100%, 0 3px);
+  }
+
+  .type-h1 {
+    @apply font-funneldisplay text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl;
+  }
+
+  .type-h2 {
+    @apply font-funneldisplay text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl;
+  }
+
+  .type-body {
+    @apply text-base leading-relaxed text-slate-600 sm:text-lg;
+  }
+}
+
+@media (max-width: 640px) {
+  .type-eyebrow-num {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    padding: 0.25rem 0.45rem;
+  }
+}
 
 .bg-green-600 {
     background-color: #29ab5c;
-    font-family: 'circular';
 }
 
 .bg-green-700{
-    background-color: #29ab5c;
-    font-family: 'circular';
+    background-color: #1a8a47;
 }
 
 .text-green-600 {

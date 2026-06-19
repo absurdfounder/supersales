@@ -1,130 +1,89 @@
-
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Image from 'next/image'
 import ConnectingTogether from '@/public/images/connectingtogether.png'
-import TrustedBy from '@/app/(auth)/compare-against/TrustedBy';
-import BigCustomers from '@/app/(auth)/compare-against/BigCustomers';
+import TrustedBy from '@/app/(auth)/compare-against/TrustedBy'
+import BigCustomers from '@/app/(auth)/compare-against/BigCustomers'
+import SectionShell from '@/components/ui/SectionShell'
+import PixelButton from '@/components/ui/PixelButton'
+
+const products = [
+  { name: 'Apples', icon: '/images/appleicon.png' },
+  { name: 'Mangoes', icon: '/images/mangoicon.png' },
+  { name: 'Kinnow', icon: '/images/kinnowicon.png' },
+  { name: 'Pears', icon: '/images/pearicon.png' },
+  { name: 'Pomegranate', icon: '/images/pomogranateicon.png' },
+  { name: 'Guavas', icon: '/images/guavaicon.png' },
+]
 
 export default function FeaturesBlocks() {
   return (
-    <section className="relative" id="products">
-      {/* Section background (needs .relative class on parent and next sibling elements) */}
+    <>
+      <SectionShell id="products" eyebrowNumber="02" eyebrow="Products" bgClass="bg-slate-50">
+        <div className="pb-10 pt-2 md:pb-14">
+          <div className="mb-8 max-w-3xl">
+            <h2 className="type-h2 mb-4">We deal in various produce.</h2>
+            <p className="type-body">
+              Super Sales Agro Private Limited is one of the best distributors and importers of fresh produce in India,
+              handling over 65,000 MT of fruits and other produce every year and leading the Indian fresh produce sector
+              through innovation, technology and sustainable growth.
+            </p>
+          </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        <div>
-          <section className="mt-2">
-            {/* Section header */}
-            <div className="max-w-3xl mx-auto text-center pt-12 ">
-              <h2 className="h2 mb-4">We deal in various produce.</h2>
-              <p className="text-xl text-gray-600">
-              Super Sales Agro Private Limited is one of the best distributors and importers of fresh produce in India, handling over 65,000 MT of fruits and other produce every year and leading the Indian fresh produce sector through innovation, technology and sustainable growth.</p>
-            </div>
-
-            <div className="max-w-xs mx-auto sm:max-w-none sm:flex aos-init aos-animate mt-6 justify-center py-12" data-aos="zoom-y-out" data-aos-delay="300">
-              <div><a className="btn text-dark bg-green-600 hover:bg-green-700 w-full mb-4 sm:w-auto sm:mb-0" href="#contact_us">Get in Touch</a></div>
-            </div>
-
-            {/* Items */}
-            <div className="max-w-sm mx-auto grid gap-6 md:grid-cols-2 lg:grid-cols-3 items-start md:max-w-2xl lg:max-w-none">
-              {/* 1st item */}
-              <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl text-center h-full border">
-                <img alt="image" loading="lazy" decoding="async" className="mb-2 p-8" src="/images/appleicon.png" />
-                <div>
-                  <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Apples</h4>
-                </div>
+          <div className="mb-8 grid grid-cols-2 gap-px bg-slate-200 md:grid-cols-3">
+            {products.map((product) => (
+              <div
+                key={product.name}
+                className="flex flex-col items-center bg-white px-4 py-8 text-center sm:px-6 sm:py-10"
+              >
+                <img alt={product.name} loading="lazy" decoding="async" className="mb-4 h-20 w-20 object-contain p-2" src={product.icon} />
+                <h4 className="font-funneldisplay text-lg font-bold text-slate-900">{product.name}</h4>
               </div>
+            ))}
+          </div>
 
-              {/* 2nd item */}
-              <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl text-center h-full border">
-                <img alt="image" loading="lazy" decoding="async" className="mb-2 p-8" src="/images/mangoicon.png" />
-                <div>
-                  <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Mangoes</h4>
-                </div>
-              </div>
-
-              {/* 3rd item */}
-              <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl text-center h-full border">
-                <img alt="image" loading="lazy" decoding="async" className="mb-2 p-8" src="/images/kinnowicon.png" />
-                <div>
-                  <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Kinnow</h4>
-                </div>
-              </div>
-
-              {/* 4th item */}
-              <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl text-center h-full border">
-                <img alt="image" loading="lazy" decoding="async" className="mb-2 p-8" src="/images/pearicon.png" />
-                <div>
-                  <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Pears</h4>
-                </div>
-              </div>
-
-              {/* 5th item */}
-              <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl text-center h-full border">
-                <img alt="image" loading="lazy" decoding="async" className="mb-2 p-8" src="/images/pomogranateicon.png" />
-                <div>
-                  <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Pomegranate</h4>
-                </div>
-              </div>
-
-              {/* 6th item */}
-              <div className="relative flex flex-col items-center p-6 bg-white rounded shadow-xl text-center h-full border">
-                <img alt="image" loading="lazy" decoding="async" className="mb-2 p-8" src="/images/guavaicon.png" />
-                <div>
-                  <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Guavas</h4>
-                </div>
-              </div>
-
-
-            </div>
-          </section>
-
-          <br />
-          <br />
-
-          <TrustedBy />
-
-
-
-          <section className="py-12 mt-8 mb-8 grid">
-
-            <div className="md:w-1/2 sm:w-full">
-              <div className="text-start mt-6 w-full p-4">
-                <h2 className="h2 font-bold mb-4">We Bridge the gap between <span className='text-green-600'>FARMERS</span> and <span className='text-green-600'>BUYERS</span></h2>
-                <p className="text-gray-700">
-                We provide a transparent bridge by providing 30 day payment credits to buyers who are willing to buy the produce from the farmer. Provide them with services like cold store faciliates, packaging and supply and quality commitments to scale up client business and provide the best rates to farmers by setting up a huge channel.
-                </p>
-                <div className="max-w-xs mx-auto sm:max-w-none sm:flex aos-init aos-animate mt-6" data-aos="zoom-y-out" data-aos-delay="300">
-                  <div><a className="btn text-dark bg-green-600 hover:bg-green-700 w-full mb-4 sm:w-auto sm:mb-0" href="#contact_us">Get in Touch</a></div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-start mt-6 md:w-full sm:w-full rounded">
-              <div >
-
-                <Image src={ConnectingTogether} unoptimized alt="Logo" className="w-full rounded" />
-
-
-              </div>
-            </div>
-          </section>
-
-
-<BigCustomers />
-
-
+          <PixelButton href="#contact_us">Get in Touch</PixelButton>
         </div>
-      </div>
+      </SectionShell>
 
-      <br />
-      <br />
+      <SectionShell eyebrowNumber="03" eyebrow="Partners" bgClass="bg-white">
+        <div className="pb-10 pt-2 md:pb-14">
+          <TrustedBy />
+        </div>
+      </SectionShell>
 
+      <SectionShell eyebrowNumber="04" eyebrow="Supply chain" bgClass="bg-slate-50">
+        <div className="pb-10 pt-2 md:pb-14">
+          <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
+            <div className="bg-white p-6 sm:p-8 md:p-10">
+              <h2 className="type-h2 mb-4">
+                We bridge the gap between <span className="text-agro">farmers</span> and{' '}
+                <span className="text-agro">buyers</span>
+              </h2>
+              <p className="type-body mb-6">
+                We provide a transparent bridge by providing 30 day payment credits to buyers who are willing to buy the
+                produce from the farmer. Provide them with services like cold store facilities, packaging and supply and
+                quality commitments to scale up client business and provide the best rates to farmers by setting up a
+                huge channel.
+              </p>
+              <PixelButton href="#contact_us">Get in Touch</PixelButton>
+            </div>
+            <div className="relative min-h-[240px] bg-white lg:min-h-full">
+              <Image
+                src={ConnectingTogether}
+                unoptimized
+                alt="Connecting farmers and buyers"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </SectionShell>
 
-
-    </section>
-
-
-
-
+      <SectionShell eyebrowNumber="05" eyebrow="Buyers" bgClass="bg-white">
+        <div className="pb-10 pt-2 md:pb-14">
+          <BigCustomers />
+        </div>
+      </SectionShell>
+    </>
   )
 }
