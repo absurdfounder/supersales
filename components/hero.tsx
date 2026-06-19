@@ -3,17 +3,27 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import BackgroundCover from '@/public/images/backgroundcover.png'
-import SectionShell from '@/components/ui/SectionShell'
-import { PixelAtmosphere, PixelMissionTag } from '@/components/PixelAtmosphere'
 import PixelButton from '@/components/ui/PixelButton'
 
-const words = ['Apples', 'Mangoes', 'Kinnow', 'Pears']
-
-const stats = [
-  { label: 'Years experience', value: '42+' },
-  { label: 'Annual volume', value: '65K MT' },
-  { label: 'Payment', value: 'Same day' },
+const words = [
+  { emoji: '🍎', label: 'Apples' },
+  { emoji: '🍊', label: 'Oranges' },
+  { emoji: '🥭', label: 'Mangoes' },
+  { emoji: '🍐', label: 'Pears' },
 ]
+
+const trustItems = ['42 years experience', 'Same Day Payment', 'Family Owned']
+
+function CheckIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" className="mr-2 shrink-0 text-agro" aria-hidden>
+      <path
+        d="M9.1.3L4 5.4l-2-2c-.3-.3-.7-.4-1-.3S0 3.5 0 4c0 .4 0 .8.3 1l2.8 2.8c.2.2.5.3.8.3s.6-.1.8-.3l6-5.9c.3-.2.4-.6.3-1a1 1 0 0 0-.8-.8c-.4 0-.8 0-1 .3z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
 
 export default function Hero() {
   const [index, setIndex] = useState(0)
@@ -25,53 +35,51 @@ export default function Hero() {
     return () => clearInterval(interval)
   }, [])
 
-  return (
-    <SectionShell eyebrowNumber="01" eyebrow="Wholesale" bgClass="bg-white" noBorder>
-      <PixelAtmosphere camo flicker className="border border-slate-200">
-        <div className="grid lg:grid-cols-2">
-          <div className="flex flex-col justify-center border-b border-slate-200 p-6 sm:p-8 md:p-10 lg:border-b-0 lg:border-r">
-            <PixelMissionTag index="01" label="Mission briefing" className="mb-6" />
-            <h1 className="type-h1 mb-4">
-              Fruit wholesalers with 42 years of experience in{' '}
-              <span className="text-agro" key={words[index]}>
-                {words[index]}
-              </span>
-            </h1>
-            <p className="type-body mb-8 max-w-xl">
-              Super Sales Agro connects farmers and buyers across India with transparent pricing, same-day payment,
-              and cold-chain logistics from Delhi and Himachal mandis.
-            </p>
-            <div className="mb-8 flex flex-wrap gap-3">
-              <PixelButton href="#contact_us">Get in Touch</PixelButton>
-              <PixelButton href="#testimonials" variant="outline" tone="dark">
-                Why Traders Love Us
-              </PixelButton>
-            </div>
-            <div className="grid grid-cols-3 gap-px bg-slate-200">
-              {stats.map((stat) => (
-                <div key={stat.label} className="bg-white px-3 py-4 text-center sm:px-4">
-                  <p className="font-funneldisplay text-xl font-bold text-slate-900 sm:text-2xl">{stat.value}</p>
-                  <p className="mt-1 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+  const current = words[index]
 
-          <div className="relative min-h-[280px] sm:min-h-[360px] lg:min-h-[480px]">
-            <Image
-              src={BackgroundCover}
-              unoptimized
-              alt="Fresh produce at Super Sales Agro"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
-          </div>
+  return (
+    <section className="relative min-h-screen w-full">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={BackgroundCover}
+          unoptimized
+          alt="Super Sales Agro warehouse and orchards"
+          fill
+          priority
+          className="object-cover object-[center_42%] sm:object-[center_40%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/25" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-start px-4 pb-16 pt-28 text-center sm:px-6 sm:pt-32 md:pt-36 lg:pt-40">
+        <h1 className="font-funneldisplay text-3xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-4xl md:text-5xl lg:text-[3.25rem]">
+          Fruit Wholesalers with over 42 years of experience in{' '}
+          <span
+            key={current.label}
+            className="inline-block bg-gradient-to-r from-agro-400 to-agro bg-clip-text text-transparent word-flip"
+          >
+            {current.emoji} {current.label}
+          </span>
+        </h1>
+
+        <div className="mt-8 flex w-full max-w-md flex-col justify-center gap-3 sm:max-w-none sm:flex-row sm:gap-4">
+          <PixelButton href="#contact_us" className="w-full sm:w-auto">
+            Get in Touch
+          </PixelButton>
+          <PixelButton href="#testimonials" tone="dark" className="w-full sm:w-auto">
+            Why Traders Love Us
+          </PixelButton>
         </div>
-      </PixelAtmosphere>
-    </SectionShell>
+
+        <div className="mt-6 flex flex-col items-center gap-2 text-sm text-slate-700/90 sm:flex-row sm:gap-5">
+          {trustItems.map((item) => (
+            <div key={item} className="flex items-center">
+              <CheckIcon />
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

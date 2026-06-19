@@ -5,6 +5,7 @@ import Image from 'next/image'
 import notionfooterImage from '@/public/images/notionfooter.png'
 import SectionShell from '@/components/ui/SectionShell'
 import PixelButton from '@/components/ui/PixelButton'
+import { FooterGrid } from '@/components/ui/footer'
 
 const words = ['Apples', 'Mangoes', 'Kinnow', 'Pears']
 
@@ -20,8 +21,8 @@ export default function Newsletter() {
 
   return (
     <SectionShell eyebrowNumber="09" eyebrow="Get started" bgClass="bg-white" noBorderBottom={false}>
-      <div className="pb-10 pt-2 md:pb-14">
-        <div className="grid gap-px bg-slate-200 lg:grid-cols-[1fr_auto]">
+      <div className="grid gap-px bg-slate-200 pb-0 pt-2">
+        <div className="grid gap-px bg-slate-200 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
           <div className="bg-slate-900 p-8 text-white sm:p-10 md:p-12">
             <h3 className="font-funneldisplay text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
               Looking for the best rates for your{' '}
@@ -37,10 +38,20 @@ export default function Newsletter() {
               <PixelButton href="#contact_us">Get in Touch</PixelButton>
             </div>
           </div>
-          <div className="relative hidden min-h-[200px] bg-white lg:block lg:min-w-[280px] xl:min-w-[360px]">
-            <Image alt="Fresh produce" src={notionfooterImage} fill className="object-contain object-right p-6" unoptimized />
+
+          <div className="relative min-h-[220px] bg-slate-900 sm:min-h-[260px] lg:min-h-[280px]">
+            <Image
+              alt="Super Sales Agro cold chain truck"
+              src={notionfooterImage}
+              fill
+              className="object-cover object-center p-4 sm:p-6"
+              unoptimized
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-slate-900/20 to-slate-900/80 lg:via-transparent lg:to-slate-900/40" />
           </div>
         </div>
+
+        <FooterGrid />
       </div>
     </SectionShell>
   )

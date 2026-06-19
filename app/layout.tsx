@@ -41,7 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       >
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           <Header />
-          {children}
+          <div className="flex flex-1 flex-col">{children}</div>
         </div>
       </body>
     </html>
