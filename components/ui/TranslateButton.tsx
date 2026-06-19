@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { getCurrentLanguage, setLanguageCookieOnly } from '@/app/utils/googleTranslateHelper'
+import { getCurrentLanguage, reloadForLanguageChange, setLanguageCookieOnly } from '@/app/utils/googleTranslateHelper'
 
 interface LanguageData {
   code: string
@@ -101,12 +101,13 @@ export default function TranslateButton() {
   }, [searchQuery])
 
   const translatePage = (language: LanguageData) => {
+    setSelectedLanguage(language)
     setLanguageCookieOnly(language.code)
     setDropdownOpen(false)
     setSearchQuery('')
 
-    // Full reload lets React hydrate first; translation runs later via GoogleTranslateBoot.
-    window.location.assign(window.location.pathname + window.location.search)
+    // Full reload with replace() so back button / bfcache do not restore translated pages.
+    reloadForLanguageChange(language.code)
   }
 
   const preventTranslation = (e: React.MouseEvent<HTMLDivElement>) => {

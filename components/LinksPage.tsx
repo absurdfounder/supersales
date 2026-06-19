@@ -82,7 +82,7 @@ export default function LinksPage() {
             alt="Super Sales Agro"
             width={274}
             height={148}
-            className="mb-4 h-auto w-[min(100%,220px)]"
+            className="mb-4 h-auto w-full max-w-[240px] sm:max-w-[274px]"
           />
 
           <p className="rounded-full border border-slate-200 bg-white px-4 py-1.5 font-mono text-sm leading-relaxed text-slate-800">

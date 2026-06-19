@@ -1,87 +1,106 @@
-# Free Tailwind landing page template
+# Super Sales Agro
 
-![Simple TailwindCSS template preview](https://user-images.githubusercontent.com/2683512/231426766-72ae7bcd-618b-4a3e-87cd-b46a464bde61.png)
+Marketing site for **Super Sales Agro** — fruit wholesalers in Delhi & Himachal mandis since 1982.
 
-**Simple Light** is a free landing page template built on top of **TailwindCSS** and fully coded in **React** / **Next.js**. Simple light is designed to provide all the basic components a developer need to create a landing page for SaaS products, online services, and more. 
-Use it for whatever you want, and be sure to reach us out on Twitter if you build anything cool/useful with it.
-Created and maintained with ❤️ by [supersalesagro.com](https://supersalesagro.com/).
+**Live site:** [supersalesagro.com](https://supersalesagro.com)
 
-*Version 1.3.3 built with Tailwind CSS and React + Vite is available [here](https://github.com/supersalesagro/tailwind-landing-page-template/releases/tag/1.3.3).*
+## Stack
 
-## Live demo
+- [Next.js 14](https://nextjs.org/) (App Router)
+- [React 18](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
 
-Check the live demo here 👉️ [https://simple.supersalesagro.com/](https://simple.supersalesagro.com/)
+## Pages
 
-## Simple Pro
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage — hero, products, partners, supply chain, testimonials, contact |
+| `/todays-mandi-rates` | Daily wholesale fruit rates from Azadpur & Himachal |
+| `/wholesale` | Processors, exporters & wholesale suppliers (Indian & imported fruit) |
+| `/hospitality` | Hotels, restaurants, caterers, banquets, retail chains |
+| `/export` | Export programme — U.K., Europe, Australia, Middle East, SE Asia |
+| `/links` | Mobile link hub — WhatsApp channel, call, shipping address |
 
-[![Simple Pro](https://user-images.githubusercontent.com/2683512/151178282-fd81b300-349a-42c3-a30a-f70f6e711e74.png)](https://supersalesagro.com/)
+## Features
 
-## Design files
+- **Brand** — fruit logo in header, hero, footer, and `/links`
+- **Google Translate** — language selector in header / mobile menu; preference stored in `googtrans` cookie
+- **Floating WhatsApp** — quick chat CTA on all pages except `/links`
+- **Editable content** — rates, export copy, wholesale/hospitality copy live in `lib/`
 
-If you need the design files, you can download them from Figma's Community 👉 https://bit.ly/3HOZMpf
+## Project structure
 
-## Usage
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-### Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+app/
+  (default)/          # Public marketing routes
+  layout.tsx          # Root layout, fonts, Google Translate boot
+components/
+  hero.tsx            # Homepage hero
+  LinksPage.tsx       # /links hub
+  WholesalePage.tsx   # /wholesale
+  HospitalityPage.tsx # /hospitality
+  ExportPage.tsx      # /export
+  MandiRatesPage.tsx  # /todays-mandi-rates
+  ui/                 # Header, footer, buttons, translate control
+lib/
+  mandi-rates.ts      # Daily rate data (edit here)
+  export-content.ts   # Export page copy
+  wholesale-content.ts
+  hospitality-content.ts
+  site-links.ts       # /links hub URLs & shipping details
+public/images/        # Logos, product icons, photos
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Open [http://localhost:3000](http://localhost:3000).
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+npm run build   # production build
+npm run start   # run production server locally
+npm run lint    # ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Editing content
 
-### Learn More
+| What to change | File |
+|----------------|------|
+| Mandi rates | `lib/mandi-rates.ts` |
+| Export markets & products | `lib/export-content.ts` |
+| Wholesale copy | `lib/wholesale-content.ts` |
+| Hospitality copy | `lib/hospitality-content.ts` |
+| Link hub buttons & shipping | `lib/site-links.ts` |
+| Contact / office details | `components/testimonials.tsx` (contact section) |
 
-To learn more about Next.js, take a look at the following resources:
+## Google Translate notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Language selection is handled by `components/ui/TranslateButton.tsx` and `app/utils/googleTranslateHelper.js`.
+- Translation loads **after** React hydration (`components/GoogleTranslateBoot.tsx`) to avoid DOM conflicts.
+- Selecting **English** clears all `googtrans` cookies and reloads the page.
+- If a language appears stuck after testing, clear site cookies for `googtrans` or pick English from the language menu again.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deploy
 
-### Deploy on Vercel
+Standard Next.js deployment (e.g. Vercel):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Set the production domain in your host; no extra env vars required for the marketing site.
 
+## Repository
 
-### Support notes
-This template has been developed with the App Router (`app`) and React Server Components. If you’re unfamiliar with these beta features, you can find more information about them on the Next.js beta documentation page. So, please note that any request dealing with React (e.g. extra features, customisations, et cetera) is to be considered out of the support scope.
+[github.com/absurdfounder/supersales](https://github.com/absurdfounder/supersales)
 
-For more information about what support covers, please see our (FAQs)[https://supersalesagro.com/faq/].
+## Contact
 
-## Credits
-
-- [Nucleo](https://nucleoapp.com/)
-
-## Terms and License
-
-- Released under the [GPL](https://www.gnu.org/licenses/gpl-3.0.html).
-- Copyright 2020 [supersalesagro](https://supersalesagro.com/).
-- Use it for personal and commercial projects, but please don’t republish, redistribute, or resell the template.
-- Attribution is not required, although it is really appreciated.
-
-## About Us
-
-We're an Italian developer/designer duo creating high-quality design/code resources for developers, makers, and startups.
-
-## Stay in the loop
-
-If you would like to know when we release new resources, you can follow us on [Twitter](https://twitter.com/supersalesagro_com), or you can subscribe to our monthly [newsletter](https://supersalesagro.com/#subscribe).
+- **Phone:** +91-9899262264
+- **Email:** supersalesagro@gmail.com
+- **WhatsApp channel:** linked from `/links` and site footer

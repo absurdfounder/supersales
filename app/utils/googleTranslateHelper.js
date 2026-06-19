@@ -4,19 +4,66 @@ const HYDRATION_DELAY_MS = 1200
 
 let translateApplyStarted = false
 
+function parseGoogTransCookie(rawValue) {
+  if (!rawValue) return 'en'
+
+  const value = decodeURIComponent(rawValue.trim())
+  const parts = value.split('/').filter(Boolean)
+
+  if (parts.length === 0) return 'en'
+
+  // /en/hi -> hi, /auto/en -> en
+  const target = parts[parts.length - 1]
+  if (!target || target === 'en') return 'en'
+
+  return target
+}
+
 export function getCurrentLanguage() {
-  const match = document.cookie.match(/(^|;)\s*googtrans=([^;]+)/)
-  if (match) {
-    const langCode = match[2].split('/')[2]
-    return langCode || 'en'
+  if (typeof document === 'undefined') return 'en'
+
+  const cookies = document.cookie.split(';')
+  for (const cookie of cookies) {
+    const [name, ...rest] = cookie.trim().split('=')
+    if (name === 'googtrans') {
+      const lang = parseGoogTransCookie(rest.join('='))
+      if (lang && lang !== 'en') return lang
+      return 'en'
+    }
   }
 
-  return localStorage.getItem('selectedLanguageCode') || 'en'
+  const stored = localStorage.getItem('selectedLanguageCode')
+  if (stored && stored !== 'en') return stored
+
+  return 'en'
 }
 
 export function isTranslatedPage() {
-  const lang = getCurrentLanguage()
-  return Boolean(lang && lang !== 'en')
+  return getCurrentLanguage() !== 'en'
+}
+
+function clearGoogleTranslateCookies() {
+  const expire = 'Thu, 01 Jan 1970 00:00:00 UTC'
+  const hostname = window.location.hostname
+  const variants = [`googtrans=; expires=${expire}; path=/`]
+
+  if (hostname && hostname !== 'localhost' && !hostname.endsWith('.local')) {
+    variants.push(`googtrans=; expires=${expire}; path=/; domain=${hostname}`)
+    const rootDomain = hostname.replace(/^www\./, '')
+    if (rootDomain.includes('.')) {
+      variants.push(`googtrans=; expires=${expire}; path=/; domain=.${rootDomain}`)
+    }
+  }
+
+  for (const cookie of variants) {
+    document.cookie = cookie
+  }
+}
+
+function resetTranslatedDocumentMarkup() {
+  document.documentElement.classList.remove('translated-ltr', 'translated-rtl')
+  document.documentElement.lang = 'en'
+  document.body?.classList.remove('translated-ltr', 'translated-rtl')
 }
 
 /** Set language preference only — never touch the DOM (safe before reload). */
@@ -24,18 +71,23 @@ export function setLanguageCookieOnly(langCode) {
   if (!langCode) return false
 
   try {
-    document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    clearGoogleTranslateCookies()
 
     if (langCode === 'en') {
-      localStorage.setItem('selectedLanguageCode', 'en')
+      localStorage.removeItem('selectedLanguageCode')
+      resetTranslatedDocumentMarkup()
       return true
     }
 
     const hostname = window.location.hostname
-    document.cookie = `googtrans=/en/${langCode}; path=/; domain=${hostname}`
-    document.cookie = `googtrans=/en/${langCode}; path=/;`
-    localStorage.setItem('selectedLanguageCode', langCode)
+    const value = `/en/${langCode}`
 
+    document.cookie = `googtrans=${value}; path=/`
+    if (hostname && hostname !== 'localhost' && !hostname.endsWith('.local')) {
+      document.cookie = `googtrans=${value}; path=/; domain=${hostname}`
+    }
+
+    localStorage.setItem('selectedLanguageCode', langCode)
     return true
   } catch (error) {
     console.error('Error setting language cookie:', error)
@@ -62,6 +114,27 @@ function applyTranslationWithoutRefresh(langCode) {
     }
   } catch (error) {
     console.error('Error in applyTranslationWithoutRefresh:', error)
+  }
+}
+
+function resetTranslateWidgetToEnglish() {
+  try {
+    const selectors = ['.goog-te-combo', 'select.goog-te-combo', '[id*="goog-te-combo"]']
+
+    for (const selector of selectors) {
+      const elements = document.querySelectorAll(selector)
+
+      for (const element of elements) {
+        if (element instanceof HTMLSelectElement) {
+          element.value = ''
+          element.selectedIndex = 0
+          element.dispatchEvent(new Event('change'))
+          return
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error resetting translate widget:', error)
   }
 }
 
@@ -146,14 +219,36 @@ function loadTranslateScript() {
   })
 }
 
+function installTranslationBfcacheGuard() {
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return
+    if (getCurrentLanguage() !== 'en') return
+
+    const looksTranslated =
+      document.documentElement.classList.contains('translated-ltr') ||
+      document.documentElement.classList.contains('translated-rtl') ||
+      (document.documentElement.lang && document.documentElement.lang !== 'en')
+
+    if (looksTranslated) {
+      window.location.reload()
+    }
+  })
+}
+
 /** Run once after React hydration so Google Translate does not break the tree. */
 export function scheduleTranslationAfterHydration() {
   if (translateApplyStarted || typeof window === 'undefined') return
   translateApplyStarted = true
 
+  installTranslationBfcacheGuard()
+
   const run = async () => {
     const langCode = getCurrentLanguage()
-    if (!langCode || langCode === 'en') return
+
+    if (!langCode || langCode === 'en') {
+      resetTranslatedDocumentMarkup()
+      return
+    }
 
     await loadTranslateScript()
     initTranslateWidget()
@@ -173,4 +268,13 @@ export function setLanguageWithCookie(langCode) {
 
 export function ensureTranslation() {
   scheduleTranslationAfterHydration()
+}
+
+export function reloadForLanguageChange(langCode) {
+  if (langCode === 'en') {
+    resetTranslateWidgetToEnglish()
+  }
+
+  const url = window.location.pathname + window.location.search
+  window.location.replace(url)
 }

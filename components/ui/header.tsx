@@ -29,17 +29,17 @@ export default function Header() {
     >
       <div className="mx-auto max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
-          <Link href="/" className="mr-4 flex shrink-0 items-center gap-2.5 sm:gap-3">
+          <Link href="/" className="mr-2 flex min-w-0 shrink items-center gap-2 sm:mr-4 sm:gap-2.5 md:gap-3">
             <Image
               src={Logo}
               unoptimized
               alt=""
               width={274}
               height={148}
-              className="h-8 w-auto md:h-9"
+              className="h-8 w-auto shrink-0 sm:h-9 md:h-10"
               aria-hidden
             />
-            <span className="font-funneldisplay text-sm font-extrabold leading-tight text-slate-900 sm:text-base md:text-lg">
+            <span className="hidden truncate font-funneldisplay text-sm font-extrabold leading-tight text-slate-900 min-[380px]:inline sm:text-base md:text-lg">
               Super Sales Agro
             </span>
           </Link>

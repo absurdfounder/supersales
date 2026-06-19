@@ -11,7 +11,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   return (
     <>
       {!isLinkHub ? <Header /> : null}
-      <div className="flex flex-1 flex-col">{children}</div>
+      <div className="flex flex-1 flex-col pb-20 md:pb-0">{children}</div>
       {!isLinkHub ? <FloatingWhatsAppButton /> : null}
     </>
   )

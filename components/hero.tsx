@@ -65,19 +65,23 @@ export default function Hero() {
     <SectionShell bgClass="bg-white" noBorder className="pt-16 md:pt-[4.5rem]">
       <div className="-mx-3 grid gap-px bg-slate-200 sm:-mx-4 md:-mx-6">
         {/* Image + sky content */}
-        <div className="relative min-h-[560px] overflow-hidden border border-slate-200 sm:min-h-[620px] md:min-h-[680px]">
+        <div className="relative min-h-[600px] overflow-hidden border border-slate-200 sm:min-h-[620px] md:min-h-[680px]">
           <Image
             src={BackgroundCover}
             unoptimized
             alt="Super Sales Agro warehouse and orchards"
             fill
             priority
-            className="object-cover object-[center_68%] md:object-[center_64%]"
+            className="object-cover object-[center_82%] sm:object-[center_68%] md:object-[center_64%]"
           />
 
           <div className="pointer-events-none absolute inset-0 hero-sky-wash" aria-hidden />
           <div className="pointer-events-none absolute inset-0 hero-checker-grid" aria-hidden />
           <div className="pointer-events-none absolute inset-0 pixel-flicker-grid" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 h-[72%] bg-gradient-to-b from-sky-50/90 via-white/75 to-white/95 sm:h-auto sm:bg-none"
+            aria-hidden
+          />
 
           <div className="pointer-events-none absolute inset-3 border border-white/35 sm:inset-4 md:inset-5" aria-hidden />
           <div
@@ -90,8 +94,8 @@ export default function Hero() {
           />
 
           {/* Sky zone — headline lives here only */}
-          <div className="absolute inset-x-0 top-0 z-10 flex h-[58%] items-start justify-center px-4 pt-5 sm:px-8 sm:pt-7 md:pt-8">
-            <div className="w-full max-w-3xl self-start px-5 py-7 text-center sm:px-8 sm:py-8">
+          <div className="absolute inset-x-0 top-0 z-10 flex min-h-[72%] items-start justify-center px-3 pt-4 sm:h-[58%] sm:min-h-0 sm:px-8 sm:pt-7 md:pt-8">
+            <div className="w-full max-w-3xl self-start rounded-2xl border border-slate-200/80 bg-white/95 px-4 py-5 text-center shadow-none backdrop-blur-sm sm:rounded-none sm:border-0 sm:bg-transparent sm:px-8 sm:py-8 sm:backdrop-blur-none">
               <Image
                 src={Logo}
                 unoptimized
@@ -99,14 +103,14 @@ export default function Hero() {
                 width={274}
                 height={148}
                 priority
-                className="mx-auto mb-5 h-auto w-[min(100%,200px)] rounded-lg sm:w-[220px]"
+                className="mx-auto mb-4 h-auto w-full max-w-[200px] sm:mb-5 sm:max-w-[274px]"
               />
 
-              <h1 className="font-funneldisplay text-[1.6rem] font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
+              <h1 className="font-funneldisplay text-[1.4rem] font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
                 Fruit Wholesalers with over 42 years of experience in{' '}
                 <span
                   key={pauseAnimation ? 'static' : current.label}
-                  className={`hero-word-enter whitespace-nowrap text-agro-600${pauseAnimation ? ' notranslate' : ''}`}
+                  className={`hero-word-enter text-agro-600 sm:whitespace-nowrap${pauseAnimation ? ' notranslate' : ''}`}
                   translate={pauseAnimation ? 'no' : undefined}
                   aria-live={pauseAnimation ? undefined : 'polite'}
                 >
@@ -115,11 +119,11 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
+              <p className="mx-auto mt-2.5 max-w-2xl text-xs leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
                 Delhi &amp; Himachal mandis · cold chain · same-day farmer payment · 250+ farmer relationships
               </p>
 
-              <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+              <div className="mt-4 flex flex-col justify-center gap-2.5 sm:mt-6 sm:flex-row sm:gap-4">
                 <PixelButton href="#contact_us" className="w-full sm:w-auto">
                   Get in Touch
                 </PixelButton>
@@ -128,7 +132,7 @@ export default function Hero() {
                 </PixelButton>
               </div>
 
-              <div className="mt-4 flex flex-col items-center justify-center gap-2 text-xs text-slate-700 sm:flex-row sm:gap-5 sm:text-sm">
+              <div className="mt-3 hidden flex-col items-center justify-center gap-2 text-xs text-slate-700 sm:mt-4 sm:flex sm:flex-row sm:gap-5 sm:text-sm">
                 <div className="flex items-center">
                   <CheckIcon />
                   Family owned
@@ -149,9 +153,9 @@ export default function Hero() {
         {/* Stats rail — below image, solid white */}
         <div className="grid grid-cols-3 gap-px bg-slate-200">
           {stats.map((stat) => (
-            <div key={stat.label} className="bg-white px-3 py-4 text-center sm:px-4 sm:py-5">
-              <p className="font-funneldisplay text-xl font-bold text-slate-900 sm:text-2xl">{stat.value}</p>
-              <p className="mt-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-slate-500 sm:text-[10px]">
+            <div key={stat.label} className="bg-white px-2 py-3.5 text-center sm:px-4 sm:py-5">
+              <p className="font-funneldisplay text-lg font-bold text-slate-900 sm:text-2xl">{stat.value}</p>
+              <p className="mt-1 font-mono text-[8px] font-semibold uppercase leading-tight tracking-[0.12em] text-slate-500 sm:text-[10px] sm:tracking-[0.16em]">
                 {stat.label}
               </p>
             </div>
