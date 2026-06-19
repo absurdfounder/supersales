@@ -25,11 +25,7 @@ export default function Header() {
           : 'border-b border-slate-200 bg-white/95 backdrop-blur-sm'
       }`}
     >
-      <div
-        className={`mx-auto px-4 sm:px-6 ${
-          top ? 'max-w-8xl' : 'max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6'
-        }`}
-      >
+      <div className="mx-auto max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
           <Link href="/" className="mr-4 shrink-0">
             <Image src={Logo} unoptimized alt="Super Sales Agro" width={220} height={48} className="h-9 w-auto md:h-10" />
