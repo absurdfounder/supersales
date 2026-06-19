@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from '@/public/images/logonew-black.png'
+import Logo from '@/public/images/logo-super-sales-agro.png'
 import MobileMenu from './mobile-menu'
 import PixelButton from './PixelButton'
 import TranslateButton from './TranslateButton'
@@ -29,8 +29,15 @@ export default function Header() {
     >
       <div className="mx-auto max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
-          <Link href="/" className="mr-4 shrink-0 rounded-sm bg-white px-2 py-1">
-            <Image src={Logo} unoptimized alt="Super Sales Agro" width={200} height={44} className="h-8 w-auto md:h-9" />
+          <Link href="/" className="mr-4 shrink-0 rounded-md bg-black/95 px-2 py-1 shadow-sm">
+            <Image
+              src={Logo}
+              unoptimized
+              alt="Super Sales Agro"
+              width={274}
+              height={148}
+              className="h-8 w-auto md:h-9"
+            />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">

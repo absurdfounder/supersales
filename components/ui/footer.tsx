@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from '@/public/images/logonew-black.png'
+import Logo from '@/public/images/logo-super-sales-agro.png'
 
 const footerLinks = {
   company: [
@@ -33,7 +33,14 @@ export function FooterGrid() {
       <div className="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
         <div className="bg-white p-6 sm:col-span-2 lg:col-span-1">
           <Link href="/" className="mb-4 inline-block">
-            <Image src={Logo} loading="eager" alt="Super Sales Agro" width={180} height={48} className="h-8 w-auto" />
+            <Image
+              src={Logo}
+              loading="eager"
+              alt="Super Sales Agro"
+              width={274}
+              height={148}
+              className="h-10 w-auto rounded-md"
+            />
           </Link>
           <p className="text-sm leading-relaxed text-slate-600">
             India&apos;s trusted fruit wholesaler since 1982. 65,000+ MT of fresh produce every year from Delhi and

@@ -13,54 +13,46 @@ export type SiteLinkGroup = {
   links: SiteLink[]
 }
 
+export const WHATSAPP_CHANNEL_URL = 'https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T'
+
+export const WHATSAPP_CHAT_URL =
+  'https://wa.me/919899262264?text=Hi%20Super%20Sales%20Agro%2C%20I%20would%20like%20to%20enquire%20about%20today%27s%20mandi%20rates.'
+
+export const MANDI_DESK_PHONE = 'tel:+919899262264'
+
+export const linkHubShipping = {
+  title: 'Shipping address',
+  licence: 'B-4881',
+  address: 'A-1022 New Subzi Mandi, Azadpur, Delhi-110034',
+  mapHref:
+    'https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.8331576,77.1288924,17z',
+}
+
 export const linkHubPrimaryLinks: SiteLink[] = [
   {
     id: 'mandi-rates',
     label: "Today's mandi rates",
-    href: '/todays-mandi-rates',
+    description: 'Join our WhatsApp channel for daily rates',
+    href: WHATSAPP_CHANNEL_URL,
+    external: true,
+    highlight: true,
   },
   {
     id: 'whatsapp-chat',
     label: 'WhatsApp us',
-    href: 'https://wa.me/919899262264?text=Hi%20Super%20Sales%20Agro%2C%20I%20would%20like%20to%20enquire%20about%20today%27s%20mandi%20rates.',
-    external: true,
-  },
-  {
-    id: 'about',
-    label: 'Our story',
-    href: '/#about_us',
-  },
-  {
-    id: 'export',
-    label: 'Export',
-    href: '/export',
-  },
-  {
-    id: 'locations',
-    label: 'Locations',
-    href: '/#contact_us',
-  },
-]
-
-export const linkHubSocialLinks: SiteLink[] = [
-  {
-    id: 'whatsapp-channel',
-    label: 'WhatsApp channel',
-    href: 'https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T',
+    href: WHATSAPP_CHAT_URL,
     external: true,
   },
   {
     id: 'call',
     label: 'Call mandi desk',
-    href: 'tel:+919899262264',
+    description: '+91-9899262264',
+    href: MANDI_DESK_PHONE,
     external: true,
   },
-  {
-    id: 'email',
-    label: 'Email',
-    href: 'mailto:supersalesagro@gmail.com',
-    external: true,
-  },
+]
+
+export const linkHubSocialLinks: SiteLink[] = [
   {
     id: 'home',
     label: 'Website',
@@ -84,7 +76,7 @@ export const siteLinkGroups: SiteLinkGroup[] = [
         id: 'whatsapp-channel',
         label: 'WhatsApp channel',
         description: 'Daily rates, arrivals & market briefings',
-        href: 'https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T',
+        href: WHATSAPP_CHANNEL_URL,
         external: true,
         highlight: true,
       },

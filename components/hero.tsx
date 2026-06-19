@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import BackgroundCover from '@/public/images/backgroundcover.png'
+import Logo from '@/public/images/logo-super-sales-agro.png'
 import SectionShell from '@/components/ui/SectionShell'
-import { PixelMissionTag } from '@/components/PixelAtmosphere'
 import PixelButton from '@/components/ui/PixelButton'
 import { isTranslatedPage } from '@/app/utils/googleTranslateHelper'
 
@@ -92,7 +92,15 @@ export default function Hero() {
           {/* Sky zone — headline lives here only */}
           <div className="absolute inset-x-0 top-0 z-10 flex h-[58%] items-start justify-center px-4 pt-5 sm:px-8 sm:pt-7 md:pt-8">
             <div className="w-full max-w-3xl self-start px-5 py-7 text-center sm:px-8 sm:py-8">
-              <PixelMissionTag index="01" label="Mission briefing" className="mb-5" />
+              <Image
+                src={Logo}
+                unoptimized
+                alt="Super Sales Agro"
+                width={274}
+                height={148}
+                priority
+                className="mx-auto mb-5 h-auto w-[min(100%,200px)] rounded-lg shadow-md sm:w-[220px]"
+              />
 
               <h1 className="font-funneldisplay text-[1.6rem] font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
                 Fruit Wholesalers with over 42 years of experience in{' '}

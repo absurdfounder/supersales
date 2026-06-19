@@ -3,7 +3,7 @@ import LinksPage from '@/components/LinksPage'
 export const metadata = {
   title: 'Links | Super Sales Agro',
   description:
-    'Quick links to Super Sales Agro — today\'s mandi rates, WhatsApp channel, contact numbers, email, and Azadpur office locations.',
+    'Today\'s mandi rates on WhatsApp, chat or call our mandi desk, and shipping address for Super Sales Agro at Azadpur Delhi.',
 }
 
 export default function LinksRoutePage() {

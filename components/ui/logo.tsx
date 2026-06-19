@@ -1,18 +1,17 @@
 import Link from 'next/link'
 import Image from 'next/image' // Import the Image component from Next.js
-import logonew_black from '../../public/images/logonew-black.png';
+import logo from '../../public/images/logo-super-sales-agro.png';
 
 export default function Logo() {
   return (
     <Link href="/" className="block" aria-label="supersalesagro">
-      {/* Use the Image component for optimized images */}
       <Image
-        src={logonew_black} 
+        src={logo}
         unoptimized
-        alt="Logo" 
-        width={200}
-        height={200}
-        className="block" 
+        alt="Super Sales Agro"
+        width={274}
+        height={148}
+        className="h-10 w-auto rounded-md"
       />
     </Link>
   )
