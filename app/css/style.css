@@ -59,6 +59,36 @@
   animation: pixelGridFlicker 3.5s steps(6) infinite;
 }
 
+/* Visible checkered overlay for hero imagery */
+.hero-checker-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(rgba(41, 171, 92, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(41, 171, 92, 0.14) 1px, transparent 1px);
+  background-size:
+    16px 16px,
+    16px 16px,
+    48px 48px,
+    48px 48px;
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+}
+
+.hero-sky-wash {
+  background: linear-gradient(
+    180deg,
+    rgba(248, 250, 252, 0.92) 0%,
+    rgba(248, 250, 252, 0.72) 28%,
+    rgba(248, 250, 252, 0.2) 52%,
+    transparent 68%
+  );
+}
+
+.hero-land-fade {
+  background: linear-gradient(180deg, transparent 0%, rgba(248, 250, 252, 0.55) 78%, #f8fafc 100%);
+}
+
 .pixel-camo-wash {
   background-color: #f0f7f2;
   background-image:
