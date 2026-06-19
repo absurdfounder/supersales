@@ -28,13 +28,21 @@ export default function FeaturesBlocks() {
             </p>
           </div>
 
-          <div className="mb-8 grid grid-cols-2 gap-px bg-slate-200 md:grid-cols-3">
+          <div className="-mx-3 mb-8 grid grid-cols-2 gap-px bg-slate-200 md:grid-cols-3 sm:-mx-4 md:-mx-6">
             {products.map((product) => (
               <div
                 key={product.name}
-                className="flex flex-col items-center bg-white px-4 py-8 text-center sm:px-6 sm:py-10"
+                className="flex min-h-[180px] flex-col items-center justify-center bg-white px-4 py-8 text-center sm:min-h-[200px] sm:px-6 sm:py-10"
               >
-                <img alt={product.name} loading="lazy" decoding="async" className="mb-4 h-20 w-20 object-contain p-2" src={product.icon} />
+                <Image
+                  alt={product.name}
+                  src={product.icon}
+                  width={160}
+                  height={160}
+                  loading="lazy"
+                  className="mb-5 h-28 w-28 object-contain sm:h-32 sm:w-32"
+                  unoptimized
+                />
                 <h4 className="font-funneldisplay text-lg font-bold text-slate-900">{product.name}</h4>
               </div>
             ))}
@@ -66,13 +74,14 @@ export default function FeaturesBlocks() {
               </p>
               <PixelButton href="#contact_us">Get in Touch</PixelButton>
             </div>
-            <div className="relative min-h-[240px] bg-white lg:min-h-full">
+            <div className="relative min-h-[280px] bg-white sm:min-h-[340px] lg:min-h-[420px]">
               <Image
                 src={ConnectingTogether}
                 unoptimized
                 alt="Connecting farmers and buyers"
                 fill
-                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-center"
               />
             </div>
           </div>

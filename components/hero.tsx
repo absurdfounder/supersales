@@ -44,7 +44,7 @@ export default function Hero() {
   const current = words[index]
 
   return (
-    <SectionShell eyebrowNumber="01" eyebrow="Wholesale" bgClass="bg-slate-50" noBorder>
+    <SectionShell bgClass="bg-slate-50" noBorder className="pt-16 md:pt-[4.5rem]">
       <div className="-mx-3 grid gap-px bg-slate-200 sm:-mx-4 md:-mx-6">
         {/* Image + sky content */}
         <div className="relative min-h-[500px] overflow-hidden border border-slate-200 sm:min-h-[540px] md:min-h-[580px]">

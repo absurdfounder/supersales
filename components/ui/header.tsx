@@ -21,14 +21,14 @@ export default function Header() {
     <header
       className={`fixed top-0 z-30 w-full transition-colors duration-200 ${
         top
-          ? 'border-b border-transparent bg-transparent'
+          ? 'border-b border-slate-200/70 bg-white/90 backdrop-blur-sm'
           : 'border-b border-slate-200 bg-white/95 backdrop-blur-sm'
       }`}
     >
       <div className="mx-auto max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
-          <Link href="/" className="mr-4 shrink-0">
-            <Image src={Logo} unoptimized alt="Super Sales Agro" width={220} height={48} className="h-9 w-auto md:h-10" />
+          <Link href="/" className="mr-4 shrink-0 rounded-sm bg-white px-2 py-1">
+            <Image src={Logo} unoptimized alt="Super Sales Agro" width={200} height={44} className="h-8 w-auto md:h-9" />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
