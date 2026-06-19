@@ -6,17 +6,35 @@ import truckImage from '@/public/images/super-chill-truck.jpg'
 import SectionShell from '@/components/ui/SectionShell'
 import PixelButton from '@/components/ui/PixelButton'
 import { FooterGrid } from '@/components/ui/footer'
+import { isTranslatedPage } from '@/app/utils/googleTranslateHelper'
 
 const words = ['Apples', 'Mangoes', 'Kinnow', 'Pears']
 
 export default function Newsletter() {
   const [index, setIndex] = useState(0)
+  const [pauseAnimation, setPauseAnimation] = useState(false)
 
   useEffect(() => {
+    if (isTranslatedPage()) {
+      setPauseAnimation(true)
+      return
+    }
+
     const intervalId = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % words.length)
     }, 2000)
-    return () => clearInterval(intervalId)
+
+    const guard = window.setTimeout(() => {
+      if (isTranslatedPage()) {
+        setPauseAnimation(true)
+        clearInterval(intervalId)
+      }
+    }, 1500)
+
+    return () => {
+      clearInterval(intervalId)
+      window.clearTimeout(guard)
+    }
   }, [])
 
   return (
@@ -26,7 +44,7 @@ export default function Newsletter() {
           <div className="flex flex-col justify-center bg-white p-8 text-slate-900 sm:p-10 md:p-12">
             <h3 className="font-funneldisplay text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
               Looking for the best rates for your{' '}
-              <span className="text-agro-700" key={words[index]}>
+              <span className={`text-agro-700${pauseAnimation ? ' notranslate' : ''}`} key={pauseAnimation ? 'static' : words[index]} translate={pauseAnimation ? 'no' : undefined}>
                 {words[index]}
               </span>
               ?

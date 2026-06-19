@@ -6,6 +6,7 @@ import BackgroundCover from '@/public/images/backgroundcover.png'
 import SectionShell from '@/components/ui/SectionShell'
 import { PixelMissionTag } from '@/components/PixelAtmosphere'
 import PixelButton from '@/components/ui/PixelButton'
+import { isTranslatedPage } from '@/app/utils/googleTranslateHelper'
 
 const words = [
   { emoji: '🍎', label: 'Apples' },
@@ -33,12 +34,29 @@ function CheckIcon() {
 
 export default function Hero() {
   const [index, setIndex] = useState(0)
+  const [pauseAnimation, setPauseAnimation] = useState(false)
 
   useEffect(() => {
+    if (isTranslatedPage()) {
+      setPauseAnimation(true)
+      return
+    }
+
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % words.length)
     }, 2000)
-    return () => clearInterval(interval)
+
+    const guard = window.setTimeout(() => {
+      if (isTranslatedPage()) {
+        setPauseAnimation(true)
+        clearInterval(interval)
+      }
+    }, 1500)
+
+    return () => {
+      clearInterval(interval)
+      window.clearTimeout(guard)
+    }
   }, [])
 
   const current = words[index]
@@ -79,9 +97,10 @@ export default function Hero() {
               <h1 className="font-funneldisplay text-[1.6rem] font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
                 Fruit Wholesalers with over 42 years of experience in{' '}
                 <span
-                  key={current.label}
-                  className="hero-word-enter whitespace-nowrap text-agro-600"
-                  aria-live="polite"
+                  key={pauseAnimation ? 'static' : current.label}
+                  className={`hero-word-enter whitespace-nowrap text-agro-600${pauseAnimation ? ' notranslate' : ''}`}
+                  translate={pauseAnimation ? 'no' : undefined}
+                  aria-live={pauseAnimation ? undefined : 'polite'}
                 >
                   <span aria-hidden>{current.emoji}</span>
                   <span>{current.label}</span>
@@ -89,7 +108,7 @@ export default function Hero() {
               </h1>
 
               <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
-                Delhi &amp; Himachal mandis · cold chain · same-day farmer payment · 250+ trader relationships
+                Delhi &amp; Himachal mandis · cold chain · same-day farmer payment · 250+ farmer relationships
               </p>
 
               <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
@@ -97,7 +116,7 @@ export default function Hero() {
                   Get in Touch
                 </PixelButton>
                 <PixelButton href="#testimonials" tone="dark" className="w-full sm:w-auto">
-                  Why Traders Love Us
+                  Why Farmers Love Us
                 </PixelButton>
               </div>
 

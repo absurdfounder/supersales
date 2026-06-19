@@ -13,6 +13,61 @@ export type SiteLinkGroup = {
   links: SiteLink[]
 }
 
+export const linkHubPrimaryLinks: SiteLink[] = [
+  {
+    id: 'mandi-rates',
+    label: "Today's mandi rates",
+    href: '/todays-mandi-rates',
+  },
+  {
+    id: 'whatsapp-chat',
+    label: 'WhatsApp us',
+    href: 'https://wa.me/919899262264?text=Hi%20Super%20Sales%20Agro%2C%20I%20would%20like%20to%20enquire%20about%20today%27s%20mandi%20rates.',
+    external: true,
+  },
+  {
+    id: 'about',
+    label: 'Our story',
+    href: '/#about_us',
+  },
+  {
+    id: 'export',
+    label: 'Export',
+    href: '/export',
+  },
+  {
+    id: 'locations',
+    label: 'Locations',
+    href: '/#contact_us',
+  },
+]
+
+export const linkHubSocialLinks: SiteLink[] = [
+  {
+    id: 'whatsapp-channel',
+    label: 'WhatsApp channel',
+    href: 'https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T',
+    external: true,
+  },
+  {
+    id: 'call',
+    label: 'Call mandi desk',
+    href: 'tel:+919899262264',
+    external: true,
+  },
+  {
+    id: 'email',
+    label: 'Email',
+    href: 'mailto:supersalesagro@gmail.com',
+    external: true,
+  },
+  {
+    id: 'home',
+    label: 'Website',
+    href: '/',
+  },
+]
+
 export const siteLinkGroups: SiteLinkGroup[] = [
   {
     id: 'daily',
@@ -56,6 +111,12 @@ export const siteLinkGroups: SiteLinkGroup[] = [
         label: 'About us',
         description: 'Family-owned wholesaler since 1982',
         href: '/#about_us',
+      },
+      {
+        id: 'export',
+        label: 'Export programme',
+        description: 'U.K., Europe, Australia, Middle East & SE Asia',
+        href: '/export',
       },
       {
         id: 'testimonials',

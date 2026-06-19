@@ -71,7 +71,7 @@ export default function ModalVideo({
 
         <div>
 
-        <p className="text-center">Trusted by 250+ Traders & Businesses</p>
+        <p className="text-center">Trusted by 250+ Farmers & Businesses</p>
 
             <div className="flex flex-row flex-wrap max-w-800 gap-4 mx-auto justify-center flex items-center p-6">
                 {/* Image 1 */}

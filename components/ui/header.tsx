@@ -53,6 +53,12 @@ export default function Header() {
               Mandi Rates
             </Link>
             <Link
+              href="/export"
+              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+            >
+              Export
+            </Link>
+            <Link
               href="/#testimonials"
               className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
             >

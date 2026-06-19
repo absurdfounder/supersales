@@ -7,6 +7,7 @@ const footerLinks = {
     { href: '/#products', label: 'Products' },
     { href: '/#about_us', label: 'About Us' },
     { href: '/todays-mandi-rates', label: "Today's Mandi Rates" },
+    { href: '/export', label: 'Export' },
     { href: '/links', label: 'Links' },
     { href: '/#testimonials', label: 'Testimonials' },
     { href: '/#contact_us', label: 'Contact' },

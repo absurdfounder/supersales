@@ -21,7 +21,7 @@ const testimonials = [
     image: '/images/testimonials/hui-nam.png',
   },
   {
-    name: 'Tom',
+    name: 'Sanjay Verma',
     role: 'Farmer',
     company: 'Virat Orchards',
     testimonial:
@@ -37,7 +37,7 @@ const testimonials = [
     image: '/images/testimonials/kamla-devi.png',
   },
   {
-    name: 'Adam Wathan',
+    name: 'Rajesh Thakur',
     role: 'Farmer',
     company: 'Vijay Thakur Orchards',
     testimonial:
@@ -45,7 +45,7 @@ const testimonials = [
     image: '/images/testimonials/adam.png',
   },
   {
-    name: 'Darya Finger',
+    name: 'Smt. Meena Kaith',
     role: 'Farmer',
     company: 'Kaith Orchards',
     testimonial:
@@ -95,7 +95,7 @@ export default function Testimonials() {
       <SectionShell id="testimonials" eyebrowNumber="07" eyebrow="Testimonials" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 max-w-3xl">
-            <h2 className="type-h2 mb-4">Trusted by 250+ traders &amp; businesses</h2>
+            <h2 className="type-h2 mb-4">Trusted by 250+ farmers &amp; businesses</h2>
             <p className="type-body">We have happy vendors and suppliers all around India.</p>
           </div>
 

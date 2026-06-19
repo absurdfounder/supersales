@@ -2,11 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import {
-  ensureTranslation,
-  getCurrentLanguage,
-  setLanguageWithCookie,
-} from '@/app/utils/googleTranslateHelper'
+import { getCurrentLanguage, setLanguageCookieOnly } from '@/app/utils/googleTranslateHelper'
 
 interface LanguageData {
   code: string
@@ -68,20 +64,10 @@ export default function TranslateButton() {
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (window.location.hash.includes('googtrans')) {
-        window.history.replaceState(null, '', window.location.pathname + window.location.search)
-      }
-
-      const currentLangCode = getCurrentLanguage()
-      if (currentLangCode) {
-        const langObj = allUniqueLanguages.find((lang) => lang.code === currentLangCode)
-        if (langObj) {
-          setSelectedLanguage(langObj)
-        }
-      }
-
-      ensureTranslation()
+    const currentLangCode = getCurrentLanguage()
+    const langObj = allUniqueLanguages.find((lang) => lang.code === currentLangCode)
+    if (langObj) {
+      setSelectedLanguage(langObj)
     }
   }, [])
 
@@ -115,16 +101,12 @@ export default function TranslateButton() {
   }, [searchQuery])
 
   const translatePage = (language: LanguageData) => {
-    setSelectedLanguage(language)
-    setLanguageWithCookie(language.code)
+    setLanguageCookieOnly(language.code)
     setDropdownOpen(false)
     setSearchQuery('')
 
-    if (window.location.hash.includes('googtrans')) {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search)
-    }
-
-    window.location.reload()
+    // Full reload lets React hydrate first; translation runs later via GoogleTranslateBoot.
+    window.location.assign(window.location.pathname + window.location.search)
   }
 
   const preventTranslation = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -135,6 +117,7 @@ export default function TranslateButton() {
   return (
     <div className="relative notranslate" translate="no" ref={dropdownRef} onClick={preventTranslation}>
       <button
+        type="button"
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex items-center px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-agro"
         aria-label="Select language"
@@ -172,6 +155,7 @@ export default function TranslateButton() {
                 filteredLanguages.map((language) => (
                   <button
                     key={language.code}
+                    type="button"
                     onClick={() => translatePage(language)}
                     className={`flex w-full items-center px-4 py-2 text-left text-sm ${
                       selectedLanguage.code === language.code

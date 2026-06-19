@@ -10,6 +10,7 @@ const links = [
   { href: '/#products', label: 'Products' },
   { href: '/#about_us', label: 'About' },
   { href: '/todays-mandi-rates', label: 'Mandi Rates' },
+  { href: '/export', label: 'Export' },
   { href: '/#testimonials', label: 'Testimonials' },
   { href: '/#contact_us', label: 'Contact' },
 ]
