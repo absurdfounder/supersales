@@ -82,12 +82,6 @@ export default function Header() {
               Export
             </Link>
             <Link
-              href="/#testimonials"
-              className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 xl:inline-block xl:px-3 xl:text-[11px] xl:tracking-[0.14em]"
-            >
-              Testimonials
-            </Link>
-            <Link
               href="/#contact_us"
               className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:inline-block lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
             >

@@ -13,7 +13,6 @@ const links = [
   { href: '/wholesale', label: 'Wholesale' },
   { href: '/hospitality', label: 'Hospitality' },
   { href: '/export', label: 'Export' },
-  { href: '/#testimonials', label: 'Testimonials' },
   { href: '/#contact_us', label: 'Contact' },
 ]
 
