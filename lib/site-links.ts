@@ -105,6 +105,18 @@ export const siteLinkGroups: SiteLinkGroup[] = [
         href: '/#about_us',
       },
       {
+        id: 'wholesale',
+        label: 'Wholesale supply',
+        description: 'Processors, exporters & wholesale fruit',
+        href: '/wholesale',
+      },
+      {
+        id: 'hospitality',
+        label: 'Hospitality & retail',
+        description: 'Hotels, restaurants, caterers & chains',
+        href: '/hospitality',
+      },
+      {
         id: 'export',
         label: 'Export programme',
         description: 'U.K., Europe, Australia, Middle East & SE Asia',

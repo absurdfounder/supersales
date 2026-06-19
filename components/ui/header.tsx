@@ -29,51 +29,67 @@ export default function Header() {
     >
       <div className="mx-auto max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6">
         <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
-          <Link href="/" className="mr-4 shrink-0 rounded-md bg-black/95 px-2 py-1 shadow-sm">
+          <Link href="/" className="mr-4 flex shrink-0 items-center gap-2.5 sm:gap-3">
             <Image
               src={Logo}
               unoptimized
-              alt="Super Sales Agro"
+              alt=""
               width={274}
               height={148}
               className="h-8 w-auto md:h-9"
+              aria-hidden
             />
+            <span className="font-funneldisplay text-sm font-extrabold leading-tight text-slate-900 sm:text-base md:text-lg">
+              Super Sales Agro
+            </span>
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">
             <Link
               href="/#products"
-              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+              className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 xl:inline-block xl:px-3 xl:text-[11px] xl:tracking-[0.14em]"
             >
               Products
             </Link>
             <Link
               href="/#about_us"
-              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+              className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:inline-block lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
             >
               About
             </Link>
             <Link
               href="/todays-mandi-rates"
-              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+              className="px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
             >
               Mandi Rates
             </Link>
             <Link
+              href="/wholesale"
+              className="px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
+            >
+              Wholesale
+            </Link>
+            <Link
+              href="/hospitality"
+              className="px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
+            >
+              Hospitality
+            </Link>
+            <Link
               href="/export"
-              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+              className="px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
             >
               Export
             </Link>
             <Link
               href="/#testimonials"
-              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+              className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 xl:inline-block xl:px-3 xl:text-[11px] xl:tracking-[0.14em]"
             >
               Testimonials
             </Link>
             <Link
               href="/#contact_us"
-              className="px-3 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-600 transition hover:text-slate-900"
+              className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 lg:inline-block lg:px-3 lg:text-[11px] lg:tracking-[0.14em]"
             >
               Contact
             </Link>

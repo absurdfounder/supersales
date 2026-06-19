@@ -7,6 +7,8 @@ const footerLinks = {
     { href: '/#products', label: 'Products' },
     { href: '/#about_us', label: 'About Us' },
     { href: '/todays-mandi-rates', label: "Today's Mandi Rates" },
+    { href: '/wholesale', label: 'Wholesale' },
+    { href: '/hospitality', label: 'Hospitality & Retail' },
     { href: '/export', label: 'Export' },
     { href: '/links', label: 'Links' },
     { href: '/#testimonials', label: 'Testimonials' },
@@ -32,15 +34,17 @@ export function FooterGrid() {
     <>
       <div className="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-4">
         <div className="bg-white p-6 sm:col-span-2 lg:col-span-1">
-          <Link href="/" className="mb-4 inline-block">
+          <Link href="/" className="mb-4 inline-flex items-center gap-3">
             <Image
               src={Logo}
               loading="eager"
-              alt="Super Sales Agro"
+              alt=""
               width={274}
               height={148}
-              className="h-10 w-auto rounded-md"
+              className="h-10 w-auto"
+              aria-hidden
             />
+            <span className="font-funneldisplay text-lg font-extrabold text-slate-900">Super Sales Agro</span>
           </Link>
           <p className="text-sm leading-relaxed text-slate-600">
             India&apos;s trusted fruit wholesaler since 1982. 65,000+ MT of fresh produce every year from Delhi and
