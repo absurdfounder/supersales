@@ -22,8 +22,8 @@ export default function Newsletter() {
   return (
     <SectionShell eyebrowNumber="09" eyebrow="Get started" bgClass="bg-white" noBorderBottom={false}>
       <div className="grid gap-px bg-slate-200">
-        <div className="relative grid gap-px bg-slate-200 lg:grid-cols-2 lg:gap-0">
-          <div className="relative z-10 flex flex-col justify-center bg-slate-900 p-8 text-white sm:p-10 md:p-12">
+        <div className="grid lg:grid-cols-2">
+          <div className="flex flex-col justify-center bg-slate-900 p-8 text-white sm:p-10 md:p-12">
             <h3 className="font-funneldisplay text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
               Looking for the best rates for your{' '}
               <span className="text-agro-300" key={words[index]}>
@@ -39,18 +39,18 @@ export default function Newsletter() {
             </div>
           </div>
 
-          <div className="relative min-h-[260px] overflow-hidden sm:min-h-[300px] lg:-ml-20 lg:min-h-full xl:-ml-28">
+          <div className="relative min-h-[280px] bg-slate-900 sm:min-h-[320px] lg:min-h-[360px]">
             <Image
               alt="Super Sales Agro cold chain truck"
               src={truckImage}
               fill
-              className="object-cover object-center lg:object-[72%_center]"
+              className="object-cover object-[right_center]"
               sizes="(max-width: 1024px) 100vw, 50vw"
               priority
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-28 bg-gradient-to-b from-slate-900 via-slate-900/45 to-transparent sm:h-32 lg:inset-y-0 lg:left-0 lg:h-auto lg:w-[42%] lg:bg-gradient-to-r lg:from-slate-900 lg:via-slate-900/35 lg:to-transparent xl:w-[38%]"
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[45%] bg-gradient-to-r from-slate-900 via-slate-900/55 to-transparent sm:w-[40%] lg:w-[36%]"
             />
           </div>
         </div>
