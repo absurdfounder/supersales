@@ -95,7 +95,7 @@ export default function Hero() {
                   Get in Touch
                 </PixelButton>
                 <PixelButton href="#testimonials" tone="dark" className="w-full sm:w-auto">
-                  Why Traders Love Us
+                  Why Farmers Love Us
                 </PixelButton>
               </div>
 
