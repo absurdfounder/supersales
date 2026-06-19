@@ -7,6 +7,7 @@ import PixelButton from '@/components/ui/PixelButton'
 import Footer from '@/components/ui/footer'
 import {
   formatRateRange,
+  formatRateTrend,
   formatUpdatedDate,
   mandiLocations,
   mandiRates,
@@ -17,7 +18,15 @@ import {
 
 const WHATSAPP_URL = 'https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T'
 
-function TrendBadge({ trend }: { trend: MandiTrend }) {
+function TrendBadge({ trend }: { trend: MandiTrend | null }) {
+  if (!trend) {
+    return (
+      <span className="inline-flex rounded px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400 bg-slate-100">
+        —
+      </span>
+    )
+  }
+
   const styles = {
     up: 'text-agro-700 bg-agro-50',
     down: 'text-rose-700 bg-rose-50',
@@ -50,14 +59,16 @@ function RateCard({ rate }: { rate: MandiRate }) {
           </p>
           <p className="mt-1 text-sm text-slate-500">{rate.variety}</p>
         </div>
-        <TrendBadge trend={rate.trend} />
+        <TrendBadge trend={formatRateTrend(rate)} />
       </div>
 
       <div className="mt-auto space-y-2 border-t border-slate-100 pt-4">
         <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">{rate.mandi}</p>
-        <p className="font-funneldisplay text-2xl font-bold text-agro-700">
+        <p className="font-funneldisplay text-2xl font-bold text-slate-400">
           {formatRateRange(rate)}
-          <span className="ml-1 text-sm font-medium text-slate-500">{rate.unit}</span>
+          {mandiRatesMeta.ratesPublished ? (
+            <span className="ml-1 text-sm font-medium text-slate-500">{rate.unit}</span>
+          ) : null}
         </p>
         {rate.note ? <p className="text-xs text-slate-500">{rate.note}</p> : null}
       </div>
@@ -80,8 +91,9 @@ export default function MandiRatesPage() {
           <div className="mb-8 max-w-3xl">
             <h1 className="type-h2 mb-4">Today&apos;s mandi rates</h1>
             <p className="type-body">
-              Indicative wholesale rates from Azadpur and Himachal mandis — updated each trading morning by our floor
-              team. Call or WhatsApp for lot-specific quotes, cold-store holds, and export packing.
+              {mandiRatesMeta.ratesPublished
+                ? 'Indicative wholesale rates from Azadpur and Himachal mandis — updated each trading morning by our floor team. Call or WhatsApp for lot-specific quotes, cold-store holds, and export packing.'
+                : 'Daily rates are posted each trading morning on our WhatsApp channel. The table below lists fruits we track — call or WhatsApp for today’s confirmed quote.'}
             </p>
           </div>
 
@@ -89,9 +101,11 @@ export default function MandiRatesPage() {
             <div className="bg-white px-5 py-4 sm:px-6">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Last updated</p>
               <p className="mt-1 font-funneldisplay text-lg font-bold text-slate-900">
-                {formatUpdatedDate(mandiRatesMeta.lastUpdated)}
+                {mandiRatesMeta.ratesPublished ? formatUpdatedDate(mandiRatesMeta.lastUpdated) : '—'}
               </p>
-              <p className="mt-1 text-sm text-slate-500">{mandiRatesMeta.session} session</p>
+              <p className="mt-1 text-sm text-slate-500">
+                {mandiRatesMeta.ratesPublished ? `${mandiRatesMeta.session} session` : 'Rates not posted yet'}
+              </p>
             </div>
             <div className="bg-white px-5 py-4 sm:px-6">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">Source</p>
@@ -150,12 +164,14 @@ export default function MandiRatesPage() {
                       {rate.note ? <span className="mt-1 block text-xs text-slate-400">{rate.note}</span> : null}
                     </div>
                     <div className="bg-white px-4 py-4 text-sm text-slate-600">{rate.mandi}</div>
-                    <div className="bg-white px-4 py-4 font-funneldisplay text-lg font-bold text-agro-700">
+                    <div className="bg-white px-4 py-4 font-funneldisplay text-lg font-bold text-slate-400">
                       {formatRateRange(rate)}
-                      <span className="ml-1 text-xs font-medium text-slate-500">{rate.unit}</span>
+                      {mandiRatesMeta.ratesPublished ? (
+                        <span className="ml-1 text-xs font-medium text-slate-500">{rate.unit}</span>
+                      ) : null}
                     </div>
                     <div className="bg-white px-4 py-4">
-                      <TrendBadge trend={rate.trend} />
+                      <TrendBadge trend={formatRateTrend(rate)} />
                     </div>
                   </div>
                 ))}

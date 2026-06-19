@@ -18,6 +18,8 @@ export const mandiRatesMeta = {
   lastUpdated: '2026-06-19',
   session: 'Morning',
   source: 'Azadpur & Himachal mandi floor checks',
+  /** Set true when daily rates are confirmed and entered below. */
+  ratesPublished: false,
 }
 
 export const mandiLocations = ['All mandis', 'Azadpur, Delhi', 'Shimla, HP', 'Solan, HP'] as const
@@ -137,8 +139,14 @@ export const mandiRates: MandiRate[] = [
 ]
 
 export function formatRateRange(rate: MandiRate) {
+  if (!mandiRatesMeta.ratesPublished) return '--'
   if (rate.rateMin === rate.rateMax) return `₹${rate.rateMin}`
   return `₹${rate.rateMin}–${rate.rateMax}`
+}
+
+export function formatRateTrend(rate: MandiRate) {
+  if (!mandiRatesMeta.ratesPublished) return null
+  return rate.trend
 }
 
 export function formatUpdatedDate(isoDate: string) {

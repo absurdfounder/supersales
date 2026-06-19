@@ -62,7 +62,7 @@ export default function Testimonials() {
           <h2 className="type-h2 mb-8 text-center">We are not a business, we are a family.</h2>
           <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
             <div className="relative min-h-[320px] bg-white lg:min-h-[480px]">
-              <Image src={familyteam} unoptimized alt="Family Team" fill className="object-cover grayscale" />
+              <Image src={familyteam} unoptimized alt="Super Sales Agro family team" fill className="object-cover object-center" />
             </div>
             <div className="space-y-4 bg-white p-6 text-sm leading-relaxed text-slate-600 sm:p-8 md:p-10 sm:text-base">
               <p>
