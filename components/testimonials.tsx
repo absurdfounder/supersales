@@ -61,8 +61,31 @@ export default function Testimonials() {
         <div className="pb-10 pt-2 md:pb-14">
           <h2 className="type-h2 mb-8 text-center">We are not a business, we are a family.</h2>
           <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
-            <div className="relative min-h-[320px] bg-white lg:min-h-[480px]">
+            <div className="relative min-h-[320px] overflow-hidden bg-white lg:min-h-[480px]">
               <Image src={familyteam} unoptimized alt="Super Sales Agro family team" fill className="object-cover object-center" />
+              <div className="pointer-events-none absolute inset-0 hero-checker-grid" aria-hidden />
+              <div className="pointer-events-none absolute inset-0 pixel-flicker-grid opacity-60" aria-hidden />
+              <div
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/15 via-transparent to-white/10"
+                aria-hidden
+              />
+              <div className="pointer-events-none absolute inset-3 border border-white/45 sm:inset-4" aria-hidden />
+              <div
+                className="pointer-events-none absolute left-3 top-3 z-10 h-4 w-4 border-l-2 border-t-2 border-agro-500/85 sm:left-4 sm:top-4"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute right-3 top-3 z-10 h-4 w-4 border-r-2 border-t-2 border-agro-500/85 sm:right-4 sm:top-4"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute bottom-3 left-3 z-10 h-4 w-4 border-b-2 border-l-2 border-agro-500/85 sm:bottom-4 sm:left-4"
+                aria-hidden
+              />
+              <div
+                className="pointer-events-none absolute bottom-3 right-3 z-10 h-4 w-4 border-b-2 border-r-2 border-agro-500/85 sm:bottom-4 sm:right-4"
+                aria-hidden
+              />
             </div>
             <div className="space-y-4 bg-white p-6 text-sm leading-relaxed text-slate-600 sm:p-8 md:p-10 sm:text-base">
               <p>
