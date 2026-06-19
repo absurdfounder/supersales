@@ -44,7 +44,7 @@ export default function Hero() {
   const current = words[index]
 
   return (
-    <SectionShell bgClass="bg-slate-50" noBorder className="pt-16 md:pt-[4.5rem]">
+    <SectionShell bgClass="bg-white" noBorder className="pt-16 md:pt-[4.5rem]">
       <div className="-mx-3 grid gap-px bg-slate-200 sm:-mx-4 md:-mx-6">
         {/* Image + sky content */}
         <div className="relative min-h-[560px] overflow-hidden border border-slate-200 sm:min-h-[620px] md:min-h-[680px]">
@@ -73,16 +73,18 @@ export default function Hero() {
 
           {/* Sky zone — headline lives here only */}
           <div className="absolute inset-x-0 top-0 z-10 flex h-[58%] items-start justify-center px-4 pt-5 sm:px-8 sm:pt-7 md:pt-8">
-            <div className="w-full max-w-3xl self-start border border-slate-200/90 bg-white/80 px-5 py-7 text-center shadow-sm backdrop-blur-md sm:px-8 sm:py-8">
+            <div className="w-full max-w-3xl self-start px-5 py-7 text-center sm:px-8 sm:py-8">
               <PixelMissionTag index="01" label="Mission briefing" className="mb-5" />
 
               <h1 className="font-funneldisplay text-[1.6rem] font-extrabold leading-[1.12] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
                 Fruit Wholesalers with over 42 years of experience in{' '}
                 <span
                   key={current.label}
-                  className="inline-block bg-gradient-to-r from-agro-400 to-agro-600 bg-clip-text text-transparent word-flip"
+                  className="hero-word-enter whitespace-nowrap text-agro-600"
+                  aria-live="polite"
                 >
-                  {current.emoji} {current.label}
+                  <span aria-hidden>{current.emoji}</span>
+                  <span>{current.label}</span>
                 </span>
               </h1>
 

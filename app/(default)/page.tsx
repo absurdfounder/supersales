@@ -11,7 +11,7 @@ import Newsletter from '@/components/newsletter'
 
 export default function Home() {
   return (
-    <div className="bg-slate-50">
+    <div className="bg-white">
       <Hero />
       <FeaturesBlocks />
       <Testimonials />

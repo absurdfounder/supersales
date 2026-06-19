@@ -4,12 +4,14 @@ import { useState, useRef, useEffect } from 'react'
 import { Transition } from '@headlessui/react'
 import Link from 'next/link'
 import PixelButton from './PixelButton'
+import TranslateButton from './TranslateButton'
 
 const links = [
-  { href: '#products', label: 'Products' },
-  { href: '#about_us', label: 'About' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact_us', label: 'Contact' },
+  { href: '/#products', label: 'Products' },
+  { href: '/#about_us', label: 'About' },
+  { href: '/todays-mandi-rates', label: 'Mandi Rates' },
+  { href: '/#testimonials', label: 'Testimonials' },
+  { href: '/#contact_us', label: 'Contact' },
 ]
 
 export default function MobileMenu() {
@@ -83,8 +85,11 @@ export default function MobileMenu() {
                 </Link>
               </li>
             ))}
+            <li className="bg-white px-4 py-3">
+              <TranslateButton />
+            </li>
             <li className="bg-white p-4">
-              <PixelButton href="#contact_us" className="w-full">
+              <PixelButton href="/#contact_us" className="w-full">
                 Get in Touch
               </PixelButton>
             </li>

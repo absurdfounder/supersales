@@ -78,22 +78,14 @@
 .hero-sky-wash {
   background: linear-gradient(
     180deg,
-    rgba(248, 250, 252, 0.88) 0%,
-    rgba(248, 250, 252, 0.55) 34%,
-    rgba(248, 250, 252, 0.08) 58%,
-    transparent 72%
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 42%,
+    transparent 68%
   );
 }
 
 .pixel-camo-wash {
-  background-color: #f0f7f2;
-  background-image:
-    radial-gradient(circle at 18% 28%, rgba(41, 171, 92, 0.12) 0%, transparent 48%),
-    radial-gradient(circle at 82% 72%, rgba(23, 110, 59, 0.08) 0%, transparent 42%),
-    linear-gradient(180deg, #f8faf9 0%, #eef5f0 100%);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #ffffff;
 }
 
 .army-mission-tag {
@@ -172,17 +164,29 @@
 }
 
 
-@keyframes flip {
-    0% { transform: rotateX(0); opacity: 1; }
-    50% { transform: rotateX(90deg); opacity: 0; }
-    100% { transform: rotateX(0); opacity: 1; }
+@keyframes heroWordEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(0.35em);
   }
-  
-  .word-flip {
-    display: inline-block;
-    transition: transform 0.3s, opacity 0.3s;
-    animation: flip 1s infinite;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.hero-word-enter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
+  animation: heroWordEnter 0.5s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word-enter {
+    animation: none;
+  }
+}
   
 
   .slideUp {

@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function ResetPassword() {
   return (
-    <section className="bg-gradient-to-b from-gray-100 to-white">
+    <section className="bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pt-32 pb-12 md:pt-40 md:pb-20">
 
@@ -148,7 +148,7 @@ export default function ResetPassword() {
             <div className="container mx-auto">
               <ul className="flex flex-wrap justify-center">
                 <li className="w-1/3 px-2 mb-4">
-                  <div className="bg-gray-100 p-4 rounded-lg shadow border-gray-600 border">
+                  <div className="bg-white p-4 rounded-lg shadow border-gray-600 border">
                     <div className="text-center mb-4 p-4">
 
                       <span className="h4">🐻 BEAR</span>
@@ -162,7 +162,7 @@ export default function ResetPassword() {
                   </div>
                 </li>
                 <li className="w-1/3 px-2 mb-4">
-                  <div className="bg-gray-100 p-4 rounded-lg shadow border-gray-600 border">
+                  <div className="bg-white p-4 rounded-lg shadow border-gray-600 border">
                     <div className="text-center mb-4 p-4">
                       <span className="h4">🐴 HORSE</span>
                       <h2 className="h2 mt-4">$<b className="font-bold">957</b></h2>
@@ -174,7 +174,7 @@ export default function ResetPassword() {
                   </div>
                 </li>
                 <li className="w-1/3 px-2 mb-4">
-                  <div className="bg-gray-100 p-4 rounded-lg shadow border-gray-600 border">
+                  <div className="bg-white p-4 rounded-lg shadow border-gray-600 border">
                     <div className="text-center mb-4 p-4">
                       <span className="h4">🦄 UNICORN</span>
                       <h2 className="h2 mt-4">$<b className="font-bold">4785</b></h2>
@@ -277,7 +277,7 @@ export default function ResetPassword() {
           </div>
 
 
-          <div className="bg-gray-200 border border-gray-600 border-2 border-dashed py-20 rounded-md">
+          <div className="bg-white border border-gray-600 border-2 border-dashed py-20 rounded-md">
             <div className="max-w-md mx-auto text-center">
               <h2 className="h2 font-bold">Start earning cash by referring customers to supersalesagro</h2>
               <br />

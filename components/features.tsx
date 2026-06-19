@@ -24,10 +24,10 @@ export default function Features() {
   }, [])
 
   return (
-    <section className="relative mt-4 mb-4 pb-4 bg-gray-900 rounded-4 border-4 border border-gray-600" style={{ background: 'linear-gradient(45deg, #dbdbdb, white)' }}>
+    <section className="relative mt-4 mb-4 pb-4 bg-white rounded-4 border-4 border border-gray-600">
 
       {/* Section background (needs .relative class on parent and next sibling elements) */}
-      <div className="inset-0 bg-gray-100 pointer-events-none mb-16" aria-hidden="true"></div>
+      <div className="inset-0 bg-white pointer-events-none mb-16" aria-hidden="true"></div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
         <div className="pt-12 md:pt-20">

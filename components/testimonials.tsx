@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import TestimonialImage from '@/public/images/testimonial.jpg'
 import familyteam from '@/public/images/familyteam.png'
 import addresspart from '@/public/images/contactustogether.png'
 import SectionShell from '@/components/ui/SectionShell'
@@ -12,16 +11,14 @@ const testimonials = [
     company: 'GC Orchards',
     testimonial:
       'Good service, trustworthy fruit sales. Sushil sir is the best. I have been sending my fruits to them for 17 years. Their advice has helped me save a lot of money, best agents I have done business with.',
-    image:
-      'https://d33wubrfki0l68.cloudfront.net/36ee27ca00ba110131c925e463c42c885e523d10/de5f0/assets/images/influencers/corey.png',
+    image: '/images/testimonials/aman.png',
   },
   {
     name: 'Hui Nam',
     role: 'Farmer',
     company: 'Haitan Orchards',
     testimonial: 'I sent my harvested fruits and I was happy with the rates and good service.',
-    image:
-      'https://d33wubrfki0l68.cloudfront.net/c6f92e1ae2769f7cc13d3ece99c16d591564bf4a/7114a/assets/images/influencers/ayush.png',
+    image: '/images/testimonials/hui-nam.png',
   },
   {
     name: 'Tom',
@@ -29,7 +26,7 @@ const testimonials = [
     company: 'Virat Orchards',
     testimonial:
       "I have been taking my fruits there since 10 years ago, they give me good price for it, thank you for your service. Let's hope our business keeps going up and growing.",
-    image: 'https://cdn.feather.blog/?src=https%3A%2F%2Ffeather.so%2Fimages%2Flanding%2Favatars%2Ftom.png&optimizer=image',
+    image: '/images/testimonials/tom.png',
   },
   {
     name: 'Smt. KamlaDevi',
@@ -37,8 +34,7 @@ const testimonials = [
     company: 'Jatin Orchards',
     testimonial:
       'Super excellence service... they are really good at handling the fruit freshly and carefully. Have a good relation with them, so satisfied and happy with their service so far.',
-    image:
-      'https://d33wubrfki0l68.cloudfront.net/75af78aa9bf70a1c124768d0b60e37a5cd1bd9b7/11cb5/assets/images/influencers/alex.png',
+    image: '/images/testimonials/kamla-devi.png',
   },
   {
     name: 'Adam Wathan',
@@ -46,7 +42,7 @@ const testimonials = [
     company: 'Vijay Thakur Orchards',
     testimonial:
       'They suggested me to put my apple produce in cold store, I received good rates for my apples due to their suggestions and help. They even tested my apples before suggesting. Very Good experience.',
-    image: 'https://twitter-avatars.s3.us-east-1.amazonaws.com/avatars/adamwathan',
+    image: '/images/testimonials/adam.png',
   },
   {
     name: 'Darya Finger',
@@ -54,14 +50,14 @@ const testimonials = [
     company: 'Kaith Orchards',
     testimonial:
       'The best thing is they are polite and provide same day payment for my goods , I find them really helpful.',
-    image: TestimonialImage,
+    image: '/images/testimonials/darya.png',
   },
 ]
 
 export default function Testimonials() {
   return (
     <>
-      <SectionShell id="about_us" eyebrowNumber="06" eyebrow="About" bgClass="bg-slate-50">
+      <SectionShell id="about_us" eyebrowNumber="06" eyebrow="About" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <h2 className="type-h2 mb-8 text-center">We are not a business, we are a family.</h2>
           <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
@@ -108,7 +104,7 @@ export default function Testimonials() {
               <figure key={name} className="flex flex-col bg-white p-6 sm:p-8">
                 <div className="mb-4 flex items-center gap-3">
                   <Image
-                    className="rounded-full"
+                    className="h-11 w-11 shrink-0 rounded-full object-cover"
                     src={image}
                     unoptimized
                     width={44}
@@ -131,7 +127,7 @@ export default function Testimonials() {
         </div>
       </SectionShell>
 
-      <SectionShell id="contact_us" eyebrowNumber="08" eyebrow="Contact" bgClass="bg-slate-50">
+      <SectionShell id="contact_us" eyebrowNumber="08" eyebrow="Contact" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 text-center">
             <h2 className="type-h2 mb-2">Ready to ship?</h2>

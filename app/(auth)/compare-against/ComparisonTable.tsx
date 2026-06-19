@@ -20,8 +20,8 @@ const ComparisonTable = ({ id }:{id:any}) => {
         <p className="text-xl text-gray-600">supersalesagro has everything you need, from task tracking to templates to documentation. Get comfortable — you won’t be leaving all that often.</p>
 
         <div className="max-w-xl mx-auto p-4">
-          <div className="overflow-x-auto p-4 bg-gray-200 rounded">
-            <table className="table-auto w-full text-left text-sm bg-gray-200 rounded">
+          <div className="overflow-x-auto p-4 bg-white border border-gray-200 rounded">
+            <table className="table-auto w-full text-left text-sm bg-white rounded">
               <thead>
                 <tr>
                   <th className="px-4 py-2">Features</th>

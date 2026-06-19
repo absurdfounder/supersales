@@ -4,10 +4,12 @@ import Logo from '@/public/images/logonew-black.png'
 
 const footerLinks = {
   company: [
-    { href: '#products', label: 'Products' },
-    { href: '#about_us', label: 'About Us' },
-    { href: '#testimonials', label: 'Testimonials' },
-    { href: '#contact_us', label: 'Contact' },
+    { href: '/#products', label: 'Products' },
+    { href: '/#about_us', label: 'About Us' },
+    { href: '/todays-mandi-rates', label: "Today's Mandi Rates" },
+    { href: '/links', label: 'Links' },
+    { href: '/#testimonials', label: 'Testimonials' },
+    { href: '/#contact_us', label: 'Contact' },
   ],
   legal: [
     { href: '/tos', label: 'Terms' },

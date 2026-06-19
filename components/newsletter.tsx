@@ -23,15 +23,15 @@ export default function Newsletter() {
     <SectionShell eyebrowNumber="09" eyebrow="Get started" bgClass="bg-white" noBorderBottom={false}>
       <div className="grid gap-px bg-slate-200">
         <div className="grid lg:grid-cols-2">
-          <div className="flex flex-col justify-center bg-slate-900 p-8 text-white sm:p-10 md:p-12">
+          <div className="flex flex-col justify-center bg-white p-8 text-slate-900 sm:p-10 md:p-12">
             <h3 className="font-funneldisplay text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
               Looking for the best rates for your{' '}
-              <span className="text-agro-300" key={words[index]}>
+              <span className="text-agro-700" key={words[index]}>
                 {words[index]}
               </span>
               ?
             </h3>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
               We help you grow your business by using technologies and best practices.
             </p>
             <div className="mt-8">
@@ -39,7 +39,7 @@ export default function Newsletter() {
             </div>
           </div>
 
-          <div className="relative min-h-[280px] bg-slate-900 sm:min-h-[320px] lg:min-h-[360px]">
+          <div className="relative min-h-[280px] bg-white sm:min-h-[320px] lg:min-h-[360px]">
             <Image
               alt="Super Sales Agro cold chain truck"
               src={truckImage}
@@ -50,7 +50,7 @@ export default function Newsletter() {
             />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[45%] bg-gradient-to-r from-slate-900 via-slate-900/55 to-transparent sm:w-[40%] lg:w-[36%]"
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[45%] bg-gradient-to-r from-white via-white/55 to-transparent sm:w-[40%] lg:w-[36%]"
             />
           </div>
         </div>
