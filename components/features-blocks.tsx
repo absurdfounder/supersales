@@ -60,30 +60,28 @@ export default function FeaturesBlocks() {
 
       <SectionShell eyebrowNumber="04" eyebrow="Supply chain" bgClass="bg-slate-50">
         <div className="pb-10 pt-2 md:pb-14">
-          <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
-            <div className="bg-white p-6 sm:p-8 md:p-10">
-              <h2 className="type-h2 mb-4">
-                We bridge the gap between <span className="text-agro">farmers</span> and{' '}
-                <span className="text-agro">buyers</span>
-              </h2>
-              <p className="type-body mb-6">
-                We provide a transparent bridge by providing 30 day payment credits to buyers who are willing to buy the
-                produce from the farmer. Provide them with services like cold store facilities, packaging and supply and
-                quality commitments to scale up client business and provide the best rates to farmers by setting up a
-                huge channel.
-              </p>
-              <PixelButton href="#contact_us">Get in Touch</PixelButton>
-            </div>
-            <div className="relative min-h-[280px] bg-white sm:min-h-[340px] lg:min-h-[420px]">
-              <Image
-                src={ConnectingTogether}
-                unoptimized
-                alt="Connecting farmers and buyers"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center"
-              />
-            </div>
+          <div className="mb-8 max-w-3xl">
+            <h2 className="type-h2 mb-4">
+              We bridge the gap between <span className="text-agro">farmers</span> and{' '}
+              <span className="text-agro">buyers</span>
+            </h2>
+            <p className="type-body mb-6">
+              We provide a transparent bridge by providing 30 day payment credits to buyers who are willing to buy the
+              produce from the farmer. Provide them with services like cold store facilities, packaging and supply and
+              quality commitments to scale up client business and provide the best rates to farmers by setting up a
+              huge channel.
+            </p>
+            <PixelButton href="#contact_us">Get in Touch</PixelButton>
+          </div>
+          <div className="relative -mx-3 min-h-[320px] overflow-hidden bg-white sm:-mx-4 sm:min-h-[360px] md:-mx-6 md:min-h-[400px]">
+            <Image
+              src={ConnectingTogether}
+              unoptimized
+              alt="Connecting farmers and buyers"
+              fill
+              sizes="100vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </SectionShell>
