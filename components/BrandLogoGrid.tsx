@@ -15,7 +15,7 @@ export default function BrandLogoGrid({
         {logos.map((logo) => (
           <div
             key={logo.alt}
-            className="flex min-h-[120px] items-center justify-center bg-white px-6 py-8 sm:min-h-[132px] sm:px-8 sm:py-10"
+            className="flex min-h-[132px] items-center justify-center bg-white px-3 py-4 sm:min-h-[148px] sm:px-4 sm:py-5 md:min-h-[156px]"
           >
             <Image
               alt={logo.alt}
@@ -24,7 +24,7 @@ export default function BrandLogoGrid({
               height={logo.height}
               loading="lazy"
               decoding="async"
-              className="max-h-16 w-auto max-w-[85%] object-contain sm:max-h-20 md:max-h-24"
+              className="h-auto w-[88%] max-w-[220px] object-contain sm:max-h-28 md:max-h-32"
               unoptimized
             />
           </div>
