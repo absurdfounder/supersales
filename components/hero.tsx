@@ -103,7 +103,7 @@ export default function Hero() {
                 width={274}
                 height={148}
                 priority
-                className="mx-auto mb-4 h-auto w-full max-w-[200px] sm:mb-5 sm:max-w-[274px]"
+                className="mx-auto mb-3 h-auto w-full max-w-[100px] sm:mb-4 sm:max-w-[137px]"
               />
 
               <h1 className="font-funneldisplay text-[1.4rem] font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
