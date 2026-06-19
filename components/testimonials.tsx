@@ -143,9 +143,16 @@ export default function Testimonials() {
               href="https://www.google.com/maps/search/?api=1&query=28.7074,77.1723"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative min-h-[280px] bg-white lg:min-h-[420px]"
+              className="relative flex min-h-[360px] items-center justify-center bg-white p-4 sm:min-h-[420px] lg:min-h-[520px]"
             >
-              <Image src={addresspart} unoptimized alt="Super Sales Agro location" fill className="object-cover" />
+              <Image
+                src={addresspart}
+                unoptimized
+                alt="Super Sales Agro location"
+                width={572}
+                height={640}
+                className="h-auto w-full max-w-full object-contain"
+              />
             </a>
 
             <div className="grid gap-px bg-slate-200">

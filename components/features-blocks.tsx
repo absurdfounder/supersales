@@ -73,14 +73,15 @@ export default function FeaturesBlocks() {
             </p>
             <PixelButton href="#contact_us">Get in Touch</PixelButton>
           </div>
-          <div className="relative -mx-3 min-h-[320px] overflow-hidden bg-white sm:-mx-4 sm:min-h-[360px] md:-mx-6 md:min-h-[400px]">
+          <div className="relative -mx-3 flex min-h-[400px] items-center justify-center bg-white p-4 sm:-mx-4 md:-mx-6 md:min-h-[480px]">
             <Image
               src={ConnectingTogether}
               unoptimized
               alt="Connecting farmers and buyers"
-              fill
+              width={2926}
+              height={1052}
               sizes="100vw"
-              className="object-cover object-center"
+              className="h-auto w-full object-contain"
             />
           </div>
         </div>
