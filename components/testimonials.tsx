@@ -2,6 +2,7 @@ import Image from 'next/image'
 import familyteam from '@/public/images/familyteam.png'
 import ContactLocationCard from '@/components/ContactLocationCard'
 import SectionShell from '@/components/ui/SectionShell'
+import PixelButton from '@/components/ui/PixelButton'
 
 const testimonials = [
   {
@@ -191,58 +192,75 @@ export default function Testimonials() {
               <p className="text-xs text-slate-500 sm:text-sm">Choose the quickest way to reach us.</p>
             </div>
             <div className="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-3">
-              <a
+              <PixelButton
                 href="tel:+919899262264"
-                className="flex min-h-[76px] min-w-0 flex-col justify-center rounded-xl border border-agro-700 bg-agro-700 px-2.5 py-2.5 text-white shadow-sm transition-colors hover:bg-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3"
+                size="sm"
+                className="w-full min-h-[76px]"
+                ariaLabel="Call Super Sales Agro at +91 98992 62264"
               >
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-white sm:text-sm">
-                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
-                    <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Call now
+                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
+                      <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Call now
+                  </span>
+                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">+91 98992 62264</span>
                 </span>
-                <span className="mt-1 whitespace-nowrap text-xs font-bold sm:text-sm">+91 98992 62264</span>
-              </a>
-              <a
+              </PixelButton>
+              <PixelButton
                 href="tel:+919711269346"
-                className="flex min-h-[76px] min-w-0 flex-col justify-center rounded-xl border border-slate-200 bg-white px-2.5 py-2.5 text-slate-900 shadow-sm transition-colors hover:border-agro-400 hover:bg-agro-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3"
+                variant="outline"
+                size="sm"
+                className="w-full min-h-[76px]"
+                ariaLabel="Call the alternate number +91 97112 69346"
               >
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-agro-800 sm:text-sm">
-                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
-                    <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Alternate number
+                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
+                  <span className="flex items-center gap-1 whitespace-nowrap text-[9px] tracking-[0.08em]">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
+                      <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Alternate number
+                  </span>
+                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">+91 97112 69346</span>
                 </span>
-                <span className="mt-1 whitespace-nowrap text-xs font-bold sm:text-sm">+91 97112 69346</span>
-              </a>
-              <a
+              </PixelButton>
+              <PixelButton
                 href="mailto:supersalesagro@gmail.com"
-                className="col-span-2 flex min-h-[64px] min-w-0 flex-col justify-center rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm transition-colors hover:border-agro-400 hover:bg-agro-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 lg:col-span-1"
+                variant="outline"
+                size="sm"
+                className="col-span-2 w-full min-h-[64px] lg:col-span-1"
+                ariaLabel="Email Super Sales Agro at supersalesagro@gmail.com"
               >
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-agro-800 sm:text-sm">
-                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
-                    <rect x="3" y="4.5" width="14" height="11" rx="1.7" stroke="currentColor" strokeWidth="1.5" />
-                    <path d="m4 6 6 4.5L16 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Email us
+                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
+                      <rect x="3" y="4.5" width="14" height="11" rx="1.7" stroke="currentColor" strokeWidth="1.5" />
+                      <path d="m4 6 6 4.5L16 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Email us
+                  </span>
+                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">supersalesagro@gmail.com</span>
                 </span>
-                <span className="mt-1 block whitespace-nowrap text-xs font-bold sm:text-sm">supersalesagro@gmail.com</span>
-              </a>
-              <a
+              </PixelButton>
+              <PixelButton
                 href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="col-span-2 flex min-h-[64px] min-w-0 flex-row items-center justify-between gap-3 rounded-xl border border-agro-200 bg-agro-50 px-3 py-2.5 text-slate-900 shadow-sm transition-colors hover:border-agro-400 hover:bg-agro-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 lg:col-span-1 lg:flex-col lg:items-start lg:justify-center"
+                variant="outline"
+                size="sm"
+                className="col-span-2 w-full min-h-[64px] lg:col-span-1"
+                ariaLabel="Message Super Sales Agro on WhatsApp"
               >
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-agro-800 sm:text-sm">
-                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
-                    <path d="M16.6 9.7a6.4 6.4 0 0 1-9.3 5.7L4 16l.7-3.2a6.4 6.4 0 1 1 11.9-3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                    <path d="M7.4 7.1c.3-.4.6-.3.8 0l.7 1.3c.1.2.1.4-.1.6l-.4.5c.5 1 1.2 1.7 2.2 2.2l.5-.4c.2-.2.4-.2.6-.1l1.3.7c.3.2.4.5 0 .8-.4.4-.9.7-1.5.6-2.2-.4-4.5-2.7-4.8-4.9-.1-.5.2-1 .7-1.3Z" fill="currentColor" />
-                  </svg>
-                  WhatsApp
+                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
+                      <path d="M16.6 9.7a6.4 6.4 0 0 1-9.3 5.7L4 16l.7-3.2a6.4 6.4 0 1 1 11.9-3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                      <path d="M7.4 7.1c.3-.4.6-.3.8 0l.7 1.3c.1.2.1.4-.1.6l-.4.5c.5 1 1.2 1.7 2.2 2.2l.5-.4c.2-.2.4-.2.6-.1l1.3.7c.3.2.4.5 0 .8-.4.4-.9.7-1.5.6-2.2-.4-4.5-2.7-4.8-4.9-.1-.5.2-1 .7-1.3Z" fill="currentColor" />
+                    </svg>
+                    WhatsApp
+                  </span>
+                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">Message us ↗</span>
                 </span>
-                <span className="block whitespace-nowrap text-sm font-bold">Message us ↗</span>
-              </a>
+              </PixelButton>
             </div>
           </div>
         </div>
