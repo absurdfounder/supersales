@@ -6,17 +6,19 @@ import { linkHubPrimaryLinks, linkHubShipping, linkHubSocialLinks, type SiteLink
 
 function LinkHubButton({ link }: { link: SiteLink }) {
   const className = [
-    'block w-full rounded-2xl border-2 px-6 py-4 text-center transition',
+    'btn-face flex w-full flex-col gap-0 whitespace-normal px-5 py-4 text-center text-base',
     link.highlight
-      ? 'border-agro-600 bg-agro-50 font-funneldisplay text-lg font-bold text-slate-900 hover:bg-agro-100'
-      : 'border-slate-900 bg-slate-50 font-funneldisplay text-lg font-bold text-slate-900 hover:bg-slate-100',
+      ? 'btn-primary'
+      : 'btn-secondary',
   ].join(' ')
 
   const content = (
     <>
       <span>{link.label}</span>
       {link.description ? (
-        <span className="mt-1 block font-mono text-xs font-normal text-slate-600">{link.description}</span>
+        <span className={`mt-1 block whitespace-normal text-sm font-normal ${link.highlight ? 'text-white/80' : 'text-slate-500'}`}>
+          {link.description}
+        </span>
       ) : null}
     </>
   )
@@ -111,7 +113,7 @@ export default function LinksPage() {
               href={linkHubShipping.mapHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block rounded-full border-2 border-slate-900 bg-slate-50 px-4 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-900 transition hover:bg-slate-100"
+              className="btn-face btn-secondary mt-4 px-4 py-2.5 text-sm"
             >
               Open in Google Maps
             </a>
@@ -121,7 +123,7 @@ export default function LinksPage() {
             <div className="mt-6 border-t border-slate-200 pt-6 text-center">
               <Link
                 href={homeLink.href}
-                className="inline-block rounded-full border-2 border-slate-900 bg-slate-50 px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-slate-900 transition hover:bg-slate-100"
+                className="btn-face btn-secondary px-5 py-2.5 text-sm"
               >
                 Visit full website
               </Link>

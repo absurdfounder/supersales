@@ -17,7 +17,13 @@ export default function Home() {
       <FloorGallery />
       <FeaturesBlocks />
       <Testimonials />
-      <FloorGallery id="contact-floor-gallery" showHeading={false} showEyebrow={false} />
+      <FloorGallery
+        id="contact-floor-gallery"
+        showHeading={false}
+        showEyebrow={false}
+        compact
+        sceneIds={['walk', 'truck', 'circle', 'outside']}
+      />
       <Newsletter />
     </div>
   )

@@ -28,20 +28,20 @@
 /* Buttons */
 .btn,
 .btn-sm {
-    @apply font-medium inline-flex items-center justify-center border border-transparent rounded leading-snug transition duration-150 ease-in-out;
+    @apply font-semibold inline-flex items-center justify-center border border-transparent rounded-md leading-snug transition duration-150 ease-in-out;
 }
 
 .btn {
-    @apply px-8 py-3 shadow-lg;
+    @apply px-5 py-3 shadow-sm;
 }
 
 .btn-sm {
-    @apply px-4 py-2 shadow;
+    @apply px-4 py-2.5 shadow-sm;
 }
 
 @layer components {
   .btn-face {
-    @apply relative inline-flex items-center justify-center gap-2 rounded-md border font-semibold leading-snug transition duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-500 focus-visible:ring-offset-2 active:translate-y-px;
+    @apply relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md border font-semibold leading-snug transition duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-500 focus-visible:ring-offset-2 active:translate-y-px;
   }
 
   .btn-primary {
@@ -50,6 +50,14 @@
 
   .btn-secondary {
     @apply border-slate-300 bg-white text-slate-700 shadow-sm hover:border-slate-400 hover:bg-slate-50;
+  }
+
+  .btn-dark {
+    @apply border-slate-900 bg-slate-900 text-white shadow-sm hover:border-slate-800 hover:bg-slate-800;
+  }
+
+  .btn-light {
+    @apply border-slate-200 bg-slate-100 text-slate-900 shadow-sm hover:border-slate-300 hover:bg-slate-200;
   }
 }
 

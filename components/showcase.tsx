@@ -33,7 +33,7 @@ export default function showcases() {
             <h2 className="h2 mb-4 p-2">Incredible sites built with supersalesagro</h2>
             <p className="text-xl text-gray-600" data-aos="zoom-y-out">Browse through examples of live Notion websites, built with supersalesagro</p>
 
-            <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center aos-init aos-animate mt-6" data-aos="zoom-y-out" data-aos-delay="300"><div><a className="btn text-dark bg-green-600 hover:bg-green-700 w-full mb-4 sm:w-auto sm:mb-0" href="https://app.supersalesagro.com">Ask our Designer for Help</a></div><div><a className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" href="/template">View all Templates</a></div></div>
+            <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center aos-init aos-animate mt-6" data-aos="zoom-y-out" data-aos-delay="300"><div><a className="btn-face btn-primary mb-4 w-full px-5 py-3 sm:mb-0 sm:w-auto" href="https://app.supersalesagro.com">Ask our Designer for Help</a></div><div><a className="btn-face btn-dark w-full px-5 py-3 sm:ml-4 sm:w-auto" href="/template">View all Templates</a></div></div>
 
 
           </div>
@@ -50,7 +50,7 @@ export default function showcases() {
                     <h2 className="text-start mt-2 font-bold mb-4">PreviewX</h2>
                     <span className="bg-gray-100 border-gray-200 border-dashed border-2 p-1 px-4 rounded my-2">Helpdesk</span>
                     <div className="flex mt-2 gap-4">
-                      <Link className="bg-gray-900 border p-2 px-4 rounded my-2 text-white w-full mt-4 rounded text-center" href="#0">Duplicate</Link>
+                      <Link className="btn-face btn-dark my-2 mt-4 w-full px-5 py-3 text-center text-base" href="#0">Duplicate</Link>
                       <Link className="bg-gray-200 border p-2 px-4 rounded my-2 border border-gray-600 w-full mt-4 text-center rounded" href="#0">View Site</Link>
                     </div>
 
@@ -64,7 +64,7 @@ export default function showcases() {
                     <h2 className="text-start mt-2 font-bold mb-4">Support Groups</h2>
                     <span className="bg-gray-100 border-gray-200 border-dashed border-2 p-1 px-4 rounded my-2">Helpdesk</span>
                     <div className="flex mt-2 gap-4">
-                      <Link className="bg-gray-900 border p-2 px-4 rounded my-2 text-white w-full mt-4 rounded text-center" href="#0">Duplicate</Link>
+                      <Link className="btn-face btn-dark my-2 mt-4 w-full px-5 py-3 text-center text-base" href="#0">Duplicate</Link>
                       <Link className="bg-gray-200 border p-2 px-4 rounded my-2 border border-gray-600 w-full mt-4 text-center rounded" href="#0">View Site</Link>
                     </div>
 
@@ -78,7 +78,7 @@ export default function showcases() {
                     <h2 className="text-start mt-2 font-bold mb-4">Bear Vocal : Agency Hub</h2>
                     <span className="bg-gray-100 border-gray-200 border-dashed border-2 p-1 px-4 rounded my-2">Helpdesk</span>
                     <div className="flex mt-2 gap-4">
-                      <Link className="bg-gray-900 border p-2 px-4 rounded my-2 text-white w-full mt-4 rounded text-center" href="#0">Duplicate</Link>
+                      <Link className="btn-face btn-dark my-2 mt-4 w-full px-5 py-3 text-center text-base" href="#0">Duplicate</Link>
                       <Link className="bg-gray-200 border p-2 px-4 rounded my-2 border border-gray-600 w-full mt-4 text-center rounded" href="#0">View Site</Link>
                     </div>
 
@@ -92,7 +92,7 @@ export default function showcases() {
                     <h2 className="text-start mt-2 font-bold mb-4">Event Town</h2>
                     <span className="bg-gray-100 border-gray-200 border-dashed border-2 p-1 px-4 rounded my-2">Helpdesk</span>
                     <div className="flex mt-2 gap-4">
-                      <Link className="bg-gray-900 border p-2 px-4 rounded my-2 text-white w-full mt-4 rounded text-center" href="#0">Duplicate</Link>
+                      <Link className="btn-face btn-dark my-2 mt-4 w-full px-5 py-3 text-center text-base" href="#0">Duplicate</Link>
                       <Link className="bg-gray-200 border p-2 px-4 rounded my-2 border border-gray-600 w-full mt-4 text-center rounded" href="#0">View Site</Link>
                     </div>
 
@@ -106,7 +106,7 @@ export default function showcases() {
                     <h2 className="text-start mt-2 font-bold mb-4">Work Remote Jobs</h2>
                     <span className="bg-gray-100 border-gray-200 border-dashed border-2 p-1 px-4 rounded my-2">Helpdesk</span>
                     <div className="flex mt-2 gap-4">
-                      <Link className="bg-gray-900 border p-2 px-4 rounded my-2 text-white w-full mt-4 rounded text-center" href="#0">Duplicate</Link>
+                      <Link className="btn-face btn-dark my-2 mt-4 w-full px-5 py-3 text-center text-base" href="#0">Duplicate</Link>
                       <Link className="bg-gray-200 border p-2 px-4 rounded my-2 border border-gray-600 w-full mt-4 text-center rounded" href="#0">View Site</Link>
                     </div>
 
@@ -120,7 +120,7 @@ export default function showcases() {
                     <h2 className="text-start mt-2 font-bold mb-4">Steve Marks Voice</h2>
                     <span className="bg-gray-100 border-gray-200 border-dashed border-2 p-1 px-4 rounded my-2">Helpdesk</span>
                     <div className="flex mt-2 gap-4">
-                      <Link className="bg-gray-900 border p-2 px-4 rounded my-2 text-white w-full mt-4 rounded text-center" href="#0">Duplicate</Link>
+                      <Link className="btn-face btn-dark my-2 mt-4 w-full px-5 py-3 text-center text-base" href="#0">Duplicate</Link>
                       <Link className="bg-gray-200 border p-2 px-4 rounded my-2 border border-gray-600 w-full mt-4 text-center rounded" href="#0">View Site</Link>
                     </div>
 

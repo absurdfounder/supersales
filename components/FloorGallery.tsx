@@ -191,12 +191,16 @@ interface FloorGalleryProps {
   id?: string
   showHeading?: boolean
   showEyebrow?: boolean
+  compact?: boolean
+  sceneIds?: string[]
 }
 
 export default function FloorGallery({
   id = 'on_the_floor',
   showHeading = true,
   showEyebrow = true,
+  compact = false,
+  sceneIds,
 }: FloorGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
@@ -206,6 +210,7 @@ export default function FloorGallery({
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [reducedMotion, setReducedMotion] = useState(false)
   const titleId = `${id}-title`
+  const scenes = sceneIds ? SCENES.filter((scene) => sceneIds.includes(scene.id)) : SCENES
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -238,7 +243,10 @@ export default function FloorGallery({
     const measure = () => {
       const header = document.querySelector('header')
       const stickyTop = Math.round(header?.getBoundingClientRect().height || (window.innerWidth >= 768 ? 72 : 64))
-      const stageHeight = Math.max(460, window.innerHeight - stickyTop)
+      const availableHeight = Math.max(300, window.innerHeight - stickyTop)
+      const cardWidth = Math.min(window.innerWidth * 0.78, window.innerHeight * 0.34, 352)
+      const compactHeight = cardWidth * (16 / 9) + 24
+      const stageHeight = compact ? Math.min(availableHeight, compactHeight) : Math.max(460, availableHeight)
       const travel = Math.max(0, rail.scrollWidth - stage.clientWidth)
 
       stage.style.top = `${stickyTop}px`
@@ -295,9 +303,9 @@ export default function FloorGallery({
       window.visualViewport?.removeEventListener('resize', measure)
       if (frame) window.cancelAnimationFrame(frame)
     }
-  }, [reducedMotion])
+  }, [compact, reducedMotion])
 
-  const renderCards = (horizontal: boolean) => SCENES.map((scene, index) => (
+  const renderCards = (horizontal: boolean) => scenes.map((scene, index) => (
     <article
       key={scene.id}
       data-scene-id={scene.id}
@@ -342,7 +350,7 @@ export default function FloorGallery({
       bgClass="bg-white"
     >
       {reducedMotion ? (
-        <div className="pb-10 pt-2 md:pb-14">
+        <div className={compact ? 'pb-4 pt-0 md:pb-5' : 'pb-10 pt-2 md:pb-14'}>
           {showHeading && (
             <div className="mb-6 max-w-3xl sm:mb-8">
               <h2 id={titleId} className="type-h2">Watch Super Sales in Action</h2>
@@ -354,7 +362,10 @@ export default function FloorGallery({
         </div>
       ) : (
         <div ref={trackRef} className="relative">
-          <div ref={stageRef} className="sticky z-10 flex flex-col overflow-hidden bg-white py-5 sm:py-6 md:py-8">
+          <div
+            ref={stageRef}
+            className={`sticky z-10 flex flex-col overflow-hidden bg-white ${compact ? 'py-3' : 'py-5 sm:py-6 md:py-8'}`}
+          >
             {showHeading && (
               <div className="mb-5 max-w-3xl shrink-0 sm:mb-6">
                 <h2 id={titleId} className="type-h2">Watch Super Sales in Action</h2>

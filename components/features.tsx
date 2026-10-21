@@ -46,49 +46,38 @@ export default function Features() {
 
               {/* Tabs buttons */}
               <div className="grid gap-4 mb-8 md:mb-0">
-                <a
-                  className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out border border-dashed shadow-md border-gray-600 hover:shadow-lg text-gray-900 ${tab !== 1 ? 'bg-gray-200' : 'bg-gray-900 text-white'}`}
-                  href="#0"
-                  onClick={(e) => { e.preventDefault(); setTab(1); }}
+                <button
+                  type="button"
+                  aria-pressed={tab === 1}
+                  className={`btn-face w-full justify-start whitespace-normal px-5 py-4 text-left text-base sm:text-lg ${tab === 1 ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setTab(1)}
                 >
-
-                  <div>
-                    <div className="h4 font-bold leading-snug tracking-tight mb-1">Notion to <span className='bg-clip-text '>Helpdesk</span></div>
-                  </div>
-                </a>
-                <a
-                  className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out border border-dashed shadow-md border-gray-600 hover:shadow-lg text-gray-900 ${tab !== 2 ? 'bg-gray-200' : 'bg-gray-900 text-white'}`}
-                  href="#0"
-                  onClick={(e) => { e.preventDefault(); setTab(2); }}
+                  Notion to Helpdesk
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={tab === 2}
+                  className={`btn-face w-full justify-start whitespace-normal px-5 py-4 text-left text-base sm:text-lg ${tab === 2 ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setTab(2)}
                 >
-
-
-                  <div>
-                    <div className="h4 font-bold leading-snug tracking-tight mb-1">Notion to <span className='bg-clip-text '>Blog</span></div>
-                  </div>
-                </a>
-                <a
-                  className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out border border-dashed shadow-md border-gray-600 hover:shadow-lg text-gray-900 ${tab !== 3 ? 'bg-gray-200' : 'bg-gray-900 text-white'}`}
-                  href="#0"
-                  onClick={(e) => { e.preventDefault(); setTab(3); }}
+                  Notion to Blog
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={tab === 3}
+                  className={`btn-face w-full justify-start whitespace-normal px-5 py-4 text-left text-base sm:text-lg ${tab === 3 ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setTab(3)}
                 >
-
-
-
-                  <div>
-                    <div className="h4 font-bold leading-snug tracking-tight mb-1">Notion to <span className='bg-clip-text '>Catalog</span></div>
-                  </div>
-                </a>
-                <a
-                  className={`flex items-center text-lg p-5 rounded border transition duration-300 ease-in-out border border-dashed shadow-md border-gray-600 hover:shadow-lg text-gray-900 ${tab !== 4 ? 'bg-gray-200' : 'bg-gray-900 text-white'}`}
-                  href="#0"
-                  onClick={(e) => { e.preventDefault(); setTab(4); }}
+                  Notion to Catalog
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={tab === 4}
+                  className={`btn-face w-full justify-start whitespace-normal px-5 py-4 text-left text-base sm:text-lg ${tab === 4 ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setTab(4)}
                 >
-
-                  <div>
-                    <div className="h4 font-bold leading-snug tracking-tight mb-1">Notion to  <span className='bg-clip-text '>Company Wiki</span></div>
-                  </div>
-                </a>
+                  Notion to Company Wiki
+                </button>
               </div>
             </div>
 

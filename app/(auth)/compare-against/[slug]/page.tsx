@@ -106,7 +106,7 @@ export default function ComparisonAgainst() {
 
             <h1 className="h1 mb-4">Tired of <b>{filterBySlug?.product?.name}</b>? <br /> Say hi to supersalesagro</h1>
             <p className="text-xl text-gray-600">{filterBySlug?.product?.description}</p>
-            <button className="text-white bg-gray-900 rounded w-fit p-2 mt-4 px-4">Get Started</button>
+            <button type="button" className="btn-face btn-dark mt-4 px-5 py-3 text-base">Get Started</button>
           </div>
 
           <TrustedBy />

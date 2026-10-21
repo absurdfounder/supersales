@@ -124,10 +124,10 @@ export default function MandiRatesPage() {
                 key={mandi}
                 type="button"
                 onClick={() => setActiveMandi(mandi)}
-                className={`border px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.14em] transition ${
+                className={`btn-face px-3 py-2 text-sm ${
                   activeMandi === mandi
-                    ? 'border-agro bg-agro text-white'
-                    : 'border-slate-200 bg-white text-slate-600 hover:border-agro-300 hover:text-agro-700'
+                    ? 'btn-primary'
+                    : 'btn-secondary'
                 }`}
               >
                 {mandi}

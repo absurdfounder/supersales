@@ -17,7 +17,7 @@ const TemplateDesign = () => {
                     </div>
                 </div>
                 <div className="mt-6 space-y-3 text-base font-normal text-gray-700 lg:text-lg">
-                    <a href="https://app.supersalesagro.com/integrations/arcade" className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded inline-flex items-center" rel="noopener noreferrer" target="_blank"><span>Sign Up</span></a>
+                    <a href="https://app.supersalesagro.com/integrations/arcade" className="btn-face btn-dark px-5 py-3 text-base" rel="noopener noreferrer" target="_blank"><span>Sign Up</span></a>
                 </div>
             </div>
             <div className="relative w-full"><img src="https://dazzling-cat.netlify.app/write%20on%20notion.png" alt="" className="h-full w-full rounded-2xl object-cover" /></div>
