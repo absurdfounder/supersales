@@ -151,110 +151,89 @@ export default function Testimonials() {
 
       <SectionShell id="contact_us" eyebrowNumber="09" eyebrow="Contact" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
-          <div className="mb-8 text-center">
-            <h2 className="type-h2 mb-2">Ready to ship?</h2>
-            <p className="type-body mx-auto max-w-2xl">Come see how well we sell.</p>
+          <div className="mb-6 text-center sm:mb-8">
+            <h2 className="type-h2 mb-2">Watch Super Sales in Action</h2>
+            <p className="type-body mx-auto max-w-2xl">Real moments from the mandi floor. Find us at either location.</p>
           </div>
 
-          <div className="rounded-[2rem] bg-amber-300 p-3 shadow-xl shadow-amber-900/10 sm:p-4 md:rounded-[2.5rem] md:p-6">
+          <div className="grid items-center gap-6 lg:grid-cols-[minmax(260px,0.7fr)_minmax(0,1.3fr)] lg:gap-8">
             <ContactClipSequence />
 
-            <div className="mt-3 grid gap-3 sm:mt-4 sm:gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-              <div className="overflow-hidden rounded-2xl bg-white shadow-sm sm:rounded-3xl">
-                <div className="h-[230px] sm:h-[300px] lg:h-[320px]">
-                  <iframe
-                    title="Map to Super Sales Agro head office in Azadpur, Delhi"
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=77.155%2C28.704%2C77.178%2C28.719&layer=mapnik&marker=28.7116913%2C77.1662854"
-                    className="h-full w-full border-0"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex flex-col gap-4 border-t border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-                  <div>
-                    <p className="text-lg font-bold tracking-tight text-slate-900">Super Sales Agro</p>
-                    <p className="mt-1 max-w-md text-sm leading-relaxed text-slate-600">
-                      A-285, 1st and 2nd floor, New Subzi Mandi, Azadpur, Delhi-110034
-                    </p>
+            <div className="space-y-3 sm:space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+                <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm sm:rounded-3xl">
+                  <div className="relative h-36 overflow-hidden bg-slate-100 sm:h-40">
+                    <Image
+                      src="/images/locations/head-office-map.jpg"
+                      alt="Street map centered on the Super Sales Agro head office in Azadpur, Delhi"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
+                    />
                   </div>
-                  <a
-                    href="https://www.google.com/maps/place/Super+Sales+Agro+(SSA)/@28.7116913,77.1662854,17z"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-agro-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2"
-                  >
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8">
-                      <path d="M14 4h6v6M20 4 10 14" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Directions
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm sm:rounded-3xl sm:p-6 lg:p-7">
-                <div>
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-agro-700">
-                    Get in touch
-                  </p>
-                  <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
-                    Your mandi desk is one call away.
-                  </h3>
-                </div>
-
-                <div className="mt-5 grid grid-cols-2 gap-2.5">
-                  <a
-                    href="tel:+919899262264"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-900 px-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2"
-                  >
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8">
-                      <path d="M7 3h3l2 5-2 1.5a15 15 0 0 0 4.5 4.5L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.5-3 2-3Z" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Call
-                  </a>
-                  <a
-                    href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-800 transition hover:border-agro-300 hover:bg-agro-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2"
-                  >
-                    WhatsApp
-                  </a>
-                </div>
-
-                <div className="mt-6 space-y-4 border-t border-slate-100 pt-5 text-sm">
-                  <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Phone</p>
-                    <a href="tel:+919899262264" className="block text-slate-700 hover:text-agro-700">
-                      +91 98992 62264
-                    </a>
-                    <a href="tel:+919711269346" className="mt-0.5 block text-slate-700 hover:text-agro-700">
-                      +91 97112 69346
-                    </a>
-                  </div>
-                  <div>
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Email</p>
-                    <a href="mailto:supersalesagro@gmail.com" className="break-words text-slate-700 hover:text-agro-700">
-                      supersalesagro@gmail.com
-                    </a>
-                  </div>
-                  <div className="border-t border-slate-100 pt-4">
-                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                      Auction site · Licence B-4881
+                  <div className="p-3.5 sm:p-4">
+                    <p className="text-sm font-bold tracking-tight text-slate-900 sm:text-base">Head office</p>
+                    <p className="mt-1 min-h-10 text-xs leading-relaxed text-slate-600 sm:text-sm">
+                      A-285, New Subzi Mandi, Azadpur, Delhi 110034
                     </p>
-                    <p className="leading-relaxed text-slate-600">
-                      A-1022 New Subzi Mandi, Azadpur, Delhi-110034
-                    </p>
+                    <p className="mt-1 text-[10px] text-slate-400">Map data © OpenStreetMap contributors</p>
                     <a
-                      href="https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.8331576,77.1288924,17z"
+                      href="https://www.google.com/maps/place/Super+Sales+Agro+(SSA)/@28.7116867,77.1685761,17z/data=!4m16!1m9!3m8!1s0x390d018ab1597a2b:0xdc519286f2b52396!2sSuper+Sales+Agro+(SSA)!8m2!3d28.7116867!4d77.171151!9m1!1b1!16s%2Fg%2F11b5vqhxx4!3m5!1s0x390d018ab1597a2b:0xdc519286f2b52396!8m2!3d28.7116867!4d77.171151!16s%2Fg%2F11b5vqhxx4?entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 font-semibold text-agro-700 hover:text-agro-900"
+                      className="mt-2 inline-flex min-h-10 items-center gap-1.5 text-xs font-semibold text-agro-700 hover:text-agro-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2 sm:text-sm"
                     >
-                      Visit auction site
-                      <span aria-hidden="true">↗</span>
+                      Directions <span aria-hidden="true">↗</span>
                     </a>
                   </div>
+                </article>
+
+                <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm sm:rounded-3xl">
+                  <div className="relative h-36 overflow-hidden bg-slate-100 sm:h-40">
+                    <Image
+                      src="/images/locations/unloading-dock-map.jpg"
+                      alt="Street map centered on the Super Sales Agro unloading dock and auction site in Narela, Delhi"
+                      fill
+                      unoptimized
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-3.5 sm:p-4">
+                    <p className="text-sm font-bold tracking-tight text-slate-900 sm:text-base">Unloading dock</p>
+                    <p className="mt-1 min-h-10 text-xs leading-relaxed text-slate-600 sm:text-sm">
+                      Super Sales Agro Auction Site, Narela, Delhi
+                    </p>
+                    <p className="mt-1 text-[10px] text-slate-400">Map data © OpenStreetMap contributors</p>
+                    <a
+                      href="https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.7680451,77.1107049,13z/data=!4m10!1m2!2m1!1sSuper+Sales+Agro+narela!3m6!1s0x390dab01ee292731:0x84ec2713731edec0!8m2!3d28.824416!4d77.1326581!15sChdTdXBlciBTYWxlcyBBZ3JvIG5hcmVsYVoZIhdzdXBlciBzYWxlcyBhZ3JvIG5hcmVsYZIBH2FncmljdWx0dXJhbF9wcm9kdWN0X3dob2xlc2FsZXLgAQA!16s%2Fg%2F11v43r08t3?entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex min-h-10 items-center gap-1.5 text-xs font-semibold text-agro-700 hover:text-agro-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2 sm:text-sm"
+                    >
+                      Directions <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </article>
+              </div>
+
+              <div className="flex flex-col gap-2 rounded-2xl bg-slate-50 px-4 py-3 text-xs text-slate-700 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-5 sm:gap-y-2 sm:rounded-3xl sm:px-5 sm:text-sm">
+                <div className="flex flex-wrap gap-x-4 gap-y-1">
+                  <a href="tel:+919899262264" className="font-semibold hover:text-agro-700">+91 98992 62264</a>
+                  <a href="tel:+919711269346" className="font-semibold hover:text-agro-700">+91 97112 69346</a>
                 </div>
+                <a href="mailto:supersalesagro@gmail.com" className="break-all hover:text-agro-700">
+                  supersalesagro@gmail.com
+                </a>
+                <a
+                  href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-agro-700 hover:text-agro-900"
+                >
+                  WhatsApp ↗
+                </a>
               </div>
             </div>
           </div>

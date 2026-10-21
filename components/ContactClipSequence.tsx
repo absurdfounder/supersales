@@ -21,12 +21,10 @@ const clips = [
 ]
 
 export default function ContactClipSequence() {
-  const sequenceRef = useRef<HTMLDivElement>(null)
-  const [inViewClips, setInViewClips] = useState<Set<number>>(() => new Set())
+  const playerRef = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
   const [activeClip, setActiveClip] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
-  const [showThirdClip, setShowThirdClip] = useState(false)
-  const displayedClips = showThirdClip ? clips : clips.slice(0, 2)
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -37,72 +35,47 @@ export default function ContactClipSequence() {
   }, [])
 
   useEffect(() => {
-    const desktop = window.matchMedia('(min-width: 1024px)')
-    const syncLayout = () => setShowThirdClip(desktop.matches)
-    syncLayout()
-    desktop.addEventListener('change', syncLayout)
-    return () => desktop.removeEventListener('change', syncLayout)
-  }, [])
+    const player = playerRef.current
+    if (!player) return
 
-  useEffect(() => {
-    if (activeClip >= displayedClips.length) setActiveClip(0)
-  }, [activeClip, displayedClips.length])
-
-  useEffect(() => {
-    const sequence = sequenceRef.current
-    if (!sequence || reducedMotion) return
+    if (!('IntersectionObserver' in window)) {
+      setInView(true)
+      return
+    }
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        setInViewClips((current) => {
-          const next = new Set(current)
-          entries.forEach((entry) => {
-            const index = Number((entry.target as HTMLElement).dataset.clipIndex)
-            if (entry.isIntersecting) next.add(index)
-            else next.delete(index)
-          })
-          return next
-        })
-      },
-      { threshold: 0.3 },
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: '120px 0px', threshold: 0.1 },
     )
-    const cards = sequence.querySelectorAll<HTMLElement>('[data-clip-index]')
-    cards.forEach((card) => observer.observe(card))
+    observer.observe(player)
     return () => observer.disconnect()
-  }, [reducedMotion, showThirdClip])
+  }, [])
+
+  const clip = clips[activeClip]
 
   return (
     <div
-      ref={sequenceRef}
+      ref={playerRef}
       role="region"
       aria-label="Short videos from the mandi floor"
-      className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
+      className="mx-auto aspect-[4/5] w-full max-w-[320px] overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-black/5 sm:max-w-[350px] sm:rounded-3xl"
     >
-      {displayedClips.map((clip, index) => (
-        <div
+      {reducedMotion || !inView ? (
+        <img src={clip.poster} alt={clip.alt} className="h-full w-full object-cover" />
+      ) : (
+        <video
           key={clip.src}
-          data-clip-index={index}
-          className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-black/5 sm:rounded-3xl"
-        >
-          {reducedMotion ? (
-            <img src={clip.poster} alt={clip.alt} className="h-full w-full object-cover" />
-          ) : inViewClips.has(index) && activeClip === index ? (
-            <video
-              src={clip.src}
-              poster={clip.poster}
-              autoPlay
-              muted
-              playsInline
-              preload="none"
-              aria-label={clip.alt}
-              onEnded={() => setActiveClip((current) => (current + 1) % displayedClips.length)}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <img src={clip.poster} alt={clip.alt} className="h-full w-full object-cover" />
-          )}
-        </div>
-      ))}
+          src={clip.src}
+          poster={clip.poster}
+          autoPlay
+          muted
+          playsInline
+          preload="metadata"
+          aria-label={clip.alt}
+          onEnded={() => setActiveClip((current) => (current + 1) % clips.length)}
+          className="h-full w-full object-cover"
+        />
+      )}
     </div>
   )
 }
