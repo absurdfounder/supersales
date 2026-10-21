@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import SectionShell from '@/components/ui/SectionShell'
 
 type Scene = {
@@ -224,183 +224,195 @@ function pad(n: number) {
 }
 
 export default function FloorGallery() {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
   const railRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
-  const [canScrollBack, setCanScrollBack] = useState(false)
-  const [canScrollForward, setCanScrollForward] = useState(true)
-
-  const updateScrollState = useCallback(() => {
-    const rail = railRef.current
-    if (!rail) return
-    setCanScrollBack(rail.scrollLeft > 8)
-    setCanScrollForward(rail.scrollLeft + rail.clientWidth < rail.scrollWidth - 8)
-  }, [])
+  const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
-    const rail = railRef.current
-    if (!rail) return
-    updateScrollState()
-    rail.addEventListener('scroll', updateScrollState, { passive: true })
-    window.addEventListener('resize', updateScrollState)
-    return () => {
-      rail.removeEventListener('scroll', updateScrollState)
-      window.removeEventListener('resize', updateScrollState)
-    }
-  }, [updateScrollState])
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const syncMotion = () => setReducedMotion(motion.matches)
+    syncMotion()
+    motion.addEventListener('change', syncMotion)
+    return () => motion.removeEventListener('change', syncMotion)
+  }, [])
 
-  const scrollRail = (direction: -1 | 1) => {
+  useLayoutEffect(() => {
+    if (reducedMotion) return
+    const track = trackRef.current
+    const stage = stageRef.current
     const rail = railRef.current
-    if (!rail) return
-    rail.scrollBy({
-      left: direction * Math.min(rail.clientWidth * 0.8, 720),
-      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-    })
-  }
+    if (!track || !stage || !rail) return
+
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (motion.matches) {
+      setReducedMotion(true)
+      return
+    }
+
+    let frame = 0
+    const measure = () => {
+      const header = document.querySelector('header')
+      const stickyTop = Math.round(header?.getBoundingClientRect().height || (window.innerWidth >= 768 ? 72 : 64))
+      const stageHeight = Math.max(460, window.innerHeight - stickyTop)
+      const travel = Math.max(0, rail.scrollWidth - stage.clientWidth)
+
+      stage.style.top = `${stickyTop}px`
+      stage.style.height = `${stageHeight}px`
+      track.style.height = `${stageHeight + travel}px`
+
+      const trackTop = track.getBoundingClientRect().top
+      const distance = Math.min(travel, Math.max(0, stickyTop - trackTop))
+      rail.style.transform = `translate3d(${-distance}px, 0, 0)`
+
+      const video = videoRef.current
+      if (video) {
+        const videoRect = video.getBoundingClientRect()
+        const stageRect = stage.getBoundingClientRect()
+        if (
+          videoRect.right <= stageRect.left ||
+          videoRect.left >= stageRect.right ||
+          videoRect.bottom <= stickyTop ||
+          videoRect.top >= window.innerHeight
+        ) {
+          video.pause()
+        }
+      }
+    }
+
+    const onScroll = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(() => {
+        frame = 0
+        measure()
+      })
+    }
+
+    measure()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', measure)
+    window.visualViewport?.addEventListener('resize', measure)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', measure)
+      window.visualViewport?.removeEventListener('resize', measure)
+      if (frame) window.cancelAnimationFrame(frame)
+    }
+  }, [reducedMotion])
+
+  const renderCards = (horizontal: boolean) => SCENES.map((scene, index) => (
+    <article
+      key={scene.id}
+      className={`group relative aspect-[9/16] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm ${
+        horizontal ? 'w-[72vw] max-w-[13rem] flex-none sm:w-[13rem] md:w-[14rem]' : 'w-full'
+      }`}
+    >
+      {scene.kind === 'video' && activeVideo === scene.id ? (
+        <video
+          ref={videoRef}
+          src={scene.src}
+          poster={scene.poster}
+          autoPlay
+          muted
+          controls
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={scene.alt}
+          className="absolute inset-0 h-full w-full bg-slate-950 object-cover"
+        />
+      ) : (
+        <img
+          src={scene.kind === 'video' ? scene.poster ?? scene.src : scene.src}
+          alt={scene.kind === 'photo' ? scene.alt : ''}
+          aria-hidden={scene.kind === 'video' ? true : undefined}
+          className="absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.03]"
+          style={{ objectPosition: scene.objectPosition ?? 'center' }}
+          draggable={false}
+          loading={index < 5 ? 'eager' : 'lazy'}
+        />
+      )}
+
+      <span className="pointer-events-none absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-slate-950/45 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+        {pad(index + 1)} · {scene.kind === 'video' ? 'Short' : 'Photo'}
+      </span>
+
+      {scene.kind === 'video' && activeVideo !== scene.id && (
+        <button
+          type="button"
+          onClick={() => setActiveVideo(scene.id)}
+          aria-label={`Play video: ${scene.title}`}
+          className="absolute inset-0 z-10 flex items-center justify-center focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-agro"
+        >
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 bg-white/90 text-agro-700 shadow-lg backdrop-blur-sm transition group-hover:scale-105">
+            <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor" aria-hidden>
+              <path d="M8 5.8c0-.8.9-1.3 1.6-.9l9.2 5.3a1 1 0 0 1 0 1.7l-9.2 5.3c-.7.4-1.6-.1-1.6-.9V5.8Z" />
+            </svg>
+          </span>
+        </button>
+      )}
+
+      {scene.kind !== 'video' || activeVideo !== scene.id ? (
+        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
+      ) : (
+        <span className="pointer-events-none absolute bottom-12 left-3 z-10 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white/90 drop-shadow">
+          Now playing
+        </span>
+      )}
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4">
+        {activeVideo === scene.id ? null : (
+          <>
+            <h3 className="font-funneldisplay text-lg font-bold leading-tight text-white drop-shadow-sm">
+              {scene.title}
+            </h3>
+            <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-white/85">{scene.caption}</p>
+          </>
+        )}
+      </div>
+    </article>
+  ))
 
   return (
     <SectionShell id="on_the_floor" eyebrowNumber="02" eyebrow="On the floor" bgClass="bg-white">
-      <div className="pb-10 pt-2 md:pb-14">
-        <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
-          <div className="max-w-3xl">
-            <h2 className="type-h2">Watch Super Sales in Action</h2>
+      {reducedMotion ? (
+        <div className="pb-10 pt-2 md:pb-14">
+          <div className="mb-6 max-w-3xl sm:mb-8">
+            <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
             <p className="type-body mt-3">
               Step onto the mandi floor — real moments from the first look at a lot to loading out.
             </p>
           </div>
-          <div className="hidden shrink-0 items-center gap-2 sm:flex">
-            <button
-              type="button"
-              onClick={() => scrollRail(-1)}
-              disabled={!canScrollBack}
-              aria-label="Show previous videos and photos"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-agro hover:text-agro-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
-                <path d="m12.5 4.5-5.5 5.5 5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollRail(1)}
-              disabled={!canScrollForward}
-              aria-label="Show more videos and photos"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-agro hover:text-agro-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
-                <path d="m7.5 4.5 5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+            {renderCards(false)}
           </div>
         </div>
-
-        <div
-          ref={railRef}
-          role="region"
-          aria-label="Super Sales Agro videos and photos"
-          tabIndex={0}
-          className="-mx-3 flex snap-x snap-mandatory gap-3 overflow-x-auto px-3 pb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-agro sm:-mx-4 sm:gap-4 sm:px-4 md:-mx-6 md:gap-5 md:px-6"
-        >
-          {SCENES.map((scene, index) => (
-            <article
-              key={scene.id}
-              className="group relative aspect-[9/16] w-[72vw] max-w-[14rem] flex-none snap-start overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm sm:w-[13rem] md:w-[14rem]"
+      ) : (
+        <div ref={trackRef} className="relative">
+          <div ref={stageRef} className="sticky z-10 flex flex-col justify-center overflow-hidden bg-white py-5 sm:py-6 md:py-8">
+            <div className="mb-5 max-w-3xl shrink-0 sm:mb-6">
+              <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
+              <p className="type-body mt-2 sm:mt-3">
+                Step onto the mandi floor — real moments from the first look at a lot to loading out.
+              </p>
+            </div>
+            <div
+              role="region"
+              aria-labelledby="floor-gallery-title"
+              className="min-h-0 flex-1 overflow-hidden"
             >
-              {scene.kind === 'video' && activeVideo === scene.id ? (
-                <video
-                  src={scene.src}
-                  poster={scene.poster}
-                  autoPlay
-                  muted
-                  controls
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label={scene.alt}
-                  className="absolute inset-0 h-full w-full bg-slate-950 object-cover"
-                />
-              ) : (
-                <img
-                  src={scene.kind === 'video' ? scene.poster ?? scene.src : scene.src}
-                  alt={scene.kind === 'photo' ? scene.alt : ''}
-                  aria-hidden={scene.kind === 'video' ? true : undefined}
-                  className="absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.03]"
-                  style={{ objectPosition: scene.objectPosition ?? 'center' }}
-                  draggable={false}
-                  loading={index < 5 ? 'eager' : 'lazy'}
-                />
-              )}
-
-              <span className="pointer-events-none absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-slate-950/45 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
-                {pad(index + 1)} · {scene.kind === 'video' ? 'Short' : 'Photo'}
-              </span>
-
-              {scene.kind === 'video' && activeVideo !== scene.id && (
-                <button
-                  type="button"
-                  onClick={() => setActiveVideo(scene.id)}
-                  aria-label={`Play video: ${scene.title}`}
-                  className="absolute inset-0 z-10 flex items-center justify-center focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-agro"
-                >
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 bg-white/90 text-agro-700 shadow-lg backdrop-blur-sm transition group-hover:scale-105">
-                    <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor" aria-hidden>
-                      <path d="M8 5.8c0-.8.9-1.3 1.6-.9l9.2 5.3a1 1 0 0 1 0 1.7l-9.2 5.3c-.7.4-1.6-.1-1.6-.9V5.8Z" />
-                    </svg>
-                  </span>
-                </button>
-              )}
-
-              {scene.kind !== 'video' || activeVideo !== scene.id ? (
-                <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
-              ) : (
-                <span className="pointer-events-none absolute bottom-12 left-3 z-10 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white/90 drop-shadow">
-                  Now playing
-                </span>
-              )}
-
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4">
-                {activeVideo === scene.id ? null : (
-                  <>
-                    <h3 className="font-funneldisplay text-lg font-bold leading-tight text-white drop-shadow-sm">
-                      {scene.title}
-                    </h3>
-                    <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-white/85">{scene.caption}</p>
-                  </>
-                )}
+              <div ref={railRef} className="flex h-full w-max items-center gap-3 sm:gap-4 md:gap-5">
+                {renderCards(true)}
               </div>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-1 flex items-center justify-between gap-3 sm:hidden">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
-            Swipe to explore
-          </span>
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => scrollRail(-1)}
-              disabled={!canScrollBack}
-              aria-label="Show previous videos and photos"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
-                <path d="m12.5 4.5-5.5 5.5 5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollRail(1)}
-              disabled={!canScrollForward}
-              aria-label="Show more videos and photos"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
-                <path d="m7.5 4.5 5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            </div>
+            <p className="mt-3 shrink-0 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+              Keep scrolling to see more
+            </p>
           </div>
         </div>
-      </div>
+      )}
     </SectionShell>
   )
 }
