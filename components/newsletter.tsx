@@ -38,7 +38,7 @@ export default function Newsletter() {
   }, [])
 
   return (
-    <SectionShell eyebrowNumber="09" eyebrow="Get started" bgClass="bg-white" noBorderBottom={false}>
+    <SectionShell eyebrowNumber="10" eyebrow="Get started" bgClass="bg-white" noBorderBottom={false}>
       <div className="grid gap-px bg-slate-200">
         <div className="grid lg:grid-cols-2">
           <div className="flex flex-col justify-center bg-white p-8 text-slate-900 sm:p-10 md:p-12">

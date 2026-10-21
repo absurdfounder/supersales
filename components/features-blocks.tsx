@@ -17,7 +17,7 @@ const products = [
 export default function FeaturesBlocks() {
   return (
     <>
-      <SectionShell id="products" eyebrowNumber="02" eyebrow="Products" bgClass="bg-white">
+      <SectionShell id="products" eyebrowNumber="03" eyebrow="Products" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 max-w-3xl">
             <h2 className="type-h2 mb-4">We deal in various produce.</h2>
@@ -52,13 +52,13 @@ export default function FeaturesBlocks() {
         </div>
       </SectionShell>
 
-      <SectionShell eyebrowNumber="03" eyebrow="Partners" bgClass="bg-white">
+      <SectionShell eyebrowNumber="04" eyebrow="Partners" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <TrustedBy />
         </div>
       </SectionShell>
 
-      <SectionShell eyebrowNumber="04" eyebrow="Supply chain" bgClass="bg-white">
+      <SectionShell eyebrowNumber="05" eyebrow="Supply chain" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 max-w-3xl">
             <h2 className="type-h2 mb-4">
@@ -87,7 +87,7 @@ export default function FeaturesBlocks() {
         </div>
       </SectionShell>
 
-      <SectionShell eyebrowNumber="05" eyebrow="Buyers" bgClass="bg-white">
+      <SectionShell eyebrowNumber="06" eyebrow="Buyers" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <BigCustomers />
         </div>

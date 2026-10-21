@@ -57,7 +57,7 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <>
-      <SectionShell id="about_us" eyebrowNumber="06" eyebrow="About" bgClass="bg-white">
+      <SectionShell id="about_us" eyebrowNumber="07" eyebrow="About" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <h2 className="type-h2 mb-8 text-center">We are not a business, we are a family.</h2>
           <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
@@ -115,7 +115,7 @@ export default function Testimonials() {
         </div>
       </SectionShell>
 
-      <SectionShell id="testimonials" eyebrowNumber="07" eyebrow="Testimonials" bgClass="bg-white">
+      <SectionShell id="testimonials" eyebrowNumber="08" eyebrow="Testimonials" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 max-w-3xl">
             <h2 className="type-h2 mb-4">Trusted by 250+ farmers &amp; businesses</h2>
@@ -150,7 +150,7 @@ export default function Testimonials() {
         </div>
       </SectionShell>
 
-      <SectionShell id="contact_us" eyebrowNumber="08" eyebrow="Contact" bgClass="bg-white">
+      <SectionShell id="contact_us" eyebrowNumber="09" eyebrow="Contact" bgClass="bg-white">
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 text-center">
             <h2 className="type-h2 mb-2">Ready to ship?</h2>
