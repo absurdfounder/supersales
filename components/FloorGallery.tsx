@@ -257,7 +257,7 @@ export default function FloorGallery() {
             nearestDistance = cardDistance
             nextVideo = card.dataset.sceneId ?? null
           }
-        }
+        })
       }
 
       if (activeVideoRef.current !== nextVideo) {
