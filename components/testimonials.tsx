@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import familyteam from '@/public/images/familyteam.png'
-import addresspart from '@/public/images/contactustogether.png'
+import ContactClipSequence from '@/components/ContactClipSequence'
 import SectionShell from '@/components/ui/SectionShell'
-import PixelButton from '@/components/ui/PixelButton'
 
 const testimonials = [
   {
@@ -157,83 +156,106 @@ export default function Testimonials() {
             <p className="type-body mx-auto max-w-2xl">Come see how well we sell.</p>
           </div>
 
-          <div className="grid gap-px bg-slate-200 lg:grid-cols-2">
-            <a
-              href="https://www.google.com/maps/search/?api=1&query=28.7074,77.1723"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative flex min-h-[360px] items-center justify-center bg-white p-4 sm:min-h-[420px] lg:min-h-[520px]"
-            >
-              <Image
-                src={addresspart}
-                unoptimized
-                alt="Super Sales Agro location"
-                width={572}
-                height={640}
-                className="h-auto w-full max-w-full object-contain"
-              />
-            </a>
+          <div className="rounded-[2rem] bg-amber-300 p-3 shadow-xl shadow-amber-900/10 sm:p-4 md:rounded-[2.5rem] md:p-6">
+            <ContactClipSequence />
 
-            <div className="grid gap-px bg-slate-200">
-              <div className="flex flex-wrap gap-3 bg-white p-5 sm:p-6">
-                <PixelButton
-                  href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
-                  external
-                  size="sm"
-                >
-                  WhatsApp Channel
-                </PixelButton>
-                <PixelButton href="tel:+919899262264" variant="outline" tone="dark" size="sm">
-                  Call Now
-                </PixelButton>
+            <div className="mt-3 grid gap-3 sm:mt-4 sm:gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="overflow-hidden rounded-2xl bg-white shadow-sm sm:rounded-3xl">
+                <div className="h-[230px] sm:h-[300px] lg:h-[320px]">
+                  <iframe
+                    title="Map to Super Sales Agro head office in Azadpur, Delhi"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=77.155%2C28.704%2C77.178%2C28.719&layer=mapnik&marker=28.7116913%2C77.1662854"
+                    className="h-full w-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="flex flex-col gap-4 border-t border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+                  <div>
+                    <p className="text-lg font-bold tracking-tight text-slate-900">Super Sales Agro</p>
+                    <p className="mt-1 max-w-md text-sm leading-relaxed text-slate-600">
+                      A-285, 1st and 2nd floor, New Subzi Mandi, Azadpur, Delhi-110034
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.google.com/maps/place/Super+Sales+Agro+(SSA)/@28.7116913,77.1662854,17z"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 text-sm font-semibold text-white transition hover:bg-agro-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8">
+                      <path d="M14 4h6v6M20 4 10 14" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Directions
+                  </a>
+                </div>
               </div>
 
-              <a
-                href="https://www.google.com/maps/place/Super+Sales+Agro+(SSA)/@28.7116913,77.1662854,17z"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white p-5 transition hover:bg-agro-50 sm:p-6"
-              >
-                <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-agro-700">
-                  Head Office
-                </p>
-                <p className="text-sm text-slate-600">
-                  A-285, 1st and 2nd floor, New Subzi Mandi, Azadpur, Delhi-110034
-                </p>
-              </a>
+              <div className="flex flex-col rounded-2xl bg-white p-5 shadow-sm sm:rounded-3xl sm:p-6 lg:p-7">
+                <div>
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-agro-700">
+                    Get in touch
+                  </p>
+                  <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl">
+                    Your mandi desk is one call away.
+                  </h3>
+                </div>
 
-              <div className="bg-white p-5 sm:p-6">
-                <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-agro-700">
-                  Phone
-                </p>
-                <a href="tel:+919899262264" className="block text-sm text-slate-600 hover:text-agro-700">
-                  +91-9899262264
-                </a>
-                <a href="tel:+919711269346" className="block text-sm text-slate-600 hover:text-agro-700">
-                  +91-9711269346
-                </a>
-              </div>
+                <div className="mt-5 grid grid-cols-2 gap-2.5">
+                  <a
+                    href="tel:+919899262264"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-slate-900 px-3 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-none stroke-current" strokeWidth="1.8">
+                      <path d="M7 3h3l2 5-2 1.5a15 15 0 0 0 4.5 4.5L16 12l5 2v3c0 1.1-.9 2-2 2C10.7 19 5 13.3 5 6c0-1.7.5-3 2-3Z" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Call
+                  </a>
+                  <a
+                    href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 px-3 text-sm font-semibold text-slate-800 transition hover:border-agro-300 hover:bg-agro-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2"
+                  >
+                    WhatsApp
+                  </a>
+                </div>
 
-              <a href="mailto:supersalesagro@gmail.com" className="bg-white p-5 transition hover:bg-agro-50 sm:p-6">
-                <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-agro-700">Email</p>
-                <p className="text-sm text-slate-600">supersalesagro@gmail.com</p>
-              </a>
-
-              <div className="bg-white p-5 sm:p-6">
-                <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-agro-700">
-                  Shipping Address
-                </p>
-                <p className="mb-4 text-sm text-slate-600">
-                  Licence No.: B-4881, A-1022 New Subzi Mandi, Azadpur, Delhi-110034
-                </p>
-                <PixelButton
-                  href="https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.8331576,77.1288924,17z"
-                  external
-                  tone="dark"
-                  size="sm"
-                >
-                  Visit Auction Site
-                </PixelButton>
+                <div className="mt-6 space-y-4 border-t border-slate-100 pt-5 text-sm">
+                  <div>
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Phone</p>
+                    <a href="tel:+919899262264" className="block text-slate-700 hover:text-agro-700">
+                      +91 98992 62264
+                    </a>
+                    <a href="tel:+919711269346" className="mt-0.5 block text-slate-700 hover:text-agro-700">
+                      +91 97112 69346
+                    </a>
+                  </div>
+                  <div>
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Email</p>
+                    <a href="mailto:supersalesagro@gmail.com" className="break-words text-slate-700 hover:text-agro-700">
+                      supersalesagro@gmail.com
+                    </a>
+                  </div>
+                  <div className="border-t border-slate-100 pt-4">
+                    <p className="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
+                      Auction site · Licence B-4881
+                    </p>
+                    <p className="leading-relaxed text-slate-600">
+                      A-1022 New Subzi Mandi, Azadpur, Delhi-110034
+                    </p>
+                    <a
+                      href="https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.8331576,77.1288924,17z"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 font-semibold text-agro-700 hover:text-agro-900"
+                    >
+                      Visit auction site
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
