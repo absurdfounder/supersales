@@ -2,7 +2,6 @@ import Image from 'next/image'
 import familyteam from '@/public/images/familyteam.png'
 import ContactLocationCard from '@/components/ContactLocationCard'
 import SectionShell from '@/components/ui/SectionShell'
-import PixelButton from '@/components/ui/PixelButton'
 
 const testimonials = [
   {
@@ -191,76 +190,53 @@ export default function Testimonials() {
               <h3 className="text-base font-semibold text-slate-900 sm:text-lg">Talk to our team</h3>
               <p className="text-xs text-slate-500 sm:text-sm">Choose the quickest way to reach us.</p>
             </div>
-            <div className="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-3">
-              <PixelButton
-                href="tel:+919899262264"
-                size="sm"
-                className="w-full min-h-[76px]"
-                ariaLabel="Call Super Sales Agro at +91 98992 62264"
-              >
-                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
-                  <span className="flex items-center gap-1.5 whitespace-nowrap">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
-                      <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Call now
-                  </span>
-                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">+91 98992 62264</span>
-                </span>
-              </PixelButton>
-              <PixelButton
-                href="tel:+919711269346"
-                variant="outline"
-                size="sm"
-                className="w-full min-h-[76px]"
-                ariaLabel="Call the alternate number +91 97112 69346"
-              >
-                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
-                  <span className="flex items-center gap-1 whitespace-nowrap text-[9px] tracking-[0.08em]">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
-                      <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Alternate number
-                  </span>
-                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">+91 97112 69346</span>
-                </span>
-              </PixelButton>
-              <PixelButton
-                href="mailto:supersalesagro@gmail.com"
-                variant="outline"
-                size="sm"
-                className="col-span-2 w-full min-h-[64px] lg:col-span-1"
-                ariaLabel="Email Super Sales Agro at supersalesagro@gmail.com"
-              >
-                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
-                  <span className="flex items-center gap-1.5 whitespace-nowrap">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
-                      <rect x="3" y="4.5" width="14" height="11" rx="1.7" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="m4 6 6 4.5L16 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    Email us
-                  </span>
-                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">supersalesagro@gmail.com</span>
-                </span>
-              </PixelButton>
-              <PixelButton
-                href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
-                variant="outline"
-                size="sm"
-                className="col-span-2 w-full min-h-[64px] lg:col-span-1"
-                ariaLabel="Message Super Sales Agro on WhatsApp"
-              >
-                <span className="flex flex-col items-center gap-1.5 whitespace-normal">
-                  <span className="flex items-center gap-1.5 whitespace-nowrap">
-                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-3.5 w-3.5 shrink-0">
-                      <path d="M16.6 9.7a6.4 6.4 0 0 1-9.3 5.7L4 16l.7-3.2a6.4 6.4 0 1 1 11.9-3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-                      <path d="M7.4 7.1c.3-.4.6-.3.8 0l.7 1.3c.1.2.1.4-.1.6l-.4.5c.5 1 1.2 1.7 2.2 2.2l.5-.4c.2-.2.4-.2.6-.1l1.3.7c.3.2.4.5 0 .8-.4.4-.9.7-1.5.6-2.2-.4-4.5-2.7-4.8-4.9-.1-.5.2-1 .7-1.3Z" fill="currentColor" />
-                    </svg>
-                    WhatsApp
-                  </span>
-                  <span className="font-sans text-xs font-bold normal-case tracking-normal whitespace-nowrap">Message us ↗</span>
-                </span>
-              </PixelButton>
+            <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-3">
+              <article className="min-w-0 rounded-lg border border-slate-200 bg-white px-3.5 py-3 sm:px-4">
+                <p className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-agro-700">
+                    <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Call our team
+                </p>
+                <a href="tel:+919899262264" aria-label="Call Super Sales Agro at +91 98992 62264" className="mt-1.5 inline-block text-sm font-bold leading-5 text-slate-900 hover:text-agro-700 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-agro-700">
+                  +91 98992 62264
+                </a>
+              </article>
+              <article className="min-w-0 rounded-lg border border-slate-200 bg-white px-3.5 py-3 sm:px-4">
+                <p className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-agro-700">
+                    <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Alternate number
+                </p>
+                <a href="tel:+919711269346" aria-label="Call the alternate number +91 97112 69346" className="mt-1.5 inline-block text-sm font-bold leading-5 text-slate-900 hover:text-agro-700 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-agro-700">
+                  +91 97112 69346
+                </a>
+              </article>
+              <article className="min-w-0 rounded-lg border border-slate-200 bg-white px-3.5 py-3 sm:px-4">
+                <p className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-agro-700">
+                    <rect x="3" y="4.5" width="14" height="11" rx="1.7" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="m4 6 6 4.5L16 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Email
+                </p>
+                <a href="mailto:supersalesagro@gmail.com" className="mt-1.5 inline-block break-all text-sm font-bold leading-5 text-slate-900 hover:text-agro-700 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-agro-700">
+                  supersalesagro@gmail.com
+                </a>
+              </article>
+              <article className="min-w-0 rounded-lg border border-slate-200 bg-white px-3.5 py-3 sm:px-4">
+                <p className="flex items-center gap-2 text-xs font-semibold text-slate-500">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-agro-700">
+                    <path d="M16.6 9.7a6.4 6.4 0 0 1-9.3 5.7L4 16l.7-3.2a6.4 6.4 0 1 1 11.9-3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M7.4 7.1c.3-.4.6-.3.8 0l.7 1.3c.1.2.1.4-.1.6l-.4.5c.5 1 1.2 1.7 2.2 2.2l.5-.4c.2-.2.4-.2.6-.1l1.3.7c.3.2.4.5 0 .8-.4.4-.9.7-1.5.6-2.2-.4-4.5-2.7-4.8-4.9-.1-.5.2-1 .7-1.3Z" fill="currentColor" />
+                  </svg>
+                  WhatsApp
+                </p>
+                <a href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T" target="_blank" rel="noreferrer" className="mt-1.5 inline-block text-sm font-bold leading-5 text-agro-700 hover:text-agro-800 focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-agro-700">
+                  Message us ↗
+                </a>
+              </article>
             </div>
           </div>
         </div>

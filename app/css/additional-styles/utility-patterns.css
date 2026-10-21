@@ -39,6 +39,20 @@
     @apply px-4 py-2 shadow;
 }
 
+@layer components {
+  .btn-face {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-md border font-semibold leading-snug transition duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-500 focus-visible:ring-offset-2 active:translate-y-px;
+  }
+
+  .btn-primary {
+    @apply border-agro-700 bg-agro-700 text-white shadow-sm hover:border-agro-800 hover:bg-agro-800;
+  }
+
+  .btn-secondary {
+    @apply border-slate-300 bg-white text-slate-700 shadow-sm hover:border-slate-400 hover:bg-slate-50;
+  }
+}
+
 /* Forms */
 .form-input,
 .form-textarea,

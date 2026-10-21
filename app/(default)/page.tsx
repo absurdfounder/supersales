@@ -17,6 +17,7 @@ export default function Home() {
       <FloorGallery />
       <FeaturesBlocks />
       <Testimonials />
+      <FloorGallery id="contact-floor-gallery" showHeading={false} showEyebrow={false} />
       <Newsletter />
     </div>
   )

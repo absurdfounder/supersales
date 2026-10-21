@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import PixelButton from '@/components/ui/PixelButton'
 
 interface ContactLocationCardProps {
   title: string
@@ -93,22 +92,21 @@ export default function ContactLocationCard({
         </div>
 
         <div className="mt-3 flex items-center gap-2">
-          <PixelButton
+          <a
             href={directionsUrl}
-            size="sm"
-            className="min-w-0 flex-1"
-            icon={<span aria-hidden="true">↗</span>}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-face btn-primary min-h-11 min-w-0 flex-1 px-2 py-2.5 text-xs sm:px-4 sm:text-sm"
           >
-            Directions
-          </PixelButton>
-          <PixelButton
+            Directions <span aria-hidden="true">↗</span>
+          </a>
+          <button
             type="button"
             onClick={handleCopy}
             aria-label={`${copyLabel} for ${title}`}
-            variant="outline"
-            size="sm"
-            className="min-w-0 flex-1"
-            icon={copyState === 'copied' ? (
+            className="btn-face btn-secondary min-h-11 min-w-0 flex-1 px-2 py-2.5 text-xs sm:px-3 sm:text-sm"
+          >
+            {copyState === 'copied' ? (
               <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
                 <path d="m4 10 4 4 8-8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -118,9 +116,8 @@ export default function ContactLocationCard({
                 <path d="M12 6V4.8A1.8 1.8 0 0 0 10.2 3H5.8A1.8 1.8 0 0 0 4 4.8v7.4A1.8 1.8 0 0 0 5.8 14H7" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             )}
-          >
             {copyLabel}
-          </PixelButton>
+          </button>
         </div>
         <span className="sr-only" aria-live="polite">
           {copyState === 'copied' ? `${title} location copied to clipboard.` : copyState === 'error' ? 'Could not copy the location.' : ''}

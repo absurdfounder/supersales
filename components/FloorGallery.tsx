@@ -187,7 +187,17 @@ const SCENES: Scene[] = [
   },
 ]
 
-export default function FloorGallery() {
+interface FloorGalleryProps {
+  id?: string
+  showHeading?: boolean
+  showEyebrow?: boolean
+}
+
+export default function FloorGallery({
+  id = 'on_the_floor',
+  showHeading = true,
+  showEyebrow = true,
+}: FloorGalleryProps) {
   const trackRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const railRef = useRef<HTMLDivElement>(null)
@@ -195,6 +205,7 @@ export default function FloorGallery() {
   const activeVideoRef = useRef<string | null>(null)
   const [activeVideo, setActiveVideo] = useState<string | null>(null)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const titleId = `${id}-title`
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -324,12 +335,19 @@ export default function FloorGallery() {
   ))
 
   return (
-    <SectionShell id="on_the_floor" eyebrowNumber="02" eyebrow="On the floor" bgClass="bg-white">
+    <SectionShell
+      id={id}
+      eyebrowNumber={showEyebrow ? '02' : undefined}
+      eyebrow={showEyebrow ? 'On the floor' : undefined}
+      bgClass="bg-white"
+    >
       {reducedMotion ? (
         <div className="pb-10 pt-2 md:pb-14">
-          <div className="mb-6 max-w-3xl sm:mb-8">
-            <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
-          </div>
+          {showHeading && (
+            <div className="mb-6 max-w-3xl sm:mb-8">
+              <h2 id={titleId} className="type-h2">Watch Super Sales in Action</h2>
+            </div>
+          )}
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
             {renderCards(false)}
           </div>
@@ -337,12 +355,15 @@ export default function FloorGallery() {
       ) : (
         <div ref={trackRef} className="relative">
           <div ref={stageRef} className="sticky z-10 flex flex-col overflow-hidden bg-white py-5 sm:py-6 md:py-8">
-            <div className="mb-5 max-w-3xl shrink-0 sm:mb-6">
-              <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
-            </div>
+            {showHeading && (
+              <div className="mb-5 max-w-3xl shrink-0 sm:mb-6">
+                <h2 id={titleId} className="type-h2">Watch Super Sales in Action</h2>
+              </div>
+            )}
             <div
               role="region"
-              aria-labelledby="floor-gallery-title"
+              aria-labelledby={showHeading ? titleId : undefined}
+              aria-label={showHeading ? undefined : 'Scenes from the mandi floor'}
               className="min-h-0 flex-1 overflow-hidden"
             >
               <div ref={railRef} className="flex h-full w-max items-center gap-3 sm:gap-4 md:gap-5">
