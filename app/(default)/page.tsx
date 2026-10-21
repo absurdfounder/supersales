@@ -17,7 +17,6 @@ export default function Home() {
       <FloorGallery />
       <FeaturesBlocks />
       <Testimonials />
-      <FloorGallery compact />
       <Newsletter />
     </div>
   )
