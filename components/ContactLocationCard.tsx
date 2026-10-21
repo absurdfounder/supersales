@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import PixelButton from '@/components/ui/PixelButton'
 
 interface ContactLocationCardProps {
   title: string
@@ -91,22 +92,23 @@ export default function ContactLocationCard({
           <p className="mt-1.5 text-[10px] leading-4 text-slate-400">Map data © OpenStreetMap contributors</p>
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center gap-2">
-          <a
+        <div className="mt-3 flex items-center gap-2">
+          <PixelButton
             href={directionsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-xl bg-agro-700 px-3 text-sm font-semibold text-white transition-colors hover:bg-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2"
+            size="sm"
+            className="min-w-0 flex-1"
+            icon={<span aria-hidden="true">↗</span>}
           >
-            Directions <span aria-hidden="true">↗</span>
-          </a>
-          <button
+            Directions
+          </PixelButton>
+          <PixelButton
             type="button"
             onClick={handleCopy}
             aria-label={`${copyLabel} for ${title}`}
-            className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-slate-200 bg-white px-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-agro-300 hover:bg-agro-50 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3"
-          >
-            {copyState === 'copied' ? (
+            variant="outline"
+            size="sm"
+            className="min-w-0 flex-1"
+            icon={copyState === 'copied' ? (
               <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
                 <path d="m4 10 4 4 8-8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -116,8 +118,9 @@ export default function ContactLocationCard({
                 <path d="M12 6V4.8A1.8 1.8 0 0 0 10.2 3H5.8A1.8 1.8 0 0 0 4 4.8v7.4A1.8 1.8 0 0 0 5.8 14H7" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             )}
+          >
             {copyLabel}
-          </button>
+          </PixelButton>
         </div>
         <span className="sr-only" aria-live="polite">
           {copyState === 'copied' ? `${title} location copied to clipboard.` : copyState === 'error' ? 'Could not copy the location.' : ''}
