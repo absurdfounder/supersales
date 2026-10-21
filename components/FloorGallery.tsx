@@ -244,7 +244,9 @@ export default function FloorGallery({
       const header = document.querySelector('header')
       const stickyTop = Math.round(header?.getBoundingClientRect().height || (window.innerWidth >= 768 ? 72 : 64))
       const availableHeight = Math.max(300, window.innerHeight - stickyTop)
-      const cardWidth = Math.min(window.innerWidth * 0.78, window.innerHeight * 0.34, 352)
+      const cardWidth = compact
+        ? Math.min(window.innerWidth * 0.84, window.innerHeight * 0.42, 448)
+        : Math.min(window.innerWidth * 0.78, window.innerHeight * 0.34, 352)
       const compactHeight = cardWidth * (16 / 9) + 24
       const stageHeight = compact ? Math.min(availableHeight, compactHeight) : Math.max(460, availableHeight)
       const travel = Math.max(0, rail.scrollWidth - stage.clientWidth)
@@ -312,7 +314,11 @@ export default function FloorGallery({
       data-scene-kind={scene.kind}
       aria-label={`${scene.kind === 'video' ? 'Video' : 'Photo'}: ${scene.title}`}
       className={`relative aspect-[9/16] overflow-hidden rounded-2xl bg-slate-100 shadow-lg ring-1 ring-slate-900/10 ${
-        horizontal ? 'w-[min(78vw,34vh,22rem)] flex-none' : 'w-full'
+        horizontal
+          ? compact
+            ? 'w-[min(84vw,42vh,28rem)] flex-none'
+            : 'w-[min(78vw,34vh,22rem)] flex-none'
+          : 'w-full'
       }`}
     >
       {scene.kind === 'video' && activeVideo === scene.id ? (
