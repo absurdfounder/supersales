@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 interface ContactLocationCardProps {
   title: string
   address: string
+  locationType: 'office' | 'dock'
   mapImageSrc: string
   mapImageAlt: string
   directionsUrl: string
@@ -32,6 +33,7 @@ async function copyText(value: string) {
 export default function ContactLocationCard({
   title,
   address,
+  locationType,
   mapImageSrc,
   mapImageAlt,
   directionsUrl,
@@ -59,7 +61,7 @@ export default function ContactLocationCard({
 
   return (
     <article className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_2px_8px_rgba(15,23,42,0.05)] transition-shadow hover:shadow-[0_8px_24px_rgba(15,23,42,0.09)] sm:rounded-3xl">
-      <div className="relative h-32 shrink-0 overflow-hidden bg-slate-100 sm:h-36">
+      <div className="relative h-28 shrink-0 overflow-hidden bg-slate-100 sm:h-36">
         <Image
           src={mapImageSrc}
           alt={mapImageAlt}
@@ -71,7 +73,20 @@ export default function ContactLocationCard({
       </div>
       <div className="flex flex-1 flex-col p-4 sm:p-4">
         <div>
-          <h4 className="text-base font-bold tracking-tight text-slate-900">{title}</h4>
+          <div className="flex items-center gap-2">
+            {locationType === 'office' ? (
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5 shrink-0 text-agro-700">
+                <path d="M4 21h16M6.5 21V4.5h11V21M9.5 8h1m3 0h1m-5 4h1m3 0h1m-5 4h1m3 0h1M3.5 21v-2.5h17V21" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="h-5 w-5 shrink-0 text-agro-700">
+                <path d="M3 6.5h11v11H3zM14 10h4l3 3.5v4h-7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="7" cy="18.5" r="1.8" fill="white" stroke="currentColor" strokeWidth="1.7" />
+                <circle cx="18" cy="18.5" r="1.8" fill="white" stroke="currentColor" strokeWidth="1.7" />
+              </svg>
+            )}
+            <h4 className="text-base font-bold tracking-tight text-slate-900">{title}</h4>
+          </div>
           <p className="mt-1 min-h-10 text-sm leading-5 text-slate-600">{address}</p>
           <p className="mt-1.5 text-[10px] leading-4 text-slate-400">Map data © OpenStreetMap contributors</p>
         </div>
@@ -81,7 +96,7 @@ export default function ContactLocationCard({
             href={directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 rounded-xl bg-agro-700 px-3 text-xs font-semibold text-white transition-colors hover:bg-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:text-sm"
+            className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-xl bg-agro-700 px-3 text-sm font-semibold text-white transition-colors hover:bg-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2"
           >
             Directions <span aria-hidden="true">↗</span>
           </a>
@@ -89,7 +104,7 @@ export default function ContactLocationCard({
             type="button"
             onClick={handleCopy}
             aria-label={`${copyLabel} for ${title}`}
-            className="inline-flex min-h-10 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-slate-200 bg-white px-2.5 text-xs font-semibold text-slate-700 transition-colors hover:border-agro-300 hover:bg-agro-50 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3 sm:text-sm"
+            className="inline-flex min-h-11 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-slate-200 bg-white px-2.5 text-sm font-semibold text-slate-700 transition-colors hover:border-agro-300 hover:bg-agro-50 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3"
           >
             {copyState === 'copied' ? (
               <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">

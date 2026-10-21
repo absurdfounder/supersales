@@ -79,7 +79,7 @@ export default function Hero() {
           <div className="pointer-events-none absolute inset-0 hero-checker-grid" aria-hidden />
           <div className="pointer-events-none absolute inset-0 pixel-flicker-grid" aria-hidden />
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 h-[72%] bg-gradient-to-b from-sky-50/90 via-white/75 to-white/95 sm:h-auto sm:bg-none"
+            className="pointer-events-none absolute inset-x-0 top-0 h-[82%] bg-gradient-to-b from-white/95 via-white/55 to-transparent sm:h-auto sm:bg-none"
             aria-hidden
           />
 

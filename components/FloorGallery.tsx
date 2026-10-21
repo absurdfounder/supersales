@@ -15,28 +15,12 @@ type Scene = {
 
 const SCENES: Scene[] = [
   {
-    id: 'shop',
-    kind: 'photo',
-    src: '/media/floor/p-shop.jpg',
-    title: 'Shops 61 & 62',
-    alt: 'Super Sales Agro shops 61 and 62, with stacked apple cartons under a yellow tarp',
-    objectPosition: '18% 48%',
-  },
-  {
     id: 'walk',
     kind: 'video',
     src: '/media/floor/v02.mp4',
     poster: '/media/floor/posters/v02.jpg',
     title: 'Through the shed',
     alt: 'Walking through a fruit shed lined with stacked Kinnaur apple cartons',
-  },
-  {
-    id: 'scale',
-    kind: 'video',
-    src: '/media/floor/v01.mp4',
-    poster: '/media/floor/posters/v01.jpg',
-    title: 'On the scale',
-    alt: 'An apple carton on a weighing scale',
   },
   {
     id: 'truck',
@@ -47,106 +31,6 @@ const SCENES: Scene[] = [
     alt: 'A truck being loaded with apple cartons at the mandi',
   },
   {
-    id: 'open-box',
-    kind: 'photo',
-    src: '/media/floor/p-open-box.jpg',
-    title: 'An open box',
-    alt: 'Buyers inspecting an open carton of Kinnaur apples inside the shed',
-  },
-  {
-    id: 'circle',
-    kind: 'video',
-    src: '/media/floor/v04.mp4',
-    poster: '/media/floor/posters/v04.jpg',
-    title: 'The circle',
-    alt: 'A group of buyers gathered around an open apple carton',
-  },
-  {
-    id: 'plums',
-    kind: 'photo',
-    src: '/media/floor/p-plums.jpg',
-    title: 'Apples and plums',
-    alt: 'Open cartons of apples and punnets of plums with buyers tasting fruit',
-  },
-  {
-    id: 'rows',
-    kind: 'video',
-    src: '/media/floor/v05.mp4',
-    poster: '/media/floor/posters/v05.jpg',
-    title: 'Row after row',
-    alt: 'Aisles of stacked apple cartons under a corrugated shed roof',
-  },
-  {
-    id: 'lane',
-    kind: 'video',
-    src: '/media/floor/v06.mp4',
-    poster: '/media/floor/posters/v06.jpg',
-    title: 'Lane to lane',
-    alt: 'Buyers walking between stacks of apple boxes',
-  },
-  {
-    id: 'fans',
-    kind: 'photo',
-    src: '/media/floor/p-fans.jpg',
-    title: 'Under the fans',
-    alt: 'A crowded fruit shed with ceiling fans and buyers around open apple boxes',
-  },
-  {
-    id: 'stacks',
-    kind: 'video',
-    src: '/media/floor/v07.mp4',
-    poster: '/media/floor/posters/v07.jpg',
-    title: 'Beside the stacks',
-    alt: 'Tall stacks of Kinnaur apple cartons beside a buyer',
-  },
-  {
-    id: 'boards',
-    kind: 'video',
-    src: '/media/floor/v08.mp4',
-    poster: '/media/floor/posters/v08.jpg',
-    title: 'Under the boards',
-    alt: 'A mandi lane with shop boards overhead and apple cartons stacked on both sides',
-  },
-  {
-    id: 'roof',
-    kind: 'video',
-    src: '/media/floor/v09.mp4',
-    poster: '/media/floor/posters/v09.jpg',
-    title: 'Up to the roof',
-    alt: 'Apple cartons stacked high toward the shed roof',
-  },
-  {
-    id: 'platform',
-    kind: 'photo',
-    src: '/media/floor/p-platform.jpg',
-    title: 'On the platform',
-    alt: 'Buyers standing on a raised platform among apple cartons, one of them on the phone',
-  },
-  {
-    id: 'queue',
-    kind: 'video',
-    src: '/media/floor/v10.mp4',
-    poster: '/media/floor/posters/v10.jpg',
-    title: 'A turn at the box',
-    alt: 'Buyers lined up at an open box of Himachal apples',
-  },
-  {
-    id: 'closer',
-    kind: 'video',
-    src: '/media/floor/v12.mp4',
-    poster: '/media/floor/posters/v12.jpg',
-    title: 'Closer in',
-    alt: 'Buyers pressed close together around a sale inside the shed',
-  },
-  {
-    id: 'himachal',
-    kind: 'photo',
-    src: '/media/floor/p-himachal.jpg',
-    title: 'Opened on the spot',
-    alt: 'Buyers inspecting open cartons of Himachal apples outdoors',
-    objectPosition: 'center 40%',
-  },
-  {
     id: 'outside',
     kind: 'video',
     src: '/media/floor/v13.mp4',
@@ -154,40 +38,37 @@ const SCENES: Scene[] = [
     title: 'Outside the shed',
     alt: 'Buyers gathered around apple cartons outside the shed',
   },
+]
+
+const MORE_SCENES: Scene[] = [
   {
-    id: 'hands',
-    kind: 'photo',
-    src: '/media/floor/p-hands.jpg',
-    title: 'In the box',
-    alt: 'Buyers with their hands in open cartons of Himachal apples',
-  },
-  {
-    id: 'lift',
+    id: 'inspection',
     kind: 'video',
-    src: '/media/floor/v14.mp4',
-    poster: '/media/floor/posters/v14.jpg',
-    title: 'Lifted away',
-    alt: 'A buyer lifting a full carton of apples',
+    src: '/media/floor/v04.mp4',
+    poster: '/media/floor/posters/v04.jpg',
+    title: 'Buyers inspect the fruit',
+    alt: 'Buyers gathered around an open apple carton at the mandi',
   },
   {
-    id: 'shut',
+    id: 'auction',
+    kind: 'video',
+    src: '/media/floor/v10.mp4',
+    poster: '/media/floor/posters/v10.jpg',
+    title: 'A turn at the box',
+    alt: 'Buyers taking their turn at an open box of Himachal apples',
+  },
+  {
+    id: 'packing',
     kind: 'video',
     src: '/media/floor/v15.mp4',
     poster: '/media/floor/posters/v15.jpg',
-    title: 'Strapped shut',
+    title: 'Packing the order',
     alt: 'A worker closing and strapping apple cartons',
-  },
-  {
-    id: 'end',
-    kind: 'video',
-    src: '/media/floor/v16.mp4',
-    poster: '/media/floor/posters/v16.jpg',
-    title: 'End of the round',
-    alt: 'Buyers standing on a platform looking over stacked apple cartons',
   },
 ]
 
-export default function FloorGallery() {
+export default function FloorGallery({ compact = false }: { compact?: boolean }) {
+  const scenes = compact ? MORE_SCENES : SCENES
   const trackRef = useRef<HTMLDivElement>(null)
   const stageRef = useRef<HTMLDivElement>(null)
   const railRef = useRef<HTMLDivElement>(null)
@@ -227,7 +108,9 @@ export default function FloorGallery() {
     const measure = () => {
       const header = document.querySelector('header')
       const stickyTop = Math.round(header?.getBoundingClientRect().height || (window.innerWidth >= 768 ? 72 : 64))
-      const stageHeight = Math.max(460, window.innerHeight - stickyTop)
+      const stageHeight = compact
+        ? Math.max(360, Math.min(window.innerHeight - stickyTop, window.innerHeight * 0.6))
+        : Math.max(460, window.innerHeight - stickyTop)
       const travel = Math.max(0, rail.scrollWidth - stage.clientWidth)
 
       stage.style.top = `${stickyTop}px`
@@ -284,16 +167,20 @@ export default function FloorGallery() {
       window.visualViewport?.removeEventListener('resize', measure)
       if (frame) window.cancelAnimationFrame(frame)
     }
-  }, [reducedMotion])
+  }, [compact, reducedMotion])
 
-  const renderCards = (horizontal: boolean) => SCENES.map((scene, index) => (
+  const renderCards = (horizontal: boolean) => scenes.map((scene, index) => (
     <article
       key={scene.id}
       data-scene-id={scene.id}
       data-scene-kind={scene.kind}
       aria-label={`${scene.kind === 'video' ? 'Video' : 'Photo'}: ${scene.title}`}
       className={`relative aspect-[9/16] overflow-hidden rounded-2xl bg-slate-100 shadow-lg ring-1 ring-slate-900/10 ${
-        horizontal ? 'w-[min(78vw,34vh,22rem)] flex-none' : 'w-full'
+        horizontal
+          ? compact
+            ? 'w-[min(70vw,26vh,18rem)] flex-none'
+            : 'w-[min(78vw,34vh,22rem)] flex-none'
+          : 'w-full'
       }`}
     >
       {scene.kind === 'video' && activeVideo === scene.id ? (
@@ -323,35 +210,57 @@ export default function FloorGallery() {
     </article>
   ))
 
-  return (
-    <SectionShell id="on_the_floor" eyebrowNumber="02" eyebrow="On the floor" bgClass="bg-white">
-      {reducedMotion ? (
-        <div className="pb-10 pt-2 md:pb-14">
-          <div className="mb-6 max-w-3xl sm:mb-8">
-            <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
-            {renderCards(false)}
-          </div>
-        </div>
-      ) : (
-        <div ref={trackRef} className="relative">
-          <div ref={stageRef} className="sticky z-10 flex flex-col overflow-hidden bg-white py-5 sm:py-6 md:py-8">
-            <div className="mb-5 max-w-3xl shrink-0 sm:mb-6">
-              <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
-            </div>
-            <div
-              role="region"
-              aria-labelledby="floor-gallery-title"
-              className="min-h-0 flex-1 overflow-hidden"
-            >
-              <div ref={railRef} className="flex h-full w-max items-center gap-3 sm:gap-4 md:gap-5">
-                {renderCards(true)}
-              </div>
-            </div>
-          </div>
+  const content = reducedMotion ? (
+    <div className={`pb-10 ${compact ? 'pt-4' : 'pt-2'} md:pb-14`}>
+      {!compact && (
+        <div className="mb-6 max-w-3xl sm:mb-8">
+          <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
+          <p className="mt-2 text-sm text-slate-600 sm:text-base">A few real moments from our daily trade.</p>
         </div>
       )}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
+        {renderCards(false)}
+      </div>
+    </div>
+  ) : (
+    <div ref={trackRef} className="relative">
+      <div
+        ref={stageRef}
+        className={`sticky z-10 flex flex-col overflow-hidden bg-white ${compact ? 'py-3 sm:py-4' : 'py-5 sm:py-6 md:py-8'}`}
+      >
+        {!compact && (
+          <div className="mb-5 max-w-3xl shrink-0 sm:mb-6">
+            <h2 id="floor-gallery-title" className="type-h2">Watch Super Sales in Action</h2>
+            <p className="mt-2 text-sm text-slate-600 sm:text-base">A few real moments from our daily trade.</p>
+          </div>
+        )}
+        <div
+          role="region"
+          aria-label={compact ? 'More moments from the mandi' : undefined}
+          aria-labelledby={compact ? undefined : 'floor-gallery-title'}
+          className="min-h-0 flex-1 overflow-hidden"
+        >
+          <div ref={railRef} className="mx-auto flex h-full w-max items-center gap-3 sm:gap-4 md:gap-5">
+            {renderCards(true)}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+  if (compact) {
+    return (
+      <section className="relative bg-white" aria-label="More videos from Super Sales Agro">
+        <div className="mx-auto max-w-7xl border-x border-slate-200 px-3 sm:px-4 md:px-6">
+          {content}
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <SectionShell id="on_the_floor" eyebrowNumber="02" eyebrow="On the floor" bgClass="bg-white">
+      {content}
     </SectionShell>
   )
 }

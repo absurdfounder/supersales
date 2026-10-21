@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import familyteam from '@/public/images/familyteam.png'
-import ContactClipSequence from '@/components/ContactClipSequence'
 import ContactLocationCard from '@/components/ContactLocationCard'
 import SectionShell from '@/components/ui/SectionShell'
 
@@ -150,80 +149,99 @@ export default function Testimonials() {
         </div>
       </SectionShell>
 
-      <SectionShell id="contact_us" eyebrowNumber="09" eyebrow="Contact" bgClass="bg-white">
-        <div className="pb-10 pt-2 md:pb-14">
-          <div className="mb-6 text-center sm:mb-8">
-            <h2 className="type-h2 mb-2">Watch Super Sales in Action</h2>
-            <p className="type-body mx-auto max-w-3xl">
-              Real moments from the mandi floor. Find our head office or unloading dock.
+      <SectionShell
+        id="contact_us"
+        eyebrowNumber="09"
+        eyebrow="Contact"
+        bgClass="bg-slate-100"
+        className="bg-[radial-gradient(circle,rgba(100,116,139,0.2)_1px,transparent_1.2px)] [background-size:18px_18px] [&>div]:border-slate-200"
+      >
+        <div className="pb-8 pt-2 sm:pb-10 md:pb-12">
+          <div className="mb-5 max-w-3xl sm:mb-7">
+            <h2 className="type-h2 mb-2">
+              Find us &amp; get in touch
+            </h2>
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+              Visit our Azadpur head office or Narela unloading dock. Call our team for rates and availability.
             </p>
           </div>
 
-          <div className="grid items-start gap-6 lg:grid-cols-[minmax(250px,0.72fr)_minmax(0,1.5fr)] lg:gap-7">
-            <div className="mx-auto w-full max-w-[280px] lg:mx-0">
-              <h3 className="mb-3 text-sm font-semibold text-slate-900">From the mandi floor</h3>
-              <ContactClipSequence />
-            </div>
-
-            <div>
-              <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                <h3 className="text-sm font-semibold text-slate-900">Visit us</h3>
-                <p className="text-xs text-slate-500">Choose the location you need.</p>
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
-                <ContactLocationCard
-                  title="Head office"
-                  address="A-285, New Subzi Mandi, Azadpur, Delhi 110034"
-                  mapImageSrc="/images/locations/head-office-map.jpg"
-                  mapImageAlt="Street map centered on the Super Sales Agro head office in Azadpur, Delhi"
-                  directionsUrl="https://www.google.com/maps/place/Super+Sales+Agro+(SSA)/@28.7116867,77.1685761,17z/data=!4m16!1m9!3m8!1s0x390d018ab1597a2b:0xdc519286f2b52396!2sSuper+Sales+Agro+(SSA)!8m2!3d28.7116867!4d77.171151!9m1!1b1!16s%2Fg%2F11b5vqhxx4!3m5!1s0x390d018ab1597a2b:0xdc519286f2b52396!8m2!3d28.7116867!4d77.171151!16s%2Fg%2F11b5vqhxx4?entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D"
-                />
-                <ContactLocationCard
-                  title="Unloading dock"
-                  address="Super Sales Agro Auction Site, Narela, Delhi"
-                  mapImageSrc="/images/locations/unloading-dock-map.jpg"
-                  mapImageAlt="Street map centered on the Super Sales Agro unloading dock and auction site in Narela, Delhi"
-                  directionsUrl="https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.7680451,77.1107049,13z/data=!4m10!1m2!2m1!1sSuper+Sales+Agro+narela!3m6!1s0x390dab01ee292731:0x84ec2713731edec0!8m2!3d28.824416!4d77.1326581!15sChdTdXBlciBTYWxlcyBBZ3JvIG5hcmVsYVoZIhdzdXBlciBzYWxlcyBhZ3JvIG5hcmVsYZIBH2FncmljdWx0dXJhbF9wcm9kdWN0X3dob2xlc2FsZXLgAQA!16s%2Fg%2F11v43r08t3?entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D"
-                />
-              </div>
-            </div>
+          <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+            <ContactLocationCard
+              title="Head office"
+              address="A-285, New Subzi Mandi, Azadpur, Delhi 110034"
+              locationType="office"
+              mapImageSrc="/images/locations/head-office-map.jpg"
+              mapImageAlt="Street map centered on the Super Sales Agro head office in Azadpur, Delhi"
+              directionsUrl="https://www.google.com/maps/place/Super+Sales+Agro+(SSA)/@28.7116867,77.1685761,17z/data=!4m16!1m9!3m8!1s0x390d018ab1597a2b:0xdc519286f2b52396!2sSuper+Sales+Agro+(SSA)!8m2!3d28.7116867!4d77.171151!9m1!1b1!16s%2Fg%2F11b5vqhxx4!3m5!1s0x390d018ab1597a2b:0xdc519286f2b52396!8m2!3d28.7116867!4d77.171151!16s%2Fg%2F11b5vqhxx4?entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D"
+            />
+            <ContactLocationCard
+              title="Unloading dock"
+              address="Super Sales Agro Auction Site, Narela, Delhi"
+              locationType="dock"
+              mapImageSrc="/images/locations/unloading-dock-map.jpg"
+              mapImageAlt="Street map centered on the Super Sales Agro unloading dock and auction site in Narela, Delhi"
+              directionsUrl="https://www.google.com/maps/place/Super+sales+agro+(SSA)+Auction+Site/@28.7680451,77.1107049,13z/data=!4m10!1m2!2m1!1sSuper+Sales+Agro+narela!3m6!1s0x390dab01ee292731:0x84ec2713731edec0!8m2!3d28.824416!4d77.1326581!15sChdTdXBlciBTYWxlcyBBZ3JvIG5hcmVsYVoZIhdzdXBlciBzYWxlcyBhZ3JvIG5hcmVsYZIBH2FncmljdWx0dXJhbF9wcm9kdWN0X3dob2xlc2FsZXLgAQA!16s%2Fg%2F11v43r08t3?entry=ttu&g_ep=EgoyMDI2MTAxOC4wIKXMDSoASAFQAw%3D%3D"
+            />
           </div>
 
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-4 sm:mt-7 sm:rounded-3xl sm:p-5">
-            <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-              <h3 className="text-sm font-semibold text-slate-900">Talk to our team</h3>
-              <p className="text-xs text-slate-500">Call, email, or message us.</p>
+          <div className="mt-4 rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-sm sm:mt-5 sm:rounded-3xl sm:p-5">
+            <div className="mb-3 flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+              <h3 className="text-base font-semibold text-slate-900 sm:text-lg">Talk to our team</h3>
+              <p className="text-xs text-slate-500 sm:text-sm">Choose the quickest way to reach us.</p>
             </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
+            <div className="grid grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-3">
               <a
                 href="tel:+919899262264"
-                className="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-700 transition-colors hover:border-agro-300 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2"
+                className="flex min-h-[76px] min-w-0 flex-col justify-center rounded-xl border border-agro-700 bg-agro-700 px-2.5 py-2.5 text-white shadow-sm transition-colors hover:bg-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3"
               >
-                <span className="block text-[10px] font-medium uppercase tracking-wider text-slate-400">Call</span>
-                <span className="mt-0.5 block text-xs font-semibold sm:text-sm">+91 98992 62264</span>
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-white sm:text-sm">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
+                    <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Call now
+                </span>
+                <span className="mt-1 whitespace-nowrap text-xs font-bold sm:text-sm">+91 98992 62264</span>
               </a>
               <a
                 href="tel:+919711269346"
-                className="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-700 transition-colors hover:border-agro-300 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2"
+                className="flex min-h-[76px] min-w-0 flex-col justify-center rounded-xl border border-slate-200 bg-white px-2.5 py-2.5 text-slate-900 shadow-sm transition-colors hover:border-agro-400 hover:bg-agro-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 sm:px-3"
               >
-                <span className="block text-[10px] font-medium uppercase tracking-wider text-slate-400">Alternate</span>
-                <span className="mt-0.5 block text-xs font-semibold sm:text-sm">+91 97112 69346</span>
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-agro-800 sm:text-sm">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
+                    <path d="M5.7 3.2h2.2l1.2 3.3-1.7 1.4a12.5 12.5 0 0 0 4.7 4.7l1.4-1.7 3.3 1.2v2.2a1.5 1.5 0 0 1-1.6 1.5A12.8 12.8 0 0 1 4.2 4.8a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Alternate number
+                </span>
+                <span className="mt-1 whitespace-nowrap text-xs font-bold sm:text-sm">+91 97112 69346</span>
               </a>
               <a
                 href="mailto:supersalesagro@gmail.com"
-                className="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-700 transition-colors hover:border-agro-300 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2"
+                className="col-span-2 flex min-h-[64px] min-w-0 flex-col justify-center rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-900 shadow-sm transition-colors hover:border-agro-400 hover:bg-agro-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 lg:col-span-1"
               >
-                <span className="block text-[10px] font-medium uppercase tracking-wider text-slate-400">Email</span>
-                <span className="mt-0.5 block break-all text-xs font-semibold sm:text-sm">supersalesagro@gmail.com</span>
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-agro-800 sm:text-sm">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
+                    <rect x="3" y="4.5" width="14" height="11" rx="1.7" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="m4 6 6 4.5L16 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Email us
+                </span>
+                <span className="mt-1 block whitespace-nowrap text-xs font-bold sm:text-sm">supersalesagro@gmail.com</span>
               </a>
               <a
                 href="https://www.whatsapp.com/channel/0029VaBrxz9FnSzC4z2HGd2T"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-slate-700 transition-colors hover:border-agro-300 hover:text-agro-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2"
+                className="col-span-2 flex min-h-[64px] min-w-0 flex-row items-center justify-between gap-3 rounded-xl border border-agro-200 bg-agro-50 px-3 py-2.5 text-slate-900 shadow-sm transition-colors hover:border-agro-400 hover:bg-agro-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro-600 focus-visible:ring-offset-2 lg:col-span-1 lg:flex-col lg:items-start lg:justify-center"
               >
-                <span className="block text-[10px] font-medium uppercase tracking-wider text-slate-400">WhatsApp</span>
-                <span className="mt-0.5 block text-xs font-semibold sm:text-sm">Message us ↗</span>
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-agro-800 sm:text-sm">
+                  <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
+                    <path d="M16.6 9.7a6.4 6.4 0 0 1-9.3 5.7L4 16l.7-3.2a6.4 6.4 0 1 1 11.9-3.1Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                    <path d="M7.4 7.1c.3-.4.6-.3.8 0l.7 1.3c.1.2.1.4-.1.6l-.4.5c.5 1 1.2 1.7 2.2 2.2l.5-.4c.2-.2.4-.2.6-.1l1.3.7c.3.2.4.5 0 .8-.4.4-.9.7-1.5.6-2.2-.4-4.5-2.7-4.8-4.9-.1-.5.2-1 .7-1.3Z" fill="currentColor" />
+                  </svg>
+                  WhatsApp
+                </span>
+                <span className="block whitespace-nowrap text-sm font-bold">Message us ↗</span>
               </a>
             </div>
           </div>
