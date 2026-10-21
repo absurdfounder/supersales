@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import SectionShell from '@/components/ui/SectionShell'
 
 type Scene = {
@@ -219,439 +219,185 @@ const SCENES: Scene[] = [
   },
 ]
 
-type Pin = 'before' | 'fixed' | 'after'
-
-type View = {
-  pin: Pin
-  index: number
-  play: boolean
-  stageH: number
-  step: number
-  sticky: number
-  left: number
-  width: number
-}
-
-const INITIAL_VIEW: View = {
-  pin: 'before',
-  index: 0,
-  play: false,
-  stageH: 0,
-  step: 420,
-  sticky: 64,
-  left: 0,
-  width: 0,
-}
-
 function pad(n: number) {
   return String(n).padStart(2, '0')
 }
 
-function FrameCorners() {
-  return (
-    <>
-      <div className="pointer-events-none absolute inset-3 border border-white/45 sm:inset-4" aria-hidden />
-      <div className="pointer-events-none absolute left-3 top-3 z-10 h-4 w-4 border-l-2 border-t-2 border-agro-500/85 sm:left-4 sm:top-4" aria-hidden />
-      <div className="pointer-events-none absolute right-3 top-3 z-10 h-4 w-4 border-r-2 border-t-2 border-agro-500/85 sm:right-4 sm:top-4" aria-hidden />
-      <div className="pointer-events-none absolute bottom-3 left-3 z-10 h-4 w-4 border-b-2 border-l-2 border-agro-500/85 sm:bottom-4 sm:left-4" aria-hidden />
-      <div className="pointer-events-none absolute bottom-3 right-3 z-10 h-4 w-4 border-b-2 border-r-2 border-agro-500/85 sm:bottom-4 sm:right-4" aria-hidden />
-    </>
-  )
-}
-
-function StillGallery() {
-  return (
-    <div className="-mx-3 grid gap-px bg-slate-200 sm:-mx-4 md:-mx-6">
-      {SCENES.map((scene, index) => (
-        <article key={scene.id} className="grid bg-white md:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)]">
-          <div className="flex flex-col justify-center px-4 py-5 md:px-6 md:py-8">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-agro-700">
-              {pad(index + 1)} / {pad(SCENES.length)} · {scene.kind === 'video' ? 'Clip' : 'Still'}
-            </p>
-            <h3 className="mt-2 font-funneldisplay text-xl font-bold text-slate-900">{scene.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600 md:text-base">{scene.caption}</p>
-          </div>
-          <div className="relative aspect-[4/5] bg-[#f6faf7] sm:aspect-video">
-            {scene.kind === 'video' ? (
-              <video
-                data-floor=""
-                src={scene.src}
-                poster={scene.poster}
-                controls
-                playsInline
-                preload="metadata"
-                className="absolute inset-0 h-full w-full bg-[#f6faf7] object-contain"
-                onPlay={(event) => {
-                  document.querySelectorAll<HTMLVideoElement>('video[data-floor]').forEach((node) => {
-                    if (node !== event.currentTarget) node.pause()
-                  })
-                }}
-              />
-            ) : (
-              <img
-                src={scene.src}
-                alt={scene.alt}
-                className="absolute inset-0 h-full w-full object-cover"
-                style={{ objectPosition: scene.objectPosition ?? 'center' }}
-              />
-            )}
-          </div>
-        </article>
-      ))}
-    </div>
-  )
-}
-
 export default function FloorGallery() {
-  const trackRef = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const barRef = useRef<HTMLDivElement>(null)
-  const metricsRef = useRef({ step: 420, sticky: 64 })
-  const userPaused = useRef(false)
-  const [reduced, setReduced] = useState(false)
-  const [view, setView] = useState<View>(INITIAL_VIEW)
-  const [sound, setSound] = useState(false)
-  const [held, setHeld] = useState(false)
-  const [blocked, setBlocked] = useState(false)
+  const railRef = useRef<HTMLDivElement>(null)
+  const [activeVideo, setActiveVideo] = useState<string | null>(null)
+  const [canScrollBack, setCanScrollBack] = useState(false)
+  const [canScrollForward, setCanScrollForward] = useState(true)
 
-  const scene = SCENES[view.index] ?? SCENES[0]
-
-  const scrollToScene = useCallback((index: number) => {
-    const track = trackRef.current
-    if (!track) return
-    const { step, sticky } = metricsRef.current
-    const rect = track.getBoundingClientRect()
-    const absoluteTop = window.scrollY + rect.top
-    const target = absoluteTop - sticky + index * step + 8
-    window.scrollTo({ top: target, behavior: 'smooth' })
-  }, [])
-
-  useLayoutEffect(() => {
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const syncMotion = () => setReduced(motion.matches)
-    syncMotion()
-    motion.addEventListener('change', syncMotion)
-
-    let frame = 0
-    const measure = () => {
-      const track = trackRef.current
-      if (!track || motion.matches) return
-      const header = document.querySelector('header')
-      const sticky = Math.round(header?.getBoundingClientRect().height || (window.innerWidth >= 768 ? 72 : 64))
-      const stageH = window.innerHeight - sticky
-      const step = Math.max(260, Math.round(window.innerHeight * 0.4))
-      const nextHeight = `${stageH + SCENES.length * step}px`
-      if (track.style.height !== nextHeight) track.style.height = nextHeight
-      metricsRef.current = { step, sticky }
-
-      const rect = track.getBoundingClientRect()
-      const traveled = sticky - rect.top
-      const max = SCENES.length * step
-      const clamped = Math.min(Math.max(traveled, 0), max - 1)
-      const index = Math.min(SCENES.length - 1, Math.floor(clamped / step))
-
-      let pin: Pin = 'fixed'
-      if (rect.top > sticky) pin = 'before'
-      else if (rect.bottom < sticky + stageH - 1) pin = 'after'
-
-      const stageTop = pin === 'fixed' ? sticky : rect.top
-      const stageBottom = stageTop + stageH
-      const visible = Math.min(stageBottom, window.innerHeight) - Math.max(stageTop, 0)
-      const play = visible > stageH * 0.45 && !document.hidden
-
-      setView((prev) => {
-        if (
-          prev.pin === pin &&
-          prev.index === index &&
-          prev.play === play &&
-          prev.stageH === stageH &&
-          prev.step === step &&
-          prev.sticky === sticky &&
-          Math.abs(prev.left - rect.left) < 0.5 &&
-          Math.abs(prev.width - rect.width) < 0.5
-        ) {
-          return prev
-        }
-        return { pin, index, play, stageH, step, sticky, left: rect.left, width: rect.width }
-      })
-    }
-
-    const onScroll = () => {
-      if (frame) return
-      frame = window.requestAnimationFrame(() => {
-        frame = 0
-        measure()
-      })
-    }
-
-    measure()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', measure)
-    window.addEventListener('visibilitychange', measure)
-    window.visualViewport?.addEventListener('resize', measure)
-
-    return () => {
-      motion.removeEventListener('change', syncMotion)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', measure)
-      window.removeEventListener('visibilitychange', measure)
-      window.visualViewport?.removeEventListener('resize', measure)
-      if (frame) window.cancelAnimationFrame(frame)
-    }
+  const updateScrollState = useCallback(() => {
+    const rail = railRef.current
+    if (!rail) return
+    setCanScrollBack(rail.scrollLeft > 8)
+    setCanScrollForward(rail.scrollLeft + rail.clientWidth < rail.scrollWidth - 8)
   }, [])
 
   useEffect(() => {
-    userPaused.current = false
-    setHeld(false)
-    setBlocked(false)
-    if (barRef.current) barRef.current.style.width = '0%'
-  }, [view.index])
-
-  useEffect(() => {
-    if (reduced || scene.kind !== 'video') return
-    const el = videoRef.current
-    if (!el) return
-    let cancelled = false
-    el.muted = !sound
-
-    if (!view.play || userPaused.current) {
-      el.pause()
-      return
-    }
-
-    const start = () => {
-      if (cancelled || userPaused.current) return
-      el.play()
-        .then(() => setBlocked(false))
-        .catch(() => {
-          if (!cancelled) setBlocked(true)
-        })
-    }
-
-    if (el.readyState >= 2) start()
-    else el.addEventListener('canplay', start, { once: true })
-
+    const rail = railRef.current
+    if (!rail) return
+    updateScrollState()
+    rail.addEventListener('scroll', updateScrollState, { passive: true })
+    window.addEventListener('resize', updateScrollState)
     return () => {
-      cancelled = true
-      el.removeEventListener('canplay', start)
-      el.pause()
+      rail.removeEventListener('scroll', updateScrollState)
+      window.removeEventListener('resize', updateScrollState)
     }
-  }, [reduced, scene.kind, scene.src, view.play, view.index, sound])
+  }, [updateScrollState])
 
-  useEffect(() => {
-    const next = SCENES[view.index + 1]
-    if (!next || next.kind !== 'video') return
-    const el = document.createElement('video')
-    el.preload = 'auto'
-    el.muted = true
-    el.playsInline = true
-    el.src = next.src
-    return () => {
-      el.pause()
-      el.removeAttribute('src')
-      el.load()
-    }
-  }, [view.index])
-
-  const togglePlayback = () => {
-    const el = videoRef.current
-    if (!el) return
-    if (el.paused) {
-      userPaused.current = false
-      setHeld(false)
-      el.muted = !sound
-      el.play()
-        .then(() => setBlocked(false))
-        .catch(() => setBlocked(true))
-      return
-    }
-    userPaused.current = true
-    setHeld(true)
-    el.pause()
+  const scrollRail = (direction: -1 | 1) => {
+    const rail = railRef.current
+    if (!rail) return
+    rail.scrollBy({
+      left: direction * Math.min(rail.clientWidth * 0.8, 720),
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    })
   }
-
-  if (reduced) {
-    return (
-      <SectionShell id="on_the_floor" eyebrowNumber="02" eyebrow="On the floor" bgClass="bg-white">
-        <div className="max-w-3xl pb-8 pt-2">
-          <h2 className="type-h2">Watch a sale happen.</h2>
-          <p className="type-body mt-3">
-            Shops 61 and 62. Photos and clips from the floor — a lot opened, weighed, and sold.
-          </p>
-        </div>
-        <StillGallery />
-        <div className="h-8" />
-      </SectionShell>
-    )
-  }
-
-  const stageStyle: CSSProperties =
-    view.pin === 'fixed'
-      ? { position: 'fixed', top: view.sticky, left: view.left, width: view.width, height: view.stageH, zIndex: 20 }
-      : view.pin === 'after'
-        ? { position: 'absolute', left: 0, right: 0, bottom: 0, height: view.stageH }
-        : { position: 'absolute', left: 0, right: 0, top: 0, height: view.stageH || undefined }
-
-  const showHold = held || blocked
 
   return (
-      <SectionShell id="on_the_floor" bgClass="bg-white" className="scroll-mt-16">
-      <div
-        ref={trackRef}
-        className="relative -mx-3 min-h-[70vh] sm:-mx-4 md:-mx-6"
-        style={view.stageH ? { height: view.stageH + SCENES.length * view.step } : undefined}
-        data-floor-index={view.index}
-      >
+    <SectionShell id="on_the_floor" eyebrowNumber="02" eyebrow="On the floor" bgClass="bg-white">
+      <div className="pb-10 pt-2 md:pb-14">
+        <div className="mb-6 flex items-end justify-between gap-4 sm:mb-8">
+          <div className="max-w-3xl">
+            <h2 className="type-h2">Watch Super Sales in Action</h2>
+            <p className="type-body mt-3">
+              Step onto the mandi floor — real moments from the first look at a lot to loading out.
+            </p>
+          </div>
+          <div className="hidden shrink-0 items-center gap-2 sm:flex">
+            <button
+              type="button"
+              onClick={() => scrollRail(-1)}
+              disabled={!canScrollBack}
+              aria-label="Show previous videos and photos"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-agro hover:text-agro-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
+                <path d="m12.5 4.5-5.5 5.5 5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollRail(1)}
+              disabled={!canScrollForward}
+              aria-label="Show more videos and photos"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-agro hover:text-agro-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
+                <path d="m7.5 4.5 5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
         <div
-          className={`bg-white ${view.stageH ? '' : 'h-[calc(100svh-4rem)] md:h-[calc(100svh-4.5rem)]'}`}
-          style={stageStyle}
+          ref={railRef}
+          role="region"
+          aria-label="Super Sales Agro videos and photos"
+          tabIndex={0}
+          className="-mx-3 flex snap-x snap-mandatory gap-3 overflow-x-auto px-3 pb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-agro sm:-mx-4 sm:gap-4 sm:px-4 md:-mx-6 md:gap-5 md:px-6"
         >
-          <div className="flex h-full flex-col overflow-hidden md:grid md:grid-cols-[minmax(17rem,22.5rem)_minmax(0,1fr)]">
-            <div className="order-2 flex shrink-0 flex-col gap-3 border-t border-slate-200 bg-white px-3 py-3 pr-16 md:order-1 md:h-full md:justify-between md:overflow-y-auto md:border-r md:border-t-0 md:px-6 md:py-7 md:pr-6">
-              <div>
-                <span className="type-eyebrow-num">
-                  <span className="text-slate-400">[02]</span>
-                  <span>&nbsp;</span>
-                  On the floor
-                </span>
-                <h2 className="mt-3 font-funneldisplay text-xl font-bold leading-tight tracking-tight text-slate-900 md:mt-4 md:text-3xl">
-                  Watch a sale happen.
-                </h2>
-                <p className="mt-2 hidden text-sm leading-relaxed text-slate-600 md:block">
-                  Shops 61 and 62. Scroll the morning — one scene plays at a time.
-                </p>
-
-                <div key={scene.id} className="floor-in mt-6 border-t border-slate-200 pt-5 md:mt-8">
-                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-agro-700">
-                  {pad(view.index + 1)} / {pad(SCENES.length)} · {scene.kind === 'video' ? 'Clip' : 'Still'}
-                </p>
-                <h3 className="mt-1.5 font-funneldisplay text-lg font-bold text-slate-900 md:mt-2 md:text-2xl">
-                  {scene.title}
-                </h3>
-                <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-slate-600 md:line-clamp-none md:text-base">
-                  {scene.caption}
-                </p>
-              </div>
-              </div>
-
-              <div>
-                <div className="flex gap-1" role="tablist" aria-label="Scenes from the floor">
-                  {SCENES.map((item, index) => {
-                    const active = index === view.index
-                    const passed = index < view.index
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        role="tab"
-                        aria-selected={active}
-                        aria-label={`${item.title}, ${item.kind === 'video' ? 'clip' : 'photo'} ${index + 1} of ${SCENES.length}`}
-                        onClick={() => scrollToScene(index)}
-                        className="flex h-8 flex-1 items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro"
-                      >
-                        <span
-                          className={`block w-full ${active ? 'h-1.5 bg-agro' : passed ? 'h-1 bg-agro/40' : 'h-1 bg-slate-200'}`}
-                        />
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <div className="mt-2 flex flex-wrap items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => scrollToScene(Math.max(0, view.index - 1))}
-                    disabled={view.index === 0}
-                    className="border border-slate-200 px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-700 transition hover:border-agro hover:text-agro-700 disabled:pointer-events-none disabled:opacity-40"
-                  >
-                    Prev
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => scrollToScene(Math.min(SCENES.length - 1, view.index + 1))}
-                    disabled={view.index === SCENES.length - 1}
-                    className="border border-slate-200 px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-700 transition hover:border-agro hover:text-agro-700 disabled:pointer-events-none disabled:opacity-40"
-                  >
-                    Next
-                  </button>
-                  {scene.kind === 'video' && (
-                    <button
-                      type="button"
-                      onClick={() => setSound((value) => !value)}
-                      aria-pressed={sound}
-                      className="border border-slate-200 px-2.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-700 transition hover:border-agro hover:text-agro-700"
-                    >
-                      {sound ? 'Sound on' : 'Sound off'}
-                    </button>
-                  )}
-                </div>
-
-                {view.index === 0 && (
-                  <p className="mt-3 flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-agro-700">
-                    <span className="floor-nudge inline-block" aria-hidden>
-                      ↓
-                    </span>
-                    Scroll to move through the morning
-                  </p>
-                )}
-                {view.index > 0 && view.index < SCENES.length - 1 && (
-                  <p className="mt-3 hidden font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400 md:block">
-                    Next · {SCENES[view.index + 1].title}
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <div className="relative order-1 min-h-[14rem] flex-1 bg-[#f6faf7] md:order-2 md:min-h-0">
-              {scene.kind === 'video' && (
-                <div className="pointer-events-none absolute inset-0 pixel-flicker-grid" aria-hidden />
+          {SCENES.map((scene, index) => (
+            <article
+              key={scene.id}
+              className="group relative aspect-[9/16] w-[72vw] max-w-[14rem] flex-none snap-start overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm sm:w-[13rem] md:w-[14rem]"
+            >
+              {scene.kind === 'video' && activeVideo === scene.id ? (
+                <video
+                  src={scene.src}
+                  poster={scene.poster}
+                  autoPlay
+                  muted
+                  controls
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={scene.alt}
+                  className="absolute inset-0 h-full w-full bg-slate-950 object-cover"
+                />
+              ) : (
+                <img
+                  src={scene.kind === 'video' ? scene.poster ?? scene.src : scene.src}
+                  alt={scene.kind === 'photo' ? scene.alt : ''}
+                  aria-hidden={scene.kind === 'video' ? true : undefined}
+                  className="absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 group-hover:scale-[1.03]"
+                  style={{ objectPosition: scene.objectPosition ?? 'center' }}
+                  draggable={false}
+                  loading={index < 5 ? 'eager' : 'lazy'}
+                />
               )}
-              <div key={scene.id} className="floor-in absolute inset-0">
-                {scene.kind === 'video' ? (
-                  <video
-                    ref={videoRef}
-                    src={scene.src}
-                    poster={scene.poster}
-                    muted={!sound}
-                    loop
-                    playsInline
-                    preload="auto"
-                    disablePictureInPicture
-                    aria-label={scene.alt}
-                    className="h-full w-full cursor-pointer bg-transparent object-contain"
-                    onClick={togglePlayback}
-                    onTimeUpdate={(event) => {
-                      const el = event.currentTarget
-                      if (!barRef.current || !el.duration) return
-                      barRef.current.style.width = `${(el.currentTime / el.duration) * 100}%`
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={scene.src}
-                    alt={scene.alt}
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: scene.objectPosition ?? 'center' }}
-                    draggable={false}
-                  />
-                )}
-              </div>
-              <FrameCorners />
-              {scene.kind === 'video' && (
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-0.5 bg-slate-900/10">
-                  <div ref={barRef} className="h-full w-0 bg-agro" />
-                </div>
-              )}
-              {scene.kind === 'video' && showHold && (
+
+              <span className="pointer-events-none absolute left-3 top-3 z-20 rounded-full border border-white/35 bg-slate-950/45 px-2.5 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                {pad(index + 1)} · {scene.kind === 'video' ? 'Short' : 'Photo'}
+              </span>
+
+              {scene.kind === 'video' && activeVideo !== scene.id && (
                 <button
                   type="button"
-                  onClick={togglePlayback}
-                  className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 border border-white/30 bg-slate-900/80 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white"
+                  onClick={() => setActiveVideo(scene.id)}
+                  aria-label={`Play video: ${scene.title}`}
+                  className="absolute inset-0 z-10 flex items-center justify-center focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-agro"
                 >
-                  {blocked ? 'Play clip' : 'Paused'}
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 bg-white/90 text-agro-700 shadow-lg backdrop-blur-sm transition group-hover:scale-105">
+                    <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" fill="currentColor" aria-hidden>
+                      <path d="M8 5.8c0-.8.9-1.3 1.6-.9l9.2 5.3a1 1 0 0 1 0 1.7l-9.2 5.3c-.7.4-1.6-.1-1.6-.9V5.8Z" />
+                    </svg>
+                  </span>
                 </button>
               )}
-            </div>
+
+              {scene.kind !== 'video' || activeVideo !== scene.id ? (
+                <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
+              ) : (
+                <span className="pointer-events-none absolute bottom-12 left-3 z-10 font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-white/90 drop-shadow">
+                  Now playing
+                </span>
+              )}
+
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-4">
+                {activeVideo === scene.id ? null : (
+                  <>
+                    <h3 className="font-funneldisplay text-lg font-bold leading-tight text-white drop-shadow-sm">
+                      {scene.title}
+                    </h3>
+                    <p className="mt-1.5 line-clamp-3 text-xs leading-relaxed text-white/85">{scene.caption}</p>
+                  </>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-1 flex items-center justify-between gap-3 sm:hidden">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+            Swipe to explore
+          </span>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => scrollRail(-1)}
+              disabled={!canScrollBack}
+              aria-label="Show previous videos and photos"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
+                <path d="m12.5 4.5-5.5 5.5 5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollRail(1)}
+              disabled={!canScrollForward}
+              aria-label="Show more videos and photos"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-agro disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <svg viewBox="0 0 20 20" className="h-5 w-5" fill="none" aria-hidden>
+                <path d="m7.5 4.5 5.5 5.5-5.5 5.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

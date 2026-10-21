@@ -207,28 +207,3 @@
     --tw-translate-y: -100%;
     transform: var(--tw-transform);
 }
-
-@keyframes floorIn {
-  from { opacity: 0.4; }
-  to { opacity: 1; }
-}
-
-.floor-in {
-  animation: floorIn 0.35s ease;
-}
-
-@keyframes floorNudge {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-.floor-nudge {
-  animation: floorNudge 1.5s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .floor-in,
-  .floor-nudge {
-    animation: none;
-  }
-}
