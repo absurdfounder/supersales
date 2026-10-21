@@ -95,7 +95,7 @@ export default function Hero() {
 
           {/* Sky zone — headline lives here only */}
           <div className="absolute inset-x-0 top-0 z-10 flex min-h-[72%] items-start justify-center px-3 pt-4 sm:h-[58%] sm:min-h-0 sm:px-8 sm:pt-7 md:pt-8">
-            <div className="w-full max-w-3xl self-start rounded-2xl border border-slate-200/80 bg-white/95 px-4 py-5 text-center shadow-none backdrop-blur-sm sm:rounded-none sm:border-0 sm:bg-transparent sm:px-8 sm:py-8 sm:backdrop-blur-none">
+            <div className="w-full max-w-3xl self-start px-4 py-5 text-center sm:px-8 sm:py-8">
               <Image
                 src={Logo}
                 unoptimized

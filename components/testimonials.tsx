@@ -167,7 +167,6 @@ export default function Testimonials() {
                     src="https://www.openstreetmap.org/export/embed.html?bbox=77.155%2C28.704%2C77.178%2C28.719&layer=mapnik&marker=28.7116913%2C77.1662854"
                     className="h-full w-full border-0"
                     loading="lazy"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="flex flex-col gap-4 border-t border-slate-100 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">

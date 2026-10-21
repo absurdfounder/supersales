@@ -16,7 +16,7 @@ export default function FloatingWhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Super Sales Agro on WhatsApp"
-      className="group fixed bottom-5 right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white ring-2 ring-white transition hover:bg-[#20bd5a] focus:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
+      className="group fixed bottom-6 right-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white ring-2 ring-white transition hover:bg-[#20bd5a] focus:outline-none focus-visible:ring-2 focus-visible:ring-agro focus-visible:ring-offset-2 md:flex"
     >
       <WhatsAppIcon />
       <span className="pointer-events-none absolute -top-10 right-0 hidden whitespace-nowrap rounded bg-slate-900 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white opacity-0 transition group-hover:opacity-100 sm:block">

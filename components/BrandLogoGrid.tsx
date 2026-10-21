@@ -15,7 +15,7 @@ export default function BrandLogoGrid({
         {logos.map((logo) => (
           <div
             key={logo.alt}
-            className="flex min-h-[104px] items-center justify-center bg-white px-4 py-5 sm:min-h-[112px] sm:px-5 sm:py-6 md:min-h-[120px]"
+            className="flex min-h-[104px] items-center justify-center bg-white px-4 py-5 last:col-span-2 sm:min-h-[112px] sm:col-span-1 sm:px-5 sm:py-6 sm:last:col-start-2 lg:min-h-[120px] lg:last:col-span-2 lg:last:col-start-2"
           >
             <Image
               alt={logo.alt}

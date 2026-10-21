@@ -22,9 +22,11 @@ const clips = [
 
 export default function ContactClipSequence() {
   const sequenceRef = useRef<HTMLDivElement>(null)
-  const [visibleClips, setVisibleClips] = useState<Set<number>>(() => new Set())
+  const [inViewClips, setInViewClips] = useState<Set<number>>(() => new Set())
   const [activeClip, setActiveClip] = useState(0)
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [showThirdClip, setShowThirdClip] = useState(false)
+  const displayedClips = showThirdClip ? clips : clips.slice(0, 2)
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -35,43 +37,56 @@ export default function ContactClipSequence() {
   }, [])
 
   useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 1024px)')
+    const syncLayout = () => setShowThirdClip(desktop.matches)
+    syncLayout()
+    desktop.addEventListener('change', syncLayout)
+    return () => desktop.removeEventListener('change', syncLayout)
+  }, [])
+
+  useEffect(() => {
+    if (activeClip >= displayedClips.length) setActiveClip(0)
+  }, [activeClip, displayedClips.length])
+
+  useEffect(() => {
     const sequence = sequenceRef.current
     if (!sequence || reducedMotion) return
 
-    const observer = new IntersectionObserver((entries) => {
-      setVisibleClips((current) => {
-        const next = new Set(current)
-        entries.forEach((entry) => {
-          const index = Number((entry.target as HTMLElement).dataset.clipIndex)
-          if (entry.isIntersecting) next.add(index)
-          else next.delete(index)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setInViewClips((current) => {
+          const next = new Set(current)
+          entries.forEach((entry) => {
+            const index = Number((entry.target as HTMLElement).dataset.clipIndex)
+            if (entry.isIntersecting) next.add(index)
+            else next.delete(index)
+          })
+          return next
         })
-        return next
-      })
-    }, { threshold: 0.3 })
+      },
+      { threshold: 0.3 },
+    )
     const cards = sequence.querySelectorAll<HTMLElement>('[data-clip-index]')
     cards.forEach((card) => observer.observe(card))
     return () => observer.disconnect()
-  }, [reducedMotion])
+  }, [reducedMotion, showThirdClip])
 
   return (
     <div
       ref={sequenceRef}
       role="region"
       aria-label="Short videos from the mandi floor"
-      className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3"
+      className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
     >
-      {clips.map((clip, index) => (
+      {displayedClips.map((clip, index) => (
         <div
           key={clip.src}
           data-clip-index={index}
-          className={`relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-black/5 sm:rounded-3xl ${
-            index === 2 ? 'col-span-2 mx-auto w-1/2 lg:col-span-1 lg:mx-0 lg:w-full' : ''
-          }`}
+          className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-black/5 sm:rounded-3xl"
         >
           {reducedMotion ? (
             <img src={clip.poster} alt={clip.alt} className="h-full w-full object-cover" />
-          ) : visibleClips.has(index) && activeClip === index ? (
+          ) : inViewClips.has(index) && activeClip === index ? (
             <video
               src={clip.src}
               poster={clip.poster}
@@ -80,7 +95,7 @@ export default function ContactClipSequence() {
               playsInline
               preload="none"
               aria-label={clip.alt}
-              onEnded={() => setActiveClip((current) => (current + 1) % clips.length)}
+              onEnded={() => setActiveClip((current) => (current + 1) % displayedClips.length)}
               className="h-full w-full object-cover"
             />
           ) : (

@@ -21,7 +21,9 @@ export default function SectionShell({
   noBorderBottom = true,
   children,
 }: SectionShellProps) {
-  const sectionClasses = ['relative', bgClass, className].filter(Boolean).join(' ');
+  const sectionClasses = ['relative', id ? 'scroll-mt-16 md:scroll-mt-[4.5rem]' : '', bgClass, className]
+    .filter(Boolean)
+    .join(' ');
 
   const frameClasses = [
     'max-w-7xl mx-auto border-slate-200',
