@@ -44,7 +44,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 xl:flex">
             <Link
               href="/#products"
               className="hidden px-2 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600 transition hover:text-slate-900 xl:inline-block xl:px-3 xl:text-[11px] xl:tracking-[0.14em]"

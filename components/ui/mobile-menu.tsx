@@ -46,7 +46,7 @@ export default function MobileMenu() {
   })
 
   return (
-    <div className="flex md:hidden">
+    <div className="flex xl:hidden">
       <button
         ref={trigger}
         className={`hamburger ${mobileNavOpen && 'active'}`}
