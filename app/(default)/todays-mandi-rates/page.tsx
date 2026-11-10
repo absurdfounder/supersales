@@ -1,9 +1,10 @@
 import MandiRatesPage from '@/components/MandiRatesPage'
 
 export const metadata = {
-  title: "Today's Mandi Rates | Super Sales Agro",
+  title: 'Azadpur Mandi Prices Today | Apple, Kinnow, Mango',
   description:
-    'Daily wholesale fruit rates from Azadpur Delhi and Himachal mandis. Apples, mangoes, kinnow, pears, pomegranate, and guavas — updated each trading morning by Super Sales Agro.',
+    'Today’s Azadpur mandi fruit rates from Super Sales Agro. Apple, kinnow, mango, nashpati, pomegranate, and guava — Delhi and Himachal, updated each trading morning.',
+  alternates: { canonical: 'https://supersalesagro.com/todays-mandi-rates' },
 }
 
 export default function TodaysMandiRatesPage() {

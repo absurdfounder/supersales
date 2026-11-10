@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '@/public/images/logo-super-sales-agro.png'
+import { seoLandings } from '@/lib/seo-landings'
 
 const footerLinks = {
   company: [
@@ -14,9 +15,9 @@ const footerLinks = {
     { href: '/#testimonials', label: 'Testimonials' },
     { href: '/#contact_us', label: 'Contact' },
   ],
-  legal: [
-    { href: '/tos', label: 'Terms' },
-    { href: '/privacy-policy', label: 'Privacy Policy' },
+  produce: [
+    ...seoLandings.map((page) => ({ href: `/${page.slug}`, label: page.eyebrow })),
+    { href: '/hi/aaj-ka-bhav', label: 'आज का भाव' },
   ],
   connect: [
     {
@@ -90,10 +91,10 @@ export function FooterGrid() {
 
         <div className="bg-white p-6">
           <p className="type-eyebrow-num mb-4 text-[10px]">
-            <span className="text-slate-400">[03]</span>&nbsp;Legal
+            <span className="text-slate-400">[03]</span>&nbsp;Fruit &amp; mandi
           </p>
           <ul className="space-y-2 text-sm">
-            {footerLinks.legal.map((link) => (
+            {footerLinks.produce.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-slate-600 transition hover:text-agro-700">
                   {link.label}

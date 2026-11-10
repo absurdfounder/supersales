@@ -11,6 +11,7 @@ export type MandiRate = {
   unit: string
   trend: MandiTrend
   note?: string
+  href?: string
 }
 
 /** Update this date whenever rates are refreshed for the day. */
@@ -27,6 +28,7 @@ export const mandiLocations = ['All mandis', 'Azadpur, Delhi', 'Shimla, HP', 'So
 export const mandiRates: MandiRate[] = [
   {
     id: 'apple-azadpur',
+    href: '/apples/royal-delicious',
     fruit: 'Apple',
     emoji: '🍎',
     variety: 'Royal Delicious · A-grade',
@@ -38,6 +40,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'apple-shimla',
+    href: '/apples/shimla',
     fruit: 'Apple',
     emoji: '🍎',
     variety: 'Royal Delicious · A-grade',
@@ -60,6 +63,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'orange-azadpur',
+    href: '/oranges/nagpur',
     fruit: 'Orange',
     emoji: '🍊',
     variety: 'Nagpur · medium',
@@ -71,6 +75,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'mango-azadpur',
+    href: '/mangoes/dasheri',
     fruit: 'Mango',
     emoji: '🥭',
     variety: 'Dasheri · ripe',
@@ -83,6 +88,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'pear-shimla',
+    href: '/pears/baggi-gola',
     fruit: 'Pear',
     emoji: '🍐',
     variety: 'Baggi Gola',
@@ -94,6 +100,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'pomegranate-azadpur',
+    href: '/pomegranate/bhagwa',
     fruit: 'Pomegranate',
     emoji: '🫐',
     variety: 'Bhagwa · large',
@@ -105,6 +112,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'guava-azadpur',
+    href: '/guavas/lucknow',
     fruit: 'Guava',
     emoji: '🍈',
     variety: 'Lucknow · green',
@@ -116,6 +124,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'apple-solan',
+    href: '/apples/solan',
     fruit: 'Apple',
     emoji: '🍎',
     variety: 'Red Gold · B-grade',
@@ -127,6 +136,7 @@ export const mandiRates: MandiRate[] = [
   },
   {
     id: 'pear-azadpur',
+    href: '/pears/williams',
     fruit: 'Pear',
     emoji: '🍐',
     variety: 'Williams · import',

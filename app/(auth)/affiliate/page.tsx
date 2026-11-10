@@ -5,6 +5,7 @@ import Image from 'next/image'
 export const metadata = {
   title: 'Affiliate Program',
   description: 'Join the supersalesagro affiliate program to become our partner. Spread the website builder and earn money with us.',
+  robots: { index: false, follow: false },
 }
 
 export default function ResetPassword() {

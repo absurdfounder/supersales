@@ -1,9 +1,10 @@
 import ExportPage from '@/components/ExportPage'
 
 export const metadata = {
-  title: 'Export | Super Sales Agro',
+  title: 'Fruit Exporter in India | Apples, Kinnow, Mango, Pomegranate',
   description:
-    'Export-ready Indian fruit from Super Sales Agro — apples, pears, kinnow, mangoes, pomegranate, and guavas to the U.K., Europe, Australia, Middle East, and South East Asia.',
+    'Fruit exporter in India. Graded Himachal apples, kinnow, seasonal mangoes, and Bhagwa pomegranate for the U.K., Europe, Australia, the Middle East, and South East Asia.',
+  alternates: { canonical: 'https://supersalesagro.com/export' },
 }
 
 export default function ExportRoutePage() {

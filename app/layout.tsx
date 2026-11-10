@@ -28,10 +28,43 @@ const funneldisplay = localFont({
   variable: '--font-funneldisplay',
 })
 
+const siteUrl = 'https://supersalesagro.com'
+
 export const metadata = {
-  title: 'Super Sales Agro — Fruit Wholesaler in Delhi & Himachal Mandis',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Azadpur Mandi Fruit Wholesaler | Super Sales Agro',
+    template: '%s',
+  },
   description:
-    'Super Sales Agro is one of India\'s most trusted fruit wholesalers with 42+ years of experience. Apples, mangoes, kinnow, pears, pomegranate, and guavas from Delhi and Himachal mandis.',
+    'Fruit commission agent at Azadpur mandi, Delhi, since 1982. Himachal apples, kinnow, mango, nashpati, pomegranate, and guava. Today’s mandi rates and wholesale supply.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: siteUrl,
+    siteName: 'Super Sales Agro',
+    title: 'Azadpur Mandi Fruit Wholesaler | Super Sales Agro',
+    description:
+      'Fruit wholesaler at Azadpur subzi mandi and the Himachal apple mandis. Daily fruit rates, domestic wholesale, hotels, and export.',
+  },
+}
+
+const businessLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WholesaleStore',
+  name: 'Super Sales Agro',
+  url: siteUrl,
+  telephone: '+919899262264',
+  email: 'supersalesagro@gmail.com',
+  foundingDate: '1982',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'A-285, New Subzi Mandi, Azadpur',
+    addressLocality: 'Delhi',
+    postalCode: '110034',
+    addressCountry: 'IN',
+  },
+  areaServed: 'IN',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -44,6 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           <SiteChrome>{children}</SiteChrome>
         </div>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessLd) }} />
         <GoogleTranslateBoot />
         <div
           id="google_translate_element"

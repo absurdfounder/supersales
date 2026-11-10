@@ -1,9 +1,10 @@
 import WholesalePage from '@/components/WholesalePage'
 
 export const metadata = {
-  title: 'Wholesale | Super Sales Agro',
+  title: 'Wholesale Fruit Supplier Across India | Super Sales Agro',
   description:
-    'Processors, exporters and wholesale suppliers of Indian and imported fresh fruits — bulk supply from Azadpur and Himachal mandis.',
+    'Wholesale fruit supplier for buyers in other Indian states. Apples, kinnow, mango, pears, pomegranate, and guava dispatched from Azadpur mandi, Delhi.',
+  alternates: { canonical: 'https://supersalesagro.com/wholesale' },
 }
 
 export default function WholesaleRoutePage() {

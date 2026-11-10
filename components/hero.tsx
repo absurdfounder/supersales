@@ -107,7 +107,7 @@ export default function Hero() {
               />
 
               <h1 className="font-funneldisplay text-[1.4rem] font-extrabold leading-[1.15] tracking-tight text-slate-900 sm:text-4xl md:text-[2.5rem]">
-                Fruit Wholesalers with over 42 years of experience in{' '}
+                Fruit wholesalers at Azadpur mandi, 42 years in{' '}
                 <span
                   key={pauseAnimation ? 'static' : current.label}
                   className={`hero-word-enter text-agro-600 sm:whitespace-nowrap${pauseAnimation ? ' notranslate' : ''}`}
@@ -120,7 +120,7 @@ export default function Hero() {
               </h1>
 
               <p className="mx-auto mt-2.5 max-w-2xl text-xs leading-relaxed text-slate-600 sm:mt-4 sm:text-base">
-                Delhi &amp; Himachal mandis · cold chain · same-day farmer payment · 250+ farmer relationships
+                Delhi fruit mandi · Himachal apples · cold chain · same-day farmer payment
               </p>
 
               <div className="mt-4 flex flex-col justify-center gap-2.5 sm:mt-6 sm:flex-row sm:gap-4">

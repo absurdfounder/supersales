@@ -3,6 +3,10 @@ import Newsletter from "@/components/newsletter"
 
 import Image from 'next/image'
 
+export const metadata = {
+  robots: { index: false, follow: false },
+}
+
 export default function AuthLayout({
   children,
 }: {

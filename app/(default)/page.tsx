@@ -1,7 +1,8 @@
 export const metadata = {
-  title: 'Super Sales Agro : Best wholesaler in delhi fruit mandi, himachal fruit mandi, narkanda fruit mandi.',
+  title: 'Azadpur Mandi Fruit Wholesaler | Super Sales Agro',
   description:
-    'Super Sales Agro is the most trustworthy wholesaler in india which is founded by Sushil Kalra and sons Vaibhav Kalra and Manav Kalra, To partner with us : give us a call 9899262264, 9811645230, 9711269346 or email us at supersalesagro@hotmail.com',
+    'Fruit wholesaler at Azadpur mandi and the Himachal fruit mandis since 1982. Apples, kinnow, mango, nashpati, pomegranate, and guava. Call 9899262264 or 9711269346.',
+  alternates: { canonical: 'https://supersalesagro.com' },
 }
 
 import Hero from '@/components/hero'

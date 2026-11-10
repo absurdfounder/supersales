@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import ConnectingTogether from '@/public/images/connectingtogether.png'
 import TrustedBy from '@/app/(auth)/compare-against/TrustedBy'
 import BigCustomers from '@/app/(auth)/compare-against/BigCustomers'
@@ -6,12 +7,12 @@ import SectionShell from '@/components/ui/SectionShell'
 import PixelButton from '@/components/ui/PixelButton'
 
 const products = [
-  { name: 'Apples', icon: '/images/appleicon.png' },
-  { name: 'Mangoes', icon: '/images/mangoicon.png' },
-  { name: 'Kinnow', icon: '/images/kinnowicon.png' },
-  { name: 'Pears', icon: '/images/pearicon.png' },
-  { name: 'Pomegranate', icon: '/images/pomogranateicon.png' },
-  { name: 'Guavas', icon: '/images/guavaicon.png' },
+  { name: 'Apples', icon: '/images/appleicon.png', href: '/apples' },
+  { name: 'Mangoes', icon: '/images/mangoicon.png', href: '/mangoes' },
+  { name: 'Kinnow', icon: '/images/kinnowicon.png', href: '/kinnow' },
+  { name: 'Pears', icon: '/images/pearicon.png', href: '/pears' },
+  { name: 'Pomegranate', icon: '/images/pomogranateicon.png', href: '/pomegranate' },
+  { name: 'Guavas', icon: '/images/guavaicon.png', href: '/guavas' },
 ]
 
 export default function FeaturesBlocks() {
@@ -30,9 +31,10 @@ export default function FeaturesBlocks() {
 
           <div className="-mx-3 mb-8 grid grid-cols-2 gap-px bg-slate-200 md:grid-cols-3 sm:-mx-4 md:-mx-6">
             {products.map((product) => (
-              <div
+              <Link
                 key={product.name}
-                className="flex min-h-[180px] flex-col items-center justify-center bg-white px-4 py-8 text-center sm:min-h-[200px] sm:px-6 sm:py-10"
+                href={product.href}
+                className="flex min-h-[180px] flex-col items-center justify-center bg-white px-4 py-8 text-center transition hover:bg-slate-50 sm:min-h-[200px] sm:px-6 sm:py-10"
               >
                 <Image
                   alt={product.name}
@@ -44,7 +46,7 @@ export default function FeaturesBlocks() {
                   unoptimized
                 />
                 <h4 className="font-funneldisplay text-lg font-bold text-slate-900">{product.name}</h4>
-              </div>
+              </Link>
             ))}
           </div>
 

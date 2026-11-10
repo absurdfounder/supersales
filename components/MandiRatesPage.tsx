@@ -5,6 +5,7 @@ import Link from 'next/link'
 import SectionShell from '@/components/ui/SectionShell'
 import PixelButton from '@/components/ui/PixelButton'
 import Footer from '@/components/ui/footer'
+import { fruitLandingPath } from '@/lib/seo-landings'
 import {
   formatRateRange,
   formatRateTrend,
@@ -55,7 +56,13 @@ function RateCard({ rate }: { rate: MandiRate }) {
             <span aria-hidden className="mr-1.5">
               {rate.emoji}
             </span>
-            {rate.fruit}
+            {rate.href || fruitLandingPath(rate.fruit) ? (
+              <Link href={rate.href ?? (fruitLandingPath(rate.fruit) as string)} className="hover:text-agro-700">
+                {rate.fruit}
+              </Link>
+            ) : (
+              rate.fruit
+            )}
           </p>
           <p className="mt-1 text-sm text-slate-500">{rate.variety}</p>
         </div>
@@ -89,11 +96,16 @@ export default function MandiRatesPage() {
       <SectionShell eyebrowNumber="01" eyebrow="Daily updates" bgClass="bg-white" noBorder>
         <div className="pb-8 pt-2 md:pb-10">
           <div className="mb-8 max-w-3xl">
-            <h1 className="type-h2 mb-4">Today&apos;s mandi rates</h1>
+            <h1 className="type-h2 mb-4">Azadpur mandi prices today</h1>
             <p className="type-body">
               {mandiRatesMeta.ratesPublished
                 ? 'Indicative wholesale rates from Azadpur and Himachal mandis — updated each trading morning by our floor team. Call or WhatsApp for lot-specific quotes, cold-store holds, and export packing.'
                 : 'Daily rates are posted each trading morning on our WhatsApp channel. The table below lists fruits we track — call or WhatsApp for today’s confirmed quote.'}
+            </p>
+            <p className="mt-3 text-sm text-slate-600">
+              <Link href="/hi/aaj-ka-bhav" className="font-medium text-agro-700 hover:underline">
+                आजादपुर मंडी सेब का भाव
+              </Link>
             </p>
           </div>
 
@@ -157,10 +169,25 @@ export default function MandiRatesPage() {
                       <span aria-hidden className="mr-1.5">
                         {rate.emoji}
                       </span>
-                      {rate.fruit}
+                      {rate.href || fruitLandingPath(rate.fruit) ? (
+                        <Link
+                          href={rate.href ?? (fruitLandingPath(rate.fruit) as string)}
+                          className="hover:text-agro-700"
+                        >
+                          {rate.fruit}
+                        </Link>
+                      ) : (
+                        rate.fruit
+                      )}
                     </div>
                     <div className="bg-white px-4 py-4 text-sm text-slate-600">
-                      {rate.variety}
+                      {rate.href ? (
+                        <Link href={rate.href} className="hover:text-agro-700">
+                          {rate.variety}
+                        </Link>
+                      ) : (
+                        rate.variety
+                      )}
                       {rate.note ? <span className="mt-1 block text-xs text-slate-400">{rate.note}</span> : null}
                     </div>
                     <div className="bg-white px-4 py-4 text-sm text-slate-600">{rate.mandi}</div>

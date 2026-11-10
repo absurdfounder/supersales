@@ -7,12 +7,12 @@ export const exportMarkets = [
 ]
 
 export const exportProducts = [
-  { name: 'Apples', icon: '/images/appleicon.png', note: 'Himachal & imported varieties' },
-  { name: 'Pears', icon: '/images/pearicon.png', note: 'Baggi Gola & Williams' },
-  { name: 'Kinnow', icon: '/images/kinnowicon.png', note: 'Punjab & Rajasthan citrus' },
-  { name: 'Mangoes', icon: '/images/mangoicon.png', note: 'Seasonal Alphonso & Dasheri' },
-  { name: 'Pomegranate', icon: '/images/pomogranateicon.png', note: 'Bhagwa & premium grades' },
-  { name: 'Guavas', icon: '/images/guavaicon.png', note: 'Allahabad & Lucknow' },
+  { name: 'Apples', icon: '/images/appleicon.png', note: 'Himachal apples for export', href: '/export/apples' },
+  { name: 'Pears', icon: '/images/pearicon.png', note: 'Baggi Gola & Williams', href: '/pears' },
+  { name: 'Kinnow', icon: '/images/kinnowicon.png', note: 'Kinnow export from India', href: '/export/kinnow' },
+  { name: 'Mangoes', icon: '/images/mangoicon.png', note: 'Seasonal Dasheri, Alphonso when shipping', href: '/export/mangoes' },
+  { name: 'Pomegranate', icon: '/images/pomogranateicon.png', note: 'Bhagwa for export', href: '/export/pomegranate' },
+  { name: 'Guavas', icon: '/images/guavaicon.png', note: 'Allahabad & Lucknow', href: '/guavas' },
 ]
 
 export const exportCapabilities = [

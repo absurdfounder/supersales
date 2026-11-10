@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import SectionShell from '@/components/ui/SectionShell'
 import PixelButton from '@/components/ui/PixelButton'
 import Footer from '@/components/ui/footer'
@@ -17,12 +18,12 @@ export default function ExportPage() {
       <SectionShell eyebrowNumber="01" eyebrow="Export" bgClass="bg-white" noBorder>
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 max-w-3xl">
-            <h1 className="type-h2 mb-4">Export-ready fruit from India&apos;s mandis</h1>
+            <h1 className="type-h2 mb-4">Fruit exporter in India</h1>
             <p className="type-body">
-              Super Sales Agro supplies wholesale fruit to buyers across the U.K., Europe, Australia, the Middle East,
-              and South East Asia. From Azadpur and Himachal sourcing to cold-chain packing — we handle export volumes
-              with the same family-run care we&apos;ve brought since 1982. For wholesale Indian mangoes in the United
-              States and Canada, the program is{' '}
+              Super Sales Agro packs graded apples, kinnow, mangoes, pomegranate, pears, and guavas for buyers outside
+              India. The standing lanes are the U.K., Europe, Australia, the Middle East, and South East Asia. Fruit is
+              bought at Azadpur and in Himachal, then graded and pre-cooled in Delhi before it leaves for the port. For
+              wholesale Indian mangoes in the United States and Canada, the program is{' '}
               <a href="https://mangroveharvest.com/" className="text-agro-700 underline">
                 Mangrove Harvest
               </a>
@@ -39,6 +40,22 @@ export default function ExportPage() {
                 <p className="mt-2 font-funneldisplay text-sm font-bold text-slate-900 sm:text-base">{market.region}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mb-8 max-w-3xl">
+            <h2 className="font-funneldisplay text-2xl font-bold text-slate-900">What an overseas buyer sends</h2>
+            <p className="type-body mt-3">
+              Variety, grade, carton count, destination port, and the sailing week. We reply with the lot we can pack
+              that week. This is not a customs guide for the destination country. Phytosanitary papers are coordinated
+              with your forwarder from the Delhi desk.
+            </p>
+            <p className="type-body mt-3">
+              Buyers in other Indian states are a domestic dispatch, not an export booking. Use{' '}
+              <Link href="/wholesale" className="text-agro-700 underline">
+                wholesale fruit supply across India
+              </Link>
+              .
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -61,9 +78,10 @@ export default function ExportPage() {
 
           <div className="-mx-3 grid grid-cols-2 gap-px bg-slate-200 md:grid-cols-3 sm:-mx-4 md:-mx-6">
             {exportProducts.map((product) => (
-              <div
+              <Link
                 key={product.name}
-                className="flex min-h-[200px] flex-col items-center justify-center bg-white px-4 py-8 text-center sm:min-h-[220px] sm:px-6"
+                href={product.href}
+                className="flex min-h-[200px] flex-col items-center justify-center bg-white px-4 py-8 text-center transition hover:bg-slate-50 sm:min-h-[220px] sm:px-6"
               >
                 <Image
                   alt={product.name}
@@ -76,7 +94,7 @@ export default function ExportPage() {
                 />
                 <h3 className="font-funneldisplay text-lg font-bold text-slate-900">{product.name}</h3>
                 <p className="mt-2 text-sm text-slate-500">{product.note}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

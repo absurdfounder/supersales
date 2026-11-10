@@ -16,13 +16,11 @@ export default function WholesalePage() {
       <SectionShell eyebrowNumber="01" eyebrow="Wholesale" bgClass="bg-white" noBorder>
         <div className="pb-10 pt-2 md:pb-14">
           <div className="mb-8 max-w-3xl">
-            <h1 className="type-h2 mb-4">
-              Processors, exporters &amp; wholesale suppliers of Indian &amp; imported fresh fruits
-            </h1>
+            <h1 className="type-h2 mb-4">Wholesale fruit supplier for other states</h1>
             <p className="type-body">
-              Super Sales Agro supplies bulk fresh fruit to processors, export consolidators, and wholesale buyers
-              across India. From Azadpur and Himachal mandis to cold-store dispatch — one family-run desk for domestic
-              and imported lines since 1982.
+              Super Sales Agro supplies processors, traders, and wholesale buyers outside Delhi from the Azadpur floor.
+              Send the delivery city with the variety, grade, and carton count. The fruit is the same Himachal and
+              mandi purchase we sell in Delhi. It is packed and dispatched, not resold as a local shop in that state.
             </p>
           </div>
 

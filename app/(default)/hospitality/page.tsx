@@ -1,9 +1,10 @@
 import HospitalityPage from '@/components/HospitalityPage'
 
 export const metadata = {
-  title: 'Hospitality & Retail | Super Sales Agro',
+  title: 'Hotel Fruit Supplier Delhi | Super Sales Agro',
   description:
-    'Special fruit supply arrangements for hotels, restaurants, caterers, banquets, retail chains and more — standing orders from Azadpur mandi.',
+    'Fruit supplier for hotels, restaurants, caterers, banquets, and retail chains in Delhi. Standing orders from the Azadpur mandi floor.',
+  alternates: { canonical: 'https://supersalesagro.com/hospitality' },
 }
 
 export default function HospitalityRoutePage() {
