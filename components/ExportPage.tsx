@@ -21,7 +21,12 @@ export default function ExportPage() {
             <p className="type-body">
               Super Sales Agro supplies wholesale fruit to buyers across the U.K., Europe, Australia, the Middle East,
               and South East Asia. From Azadpur and Himachal sourcing to cold-chain packing — we handle export volumes
-              with the same family-run care we&apos;ve brought since 1982.
+              with the same family-run care we&apos;ve brought since 1982. For wholesale Indian mangoes in the United
+              States and Canada, the program is{' '}
+              <a href="https://mangroveharvest.com/" className="text-agro-700 underline">
+                Mangrove Harvest
+              </a>
+              .
             </p>
           </div>
 

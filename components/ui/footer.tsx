@@ -26,6 +26,7 @@ const footerLinks = {
     },
     { href: 'tel:+919899262264', label: '+91-9899262264' },
     { href: 'mailto:supersalesagro@gmail.com', label: 'supersalesagro@gmail.com' },
+    { href: 'https://mangroveharvest.com/', label: 'Mangrove Harvest — USA & Canada', external: true },
   ],
 }
 
