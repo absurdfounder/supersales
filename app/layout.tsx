@@ -54,7 +54,7 @@ const businessLd = {
   '@type': 'WholesaleStore',
   name: 'Super Sales Agro',
   url: siteUrl,
-  telephone: '+919899262264',
+  telephone: ['+919899262264', '+919711269346'],
   email: 'supersalesagro@gmail.com',
   foundingDate: '1982',
   address: {
@@ -70,6 +70,9 @@ const businessLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="describedby" href={`${siteUrl}/llms.txt`} />
+      </head>
       <body
         suppressHydrationWarning
         className={`${inter.variable} ${robotoMono.variable} ${silkscreen.variable} ${funneldisplay.variable} font-sans antialiased bg-white text-slate-900 tracking-tight`}
